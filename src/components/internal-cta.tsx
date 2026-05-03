@@ -31,7 +31,7 @@ export function InternalCta({
         <Link href={site.ctas.textUs.href} className="btn-hero-secondary focus-ring">
           {site.ctas.textUs.label}
         </Link>
-        <Link href="/pay-now" className="btn-hero-secondary focus-ring">
+        <Link href="https://shipwreckedpools.mypoolportal.com/auth/sign-in" className="btn-hero-secondary focus-ring">
           {site.ctas.payNow.label}
         </Link>
       </div>

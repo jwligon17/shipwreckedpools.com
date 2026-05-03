@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { InternalHero } from "@/components/internal-hero";
 import { site } from "@/content/site";
+import { siteUrl } from "@/lib/site";
 
 export function generateStaticParams() {
   return site.blogSummaries.map((post) => ({ slug: post.slug }));
@@ -20,8 +21,11 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   }
 
   return {
-    title: `${post.title} (Summary)`,
+    title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
   };
 }
 
@@ -41,9 +45,33 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
   }
 
   const relatedArticles = site.blogSummaries.filter((item) => item.slug !== post.slug).slice(0, 3);
+  const relatedServices = post.relatedServiceSlugs
+    .map((serviceSlug) => site.services.find((service) => service.slug === serviceSlug))
+    .filter((service): service is (typeof site.services)[number] => Boolean(service));
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    datePublished: post.publishedOn,
+    dateModified: post.publishedOn,
+    description: post.excerpt,
+    author: {
+      "@type": "Organization",
+      name: site.brand.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: site.brand.name,
+      url: siteUrl,
+    },
+    mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
+    articleSection: "Pool Care",
+  };
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+
       <InternalHero
         eyebrow="Pool Care Blog"
         title={post.title}
@@ -74,16 +102,33 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
             <p className="mt-5 max-w-3xl text-[1rem] leading-relaxed text-ink-muted md:text-lg">{post.excerpt}</p>
 
             <div className="mt-8 rounded-[1.25rem] border border-line/80 bg-[linear-gradient(180deg,#ffffff_0%,#f5faff_100%)] p-5 md:p-6">
-              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-navy">Summary</p>
+              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-navy">Article</p>
               <p className="mt-3 text-[0.98rem] leading-relaxed text-ink-muted md:text-base">{post.summaryBody}</p>
+              <div className="mt-4 space-y-3">
+                {post.bodySections.map((section) => (
+                  <p key={section} className="text-[0.98rem] leading-relaxed text-ink-muted md:text-base">
+                    {section}
+                  </p>
+                ))}
+              </div>
             </div>
 
-            <div className="mt-6 rounded-[1.25rem] border border-dashed border-light-blue/85 bg-light-blue-soft/65 p-5 md:p-6">
-              <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-navy">Summary-Only Note</p>
-              <p className="mt-3 text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">
-                This page intentionally uses summary-only staging content. Full article copy can be added later without changing URL structure.
-              </p>
-            </div>
+            {relatedServices.length > 0 ? (
+              <section className="mt-6 rounded-[1.25rem] border border-line/80 bg-white p-5 md:p-6">
+                <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-navy">Related Pool Services</p>
+                <div className="mt-3 flex flex-wrap gap-2.5">
+                  {relatedServices.map((service) => (
+                    <Link
+                      key={service.slug}
+                      href={`/services/${service.slug}`}
+                      className="focus-ring inline-flex rounded-full border border-line bg-light-blue-soft/55 px-3 py-1.5 text-sm font-medium text-navy transition hover:border-navy/25 hover:bg-light-blue-soft"
+                    >
+                      {service.seoH1 ?? service.name}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/blog" className="btn-secondary focus-ring">

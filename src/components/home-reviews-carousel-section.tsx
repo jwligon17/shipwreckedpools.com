@@ -1,6 +1,6 @@
 "use client";
 
-import { type MouseEvent, type PointerEvent, useEffect, useMemo, useRef } from "react";
+import { type MouseEvent, type PointerEvent, useMemo, useRef } from "react";
 
 import { site } from "@/content/site";
 
@@ -83,134 +83,12 @@ export function HomeReviewsCarouselSection({
   const { rating, displayReviewCount, googleReviewsUrl, reviews } = site.reviewsData;
   const reviewsCount = reviews.length;
   const hasReviews = reviewsCount > 0;
-  const loopCopies = 7;
-  const middleCopyIndex = Math.floor(loopCopies / 2);
-  const loopedReviews = useMemo(
-    () => Array.from({ length: loopCopies }).flatMap(() => reviews),
-    [loopCopies, reviews],
-  );
+  const visibleReviews = useMemo(() => reviews, [reviews]);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const pointerDownRef = useRef(false);
   const dragMovedRef = useRef(false);
   const startXRef = useRef(0);
   const startScrollLeftRef = useRef(0);
-  const isResettingRef = useRef(false);
-  const rafRef = useRef<number | null>(null);
-
-  const getSetWidth = () => {
-    const track = trackRef.current;
-    if (!track) {
-      return 0;
-    }
-    const singleSetWidth = track.scrollWidth / loopCopies;
-    return Number.isFinite(singleSetWidth) && singleSetWidth > 0 ? singleSetWidth : 0;
-  };
-
-  const jumpWithoutAnimation = (nextScrollLeft: number) => {
-    const track = trackRef.current;
-    if (!track) {
-      return;
-    }
-
-    isResettingRef.current = true;
-    const previousScrollBehavior = track.style.scrollBehavior;
-    const previousScrollSnapType = track.style.scrollSnapType;
-    track.style.scrollBehavior = "auto";
-    track.style.scrollSnapType = "none";
-    track.scrollLeft = nextScrollLeft;
-
-    window.requestAnimationFrame(() => {
-      const activeTrack = trackRef.current;
-      if (!activeTrack) {
-        isResettingRef.current = false;
-        return;
-      }
-      activeTrack.style.scrollBehavior = previousScrollBehavior;
-      activeTrack.style.scrollSnapType = previousScrollSnapType;
-      isResettingRef.current = false;
-    });
-  };
-
-  const normalizeScrollPosition = () => {
-    const track = trackRef.current;
-    if (!track || isResettingRef.current) {
-      return;
-    }
-
-    const setWidth = getSetWidth();
-    if (!setWidth) {
-      return;
-    }
-
-    const leftThreshold = setWidth * (middleCopyIndex - 1.25);
-    const rightThreshold = setWidth * (middleCopyIndex + 1.25);
-    const jumpDistance = setWidth * 2;
-    let nextScrollLeft = track.scrollLeft;
-    let didAdjust = false;
-
-    while (nextScrollLeft < leftThreshold) {
-      nextScrollLeft += jumpDistance;
-      didAdjust = true;
-    }
-    while (nextScrollLeft > rightThreshold) {
-      nextScrollLeft -= jumpDistance;
-      didAdjust = true;
-    }
-
-    if (!didAdjust) {
-      return;
-    }
-
-    jumpWithoutAnimation(nextScrollLeft);
-  };
-
-  useEffect(() => {
-    if (!hasReviews) {
-      return;
-    }
-
-    const track = trackRef.current;
-    if (!track) {
-      return;
-    }
-
-    let retryCount = 0;
-    const maxRetries = 8;
-
-    const setInitialMiddlePosition = () => {
-      const setWidth = getSetWidth();
-      if (!setWidth) {
-        if (retryCount < maxRetries) {
-          retryCount += 1;
-          window.requestAnimationFrame(setInitialMiddlePosition);
-        }
-        return;
-      }
-      jumpWithoutAnimation(setWidth * middleCopyIndex);
-    };
-
-    const animationFrame = window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(setInitialMiddlePosition);
-    });
-    const handleResize = () => {
-      window.requestAnimationFrame(setInitialMiddlePosition);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.cancelAnimationFrame(animationFrame);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [hasReviews, middleCopyIndex, reviewsCount]);
-
-  useEffect(() => {
-    return () => {
-      if (rafRef.current !== null) {
-        window.cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, []);
 
   const isInteractiveElement = (target: EventTarget | null) => {
     if (!(target instanceof HTMLElement)) {
@@ -271,21 +149,6 @@ export function HomeReviewsCarouselSection({
     }
     event.preventDefault();
     event.stopPropagation();
-  };
-
-  const handleTrackScroll = () => {
-    if (isResettingRef.current) {
-      return;
-    }
-
-    if (rafRef.current !== null) {
-      window.cancelAnimationFrame(rafRef.current);
-    }
-
-    rafRef.current = window.requestAnimationFrame(() => {
-      rafRef.current = null;
-      normalizeScrollPosition();
-    });
   };
 
   const cardBaseClass =
@@ -359,13 +222,12 @@ export function HomeReviewsCarouselSection({
                   onPointerMove={handleTrackPointerMove}
                   onPointerUp={handleTrackPointerUp}
                   onPointerCancel={handleTrackPointerUp}
-                  onScroll={handleTrackScroll}
                   onClickCapture={handleTrackClickCapture}
                   className="scrollbar-none focus-ring relative mx-auto flex max-w-[96rem] snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-2 pt-1 [touch-action:pan-x] md:gap-6"
                 >
-                  {loopedReviews.map((review, index) => (
+                  {visibleReviews.map((review, index) => (
                     <ReviewCard
-                      key={`review-card-loop-${review.reviewerName ?? "review"}-${index}`}
+                      key={`review-card-${review.reviewerName ?? "review"}-${index}`}
                       review={review}
                       googleReviewsUrl={googleReviewsUrl}
                       starSeed={index}

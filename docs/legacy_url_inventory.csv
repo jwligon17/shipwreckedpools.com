@@ -1,0 +1,24 @@
+source_url,source_type,canonical_target,destination_exists,action,notes
+/pages/acid-wash,legacy_service,/services/acid-wash,yes,redirect,Legacy service URL should consolidate to canonical service page.
+/pages/green-to-cleans,legacy_service,/services/algae-removal,yes,redirect,Legacy naming variant should consolidate into green-to-clean canonical service route.
+/pages/contact,legacy_contact,/contact,yes,redirect,Legacy contact URL should consolidate to canonical contact route.
+/pages/baird-pool-service,legacy_location,/locations/baird,yes,redirect,Legacy location URL should consolidate to canonical location page.
+/pages/buffalo-gap-pool-service,legacy_location,/locations/buffalo-gap,yes,redirect,Legacy location URL should consolidate to canonical location page.
+/pages/clyde-pool-service,legacy_location,/locations/clyde,yes,redirect,Legacy location URL should consolidate to canonical location page.
+/pages/hamby-pool-service,legacy_location,/locations/hamby,yes,redirect,Legacy location URL should consolidate to canonical location page.
+/pages/hawley-pool-service,legacy_location,/locations/hawley,yes,redirect,Legacy location URL should consolidate to canonical location page.
+/pages/merkel-pool-service,legacy_location,/locations/merkel,yes,redirect,Legacy location URL should consolidate to canonical location page.
+/pages/potosi-pool-service,legacy_location,/locations/potosi,yes,redirect,Legacy location URL should consolidate to canonical location page.
+/pages/tuscola-pool-service,legacy_location,/locations/tuscola,yes,redirect,Legacy location URL should consolidate to canonical location page.
+/pages/tye-pool-service,legacy_location,/locations/tye,yes,redirect,Legacy location URL should consolidate to canonical location page.
+/products/weekly-cleaning-service-text-325-665-8877-for-a-quote,legacy_product,/services/weekly-services,yes,redirect,Legacy product-like URL should consolidate to canonical weekly service route.
+/blogs/news/how-to-clean-cartridge-filters,legacy_blog,/blog/how-to-clean-cartridge-filters,yes,redirect,Legacy blog namespace should consolidate to canonical blog route.
+/blogs/news/low-calcium-pool-corrosion-risk,legacy_blog,/blog/low-calcium-pool-corrosion-risk,yes,redirect,Legacy blog namespace should consolidate to canonical blog route.
+/blogs/news/fiberglass-pool-maintenance-tips,legacy_blog,/blog/fiberglass-pool-maintenance-tips,yes,redirect,Legacy blog namespace should consolidate to canonical blog route.
+/blogs/news/which-pool-cleaner-is-right,legacy_blog,/blog/which-pool-cleaner-is-right,yes,redirect,Legacy blog namespace should consolidate to canonical blog route.
+/blogs/news/black-algae-the-pool-owners-nightmare,legacy_blog,/blog/black-algae-the-pool-owners-nightmare,yes,redirect,Legacy blog namespace should consolidate to canonical blog route.
+/blogs/news/salt-pool-maintenance-checklist,legacy_blog,/blog/salt-pool-maintenance-checklist,yes,redirect,Legacy blog namespace should consolidate to canonical blog route.
+/pages/free-estimate-pool-skimmer-giveaway,legacy_pages_live,/pages/free-estimate-pool-skimmer-giveaway,yes,retain,Currently implemented at the same legacy path; no new canonical route found yet for consolidation.
+/pages/*,legacy_family,UNMAPPED,unknown,merge_or_retire,Wildcard legacy family reported as live in issue map; requires crawl/log export to enumerate additional sources.
+/products/*,legacy_family,UNMAPPED,unknown,merge_or_retire,Wildcard legacy family reported as live in issue map; requires crawl/log export to enumerate additional sources.
+/blogs/news/*,legacy_family,/blog/*,partial,merge_or_retire,Only known seeded articles are mapped; unknown legacy slugs need discovery and routing policy.

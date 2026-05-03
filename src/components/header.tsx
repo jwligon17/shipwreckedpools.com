@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -100,24 +100,47 @@ function isDesignedPublicRoute(pathname: string | null) {
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentScrollY, setCurrentScrollY] = useState(0);
   const pathname = usePathname();
   const utilitySocialLinks = site.socialLinks.filter((link) => link.enabled);
   const usesOverlayNav = useMemo(() => isDesignedPublicRoute(pathname), [pathname]);
-  const navIsSolid = !usesOverlayNav || currentScrollY > 160;
+  const [navIsSolid, setNavIsSolid] = useState(!usesOverlayNav);
+  const rafRef = useRef<number | null>(null);
+  const navSolidRef = useRef(navIsSolid);
 
   useEffect(() => {
-    function updateScrollY() {
-      setCurrentScrollY(window.scrollY);
+    setNavIsSolid((current) => {
+      const next = !usesOverlayNav || window.scrollY > 160;
+      navSolidRef.current = next;
+      return current === next ? current : next;
+    });
+  }, [usesOverlayNav]);
+
+  useEffect(() => {
+    function updateNavState() {
+      if (rafRef.current !== null) {
+        return;
+      }
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = null;
+        const next = !usesOverlayNav || window.scrollY > 160;
+        if (navSolidRef.current === next) {
+          return;
+        }
+        navSolidRef.current = next;
+        setNavIsSolid(next);
+      });
     }
 
-    updateScrollY();
-    window.addEventListener("scroll", updateScrollY, { passive: true });
+    updateNavState();
+    window.addEventListener("scroll", updateNavState, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", updateScrollY);
+      window.removeEventListener("scroll", updateNavState);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
     };
-  }, []);
+  }, [usesOverlayNav]);
 
   function isActive(href: string) {
     return href === "/" ? pathname === "/" : pathname?.startsWith(href);
@@ -161,7 +184,6 @@ export function Header() {
       </div>
 
       <div
-        data-scroll-y={Math.round(currentScrollY)}
         data-scroll-state={navIsSolid ? "solid" : "overlay"}
         data-nav-state-source={usesOverlayNav ? "js-scroll-state" : "static"}
         className={cn(

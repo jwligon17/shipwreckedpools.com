@@ -23,7 +23,7 @@ export function Footer() {
             <Link href={site.ctas.textUs.href} className="btn-inverse focus-ring px-4 py-2">
               {site.ctas.textUs.label}
             </Link>
-            <Link href="/pay-now" className="btn-subtle focus-ring px-4 py-2">
+            <Link href="https://shipwreckedpools.mypoolportal.com/auth/sign-in" className="btn-subtle focus-ring px-4 py-2">
               {site.ctas.payNow.label}
             </Link>
           </div>
@@ -40,7 +40,7 @@ export function Footer() {
               </li>
             ))}
             <li>
-              <Link href="/pay-now" className="text-white/88 underline decoration-pink underline-offset-4 hover:text-white hover:decoration-pink focus-ring">
+              <Link href="https://shipwreckedpools.mypoolportal.com/auth/sign-in" className="text-white/88 underline decoration-pink underline-offset-4 hover:text-white hover:decoration-pink focus-ring">
                 {site.ctas.payNow.label}
               </Link>
             </li>

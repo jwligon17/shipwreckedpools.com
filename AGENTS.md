@@ -1,35 +1,67 @@
-# Shipwrecked Pools project instructions
+# Shipwrecked Pools Codex Rules
 
-## Project root
-- Treat this folder as the project root for all work.
-- If the folder is empty, scaffold the app in place here.
-- Do not create a second nested app folder unless absolutely necessary.
-- If files already exist, preserve and adapt to the existing structure.
+## Mission
+Build the most technically sound, locally relevant, conversion-focused pool service website in West Texas **without broad unnecessary changes**.
 
-## Build requirements
-- Build an original custom website for Shipwrecked Pools.
-- Use LMH Agency only as inspiration for visual energy, typography scale, spacing rhythm, section pacing, and CTA structure.
-- Do NOT copy LMH’s copy, HTML, CSS, SVGs, images, animations, class names, or exact layout.
-- Use Next.js App Router, TypeScript, Tailwind CSS, and ESLint.
-- Prefer static pages and content-driven architecture.
-- Keep all business data in `src/content/site.ts`.
+## Primary goals
+1. Increase relevance for pool-cleaning and pool-service searches in Abilene and nearby service areas.
+2. Consolidate old and new URL structures so authority is not split.
+3. Improve conversion paths for call, text, and quote requests.
+4. Improve Core Web Vitals without degrading crawlability or conversion.
+5. Preserve a premium LMH-inspired visual feel while making copy and structure more search-intent aligned.
+
+## Hard guardrails
+- Do not redesign the brand unless the prompt explicitly asks for design work.
+- Do not rename routes unless the task is explicitly about migration or redirects.
+- Do not change more files than necessary.
+- Do not add dependencies unless the prompt explicitly allows it and you justify them.
+- Do not invent reviews, customer stories, neighborhoods, service claims, awards, or service-area facts.
+- Do not publish placeholder lorem ipsum.
+- Do not expose a residential address on-page or in structured data.
+- Do not create doorway pages or near-duplicate location pages.
+- Do not remove real CTAs, phone numbers, or quote flows unless replaced with something better in the same task.
+- Do not touch analytics, payments, portal, or quote logic unless that is the exact task.
+
+## Preferred workflow
+1. Inspect the exact routes, components, and content related to the task.
+2. State the smallest safe implementation plan.
+3. Edit only the files needed for that plan.
+4. Validate with the project’s existing checks.
+5. Summarize exactly what changed, file by file.
+6. Note any follow-up items separately instead of expanding scope.
+
+## Editing rules
+- Preserve route stability whenever possible.
+- Prefer additive improvements over rewrites when the current structure is salvageable.
+- Keep titles, H1s, internal links, schema, and CTA language explicit and search-intent aligned.
+- Use descriptive anchor text, not vague link text.
+- Treat service pages as money pages and location pages as local-support pages.
+- If a page has old and new versions, prefer the new canonical route and map the old route with a redirect.
+- If a change affects multiple routes, build the map first before touching code.
 
 ## Content rules
-- Read `REFERENCE_BRIEF.md` before making changes.
-- Do not invent testimonials, review counts, awards, certifications, guarantees beyond what is provided, or pricing.
-- Use placeholder local assets or simple SVG patterns instead of remote images.
-- Keep the tone premium, local, confident, and clear.
+- Keyword-first beats poetic-first in title tags and H1s.
+- Keep brand personality in supporting copy, not at the expense of clarity.
+- FAQ content should help users; do not assume FAQ rich results will show.
+- Review content may be displayed, but do not implement self-serving review rich-result markup for the business itself.
+- Every page should have one clear primary intent and one clear CTA.
 
-## Staging safety
-- This site is not going live yet.
-- Set the site to noindex by default unless `NEXT_PUBLIC_SITE_LIVE=true`.
-- Use safe placeholder integrations for forms and submissions.
+## Local SEO rules
+- Shipwrecked is a service-area business.
+- Do not output a public street address unless a prompt explicitly says the business has a staffed storefront that receives customers.
+- Abilene is the core market. Nearby service areas should be treated as supportive clusters, not cloned pages.
+- Location pages need unique, useful local angles or they should be consolidated.
 
-## Quality bar
-- Keep code modular, reusable, and easy to edit later.
-- Run lint and build before finishing each major task.
-- End each task with:
-  - what is complete
-  - what is placeholder
-  - what still needs real content/assets
-  
+## CWV rules
+- Preserve semantic HTML and crawlable links.
+- Do not hide critical content behind user actions or broken lazy-loading.
+- Avoid heavy hero media, layout shifts, and unnecessary JavaScript.
+- Fix the root cause, not just the metric symptom.
+
+## Done criteria
+A task is done only when:
+- the requested scope is complete
+- no unrelated broad changes were made
+- validation was run where possible
+- the diff is easy to review
+- the summary explains what changed and what still needs a human

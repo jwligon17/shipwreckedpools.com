@@ -7,6 +7,9 @@ export type Cta = {
 export type Service = {
   slug: string;
   name: string;
+  seoTitle?: string;
+  seoH1?: string;
+  seoDescription?: string;
   summary: string;
   supportingParagraph: string;
   idealFor: string;
@@ -36,6 +39,7 @@ export type Service = {
 export type Location = {
   slug: string;
   name: string;
+  seoTitle?: string;
   summary: string;
   heroHeadline: string;
   introCopy: string;
@@ -59,6 +63,8 @@ export type BlogSummary = {
   publishedOn: string;
   excerpt: string;
   summaryBody: string;
+  bodySections: string[];
+  relatedServiceSlugs: string[];
 };
 
 export type ResourcePreview = {
@@ -118,8 +124,8 @@ export type ReviewsData = {
 
 const reviewsData: ReviewsData = {
   rating: 5.0,
-  reviewCount: 35,
-  displayReviewCount: "35+",
+  reviewCount: 45,
+  displayReviewCount: "45+",
   googleReviewsUrl:
     "https://www.google.com/search?q=shipwrecked+pools&oq=shipwrecked+pools&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDsyCAgCEEUYJxg7MgYIAxBFGDwyBggEEEUYPTIGCAUQRRhBMgYIBhBFGEEyBggHEEUYQdIBCDM1ODhqMGo0qAIBsAIB8QW_u7c0Ik4Grw&sourceid=chrome&ie=UTF-8#lrd=0x6535013210ab0793:0xb436b7ca7f578316,1,,,,",
   reviews: [
@@ -229,8 +235,7 @@ export const site = {
     phone: "325-665-8877",
     phoneHref: "tel:+13256658877",
     textHref: "sms:+13256658877",
-    description:
-      "Professional pool cleaning and pool asset management for homeowners who want clear water and long-term protection of equipment and plaster.",
+    description: "Clear water. Protected gear. Weekends back.",
     owner: "Jason Ligon",
   },
   ctas: {
@@ -385,15 +390,14 @@ export const site = {
     hero: {
       eyebrow: "Abilene Pool Service",
       titleLines: [
-        "Protect Your Pool System.",
-        "Get Your Saturdays Back.",
-        "Keep Water Crystal Clear.",
+        "Pool Cleaning & Weekly Pool Service",
+        "in Abilene, TX",
       ],
       description:
-        "Weekly service, green-to-clean recovery, and filter care for Abilene homeowners who want clear water and protected equipment.",
+        "Protect Your Pool System. Get Your Saturdays Back. Keep Water Crystal Clear. Weekly service, green-to-clean recovery, and filter care for Abilene homeowners who want clear water and protected equipment.",
       primaryCta: { label: "Get a Quote", href: "/contact" },
       secondaryCta: { label: "Text Us", href: "sms:+13256658877", external: true },
-      tertiaryCta: { label: "Pay Now", href: "/pay-now" },
+      tertiaryCta: { label: "Pay Now", href: "https://shipwreckedpools.mypoolportal.com/auth/sign-in" },
       microProofs: [
         "100% Money-Back Guarantee",
         "Abilene + Surrounding Towns",
@@ -514,7 +518,7 @@ export const site = {
     },
     reviewsSection: {
       title: "Why Homeowners Trust Shipwrecked Pools",
-      supportingLine: "Rated 5.0 on Google with 35+ reviews from local homeowners.",
+      supportingLine: "Rated 5.0 on Google with 45+ reviews from local homeowners.",
     },
     poolCareServices: {
       title: "Our Pool Care Services",
@@ -772,6 +776,10 @@ export const site = {
     {
       slug: "weekly-services",
       name: "Weekly Services",
+      seoTitle: "Weekly Pool Service in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Weekly Pool Service in Abilene, TX",
+      seoDescription:
+        "Recurring weekly pool service in Abilene with cleaning, chemistry checks, debris removal, and equipment watchfulness from Shipwrecked Pools.",
       summary:
         "Consistent recurring pool care designed to keep water clear and your system performing week after week.",
       supportingParagraph:
@@ -832,6 +840,10 @@ export const site = {
     {
       slug: "bi-weekly-services",
       name: "Bi-Weekly Services",
+      seoTitle: "Bi-Weekly Pool Service in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Bi-Weekly Pool Service in Abilene, TX",
+      seoDescription:
+        "Professional bi-weekly pool service for Abilene homeowners who need lighter recurring support with clean, balanced water.",
       summary:
         "A practical recurring service option for pools that can stay stable with professional care every other week.",
       supportingParagraph:
@@ -892,6 +904,10 @@ export const site = {
     {
       slug: "algae-removal",
       name: "Algae Removal",
+      seoTitle: "Green-to-Clean Pool Cleanup in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Green-to-Clean Pool Cleanup in Abilene, TX",
+      seoDescription:
+        "Turn a green pool clear again with professional algae cleanup and chemistry correction in Abilene from Shipwrecked Pools.",
       summary:
         "Structured remediation to recover unhealthy water and return your pool to stable, swimmable condition.",
       supportingParagraph:
@@ -952,6 +968,10 @@ export const site = {
     {
       slug: "acid-wash",
       name: "Acid Wash",
+      seoTitle: "Pool Acid Wash in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Acid Wash in Abilene, TX",
+      seoDescription:
+        "Remove stubborn plaster stains, scale, and discoloration with professional acid wash service in Abilene.",
       showBenefitsSection: false,
       summary:
         "Surface restoration service for stained plaster when a deep reset is necessary.",
@@ -1013,6 +1033,10 @@ export const site = {
     {
       slug: "drain-and-refill",
       name: "Drain & Refill",
+      seoTitle: "Pool Drain & Refill in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Drain & Refill in Abilene, TX",
+      seoDescription:
+        "Reset difficult water chemistry with a managed drain and refill service for Abilene pools.",
       showBenefitsSection: false,
       summary:
         "Managed water replacement to reset chemistry when total dissolved solids or imbalance call for a hard reset.",
@@ -1067,6 +1091,10 @@ export const site = {
     {
       slug: "filter-cleaning",
       name: "Filter Cleaning",
+      seoTitle: "Pool Filter Cleaning in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Filter Cleaning in Abilene, TX",
+      seoDescription:
+        "Improve circulation and water clarity with professional cartridge, DE, or sand-filter cleaning in Abilene.",
       showBenefitsSection: false,
       summary:
         "Performance-focused filter maintenance that supports circulation, clarity, and equipment longevity.",
@@ -1121,6 +1149,10 @@ export const site = {
     {
       slug: "sand-replacement",
       name: "Sand Replacement",
+      seoTitle: "Pool Filter Sand Replacement in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Filter Sand Replacement in Abilene, TX",
+      seoDescription:
+        "Restore sand-filter performance with professional filter sand replacement in Abilene from Shipwrecked Pools.",
       showBenefitsSection: false,
       showProofSection: false,
       summary:
@@ -1183,6 +1215,10 @@ export const site = {
     {
       slug: "pump-repair-and-installation",
       name: "Pump Repair and Installation",
+      seoTitle: "Pool Pump Repair & Installation in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Pump Repair & Installation in Abilene, TX",
+      seoDescription:
+        "Get professional pool pump troubleshooting, replacement, and installation help in Abilene to restore flow and circulation.",
       summary:
         "Professional troubleshooting, repair, and replacement support for pool pumps and circulation performance.",
       supportingParagraph:
@@ -1243,6 +1279,10 @@ export const site = {
     {
       slug: "one-time-cleans",
       name: "One Time Cleans",
+      seoTitle: "One-Time Pool Cleaning in Abilene, TX | Shipwrecked Pools",
+      seoH1: "One-Time Pool Cleaning in Abilene, TX",
+      seoDescription:
+        "Need a catch-up visit after weather, travel, or a party? Get one-time pool cleaning and balancing in Abilene.",
       summary:
         "Targeted single-visit pool cleanup service for special events, seasonal resets, or catch-up needs.",
       supportingParagraph:
@@ -1307,15 +1347,42 @@ export const site = {
     {
       slug: "south-abilene",
       name: "South Abilene",
-      summary: "Residential pool service coverage throughout South Abilene neighborhoods.",
+      seoTitle: "Pool Cleaning & Pool Service in South Abilene, TX | Shipwrecked Pools",
+      summary: "Recurring pool care for South Abilene homeowners who want consistent water clarity and less pool stress.",
       heroHeadline: "Pool Service for South Abilene Homeowners",
       introCopy:
-        "Shipwrecked Pools supports South Abilene homeowners with dependable pool care built around communication, consistency, and long-term water quality.",
-      localContext: "South Abilene routes prioritize consistent recurring visits and practical response planning.",
-      routeNotes: "Best fit for homeowners who want dependable weekly or bi-weekly scheduling.",
-      routeAvailabilityNote: "South Abilene route placement is based on current scheduling density and onboarding windows.",
-      servicesOffered: defaultLocationServiceSlugs,
-      faqs: buildLocationFaqs("South Abilene"),
+        "South Abilene homeowners often choose Shipwrecked Pools for dependable recurring care that keeps pool chemistry stable through long heat stretches and heavy seasonal use.",
+      localContext: "South Abilene service is structured around recurring route consistency, with practical follow-up when conditions shift.",
+      routeNotes: "Strong fit for homeowners prioritizing weekly or bi-weekly service with proactive communication.",
+      routeAvailabilityNote: "South Abilene availability is confirmed by address and current recurring-route openings.",
+      servicesOffered: [
+        "weekly-services",
+        "bi-weekly-services",
+        "filter-cleaning",
+        "algae-removal",
+        "drain-and-refill",
+        "acid-wash",
+        "pump-repair-and-installation",
+        "one-time-cleans",
+        "sand-replacement",
+      ],
+      faqs: [
+        {
+          question: "Do you offer weekly pool service in South Abilene?",
+          answer:
+            "Yes, weekly and bi-weekly support are both available when route capacity allows. We confirm options after checking your address and pool details.",
+        },
+        {
+          question: "What services are most common in South Abilene?",
+          answer:
+            "Recurring maintenance, filter care, and occasional algae recovery are common requests. We recommend the right path based on current pool condition.",
+        },
+        {
+          question: "How quickly can service start in South Abilene?",
+          answer:
+            "Start timing depends on route density and season. Texting your address is the fastest way to confirm current onboarding windows.",
+        },
+      ],
       imagePath: "/images/locations/south-abilene.jpg",
       imageAlt: "Pool service area in South Abilene",
       nearbyLocationSlugs: ["north-abilene", "potosi", "buffalo-gap"],
@@ -1324,15 +1391,42 @@ export const site = {
     {
       slug: "north-abilene",
       name: "North Abilene",
-      summary: "Consistent route coverage for North Abilene homeowners.",
+      seoTitle: "Pool Cleaning & Pool Service in North Abilene, TX | Shipwrecked Pools",
+      summary: "Route-based pool cleaning support for North Abilene homeowners who want dependable upkeep and clear communication.",
       heroHeadline: "Pool Service for North Abilene Neighborhoods",
       introCopy:
-        "North Abilene pool owners rely on Shipwrecked Pools for recurring maintenance that protects water clarity and equipment performance.",
-      localContext: "North Abilene pools benefit from structured recurring care and proactive equipment checks.",
-      routeNotes: "Route planning supports both recurring service and selected specialty work.",
-      routeAvailabilityNote: "North Abilene route timing is confirmed by address and current technician load.",
-      servicesOffered: defaultLocationServiceSlugs,
-      faqs: buildLocationFaqs("North Abilene"),
+        "North Abilene homeowners work with Shipwrecked Pools for practical recurring service that keeps water manageable and helps catch equipment issues early.",
+      localContext: "North Abilene service blends recurring maintenance with equipment-focused support when circulation concerns appear.",
+      routeNotes: "Good fit for homeowners who want recurring care plus clearer maintenance planning.",
+      routeAvailabilityNote: "North Abilene scheduling is confirmed after a quick address check against active route timing.",
+      servicesOffered: [
+        "weekly-services",
+        "filter-cleaning",
+        "pump-repair-and-installation",
+        "bi-weekly-services",
+        "algae-removal",
+        "drain-and-refill",
+        "acid-wash",
+        "one-time-cleans",
+        "sand-replacement",
+      ],
+      faqs: [
+        {
+          question: "Can you help with circulation and equipment issues in North Abilene?",
+          answer:
+            "Yes. Filter cleaning, pump diagnostics, and related maintenance support are available alongside recurring service routes.",
+        },
+        {
+          question: "Is recurring pool service available in North Abilene?",
+          answer:
+            "Yes. Weekly and bi-weekly options may be available depending on route load and your pool’s service needs.",
+        },
+        {
+          question: "How do I confirm North Abilene availability?",
+          answer:
+            "Send your address and pool details by text or quote form, and we will confirm current route openings.",
+        },
+      ],
       imagePath: "/images/locations/north-abilene.jpg",
       imageAlt: "Pool service area in North Abilene",
       nearbyLocationSlugs: ["south-abilene", "hamby", "hawley"],
@@ -1341,15 +1435,42 @@ export const site = {
     {
       slug: "abilene-wylie",
       name: "Abilene Wylie",
-      summary: "Route-based pool service support for Abilene Wylie homeowners.",
+      seoTitle: "Pool Cleaning & Pool Service in Abilene Wylie, TX | Shipwrecked Pools",
+      summary: "Dependable pool service for Abilene Wylie homeowners needing recurring care and practical cleanup support.",
       heroHeadline: "Pool Service for Abilene Wylie Homeowners",
       introCopy:
-        "Shipwrecked Pools provides Abilene Wylie homeowners with practical, dependable pool care focused on clear water, communication, and long-term equipment protection.",
-      localContext: "Abilene Wylie coverage is built around recurring route consistency and responsive support when pool conditions change.",
-      routeNotes: "Best fit for homeowners who want structured recurring service and clear follow-up communication.",
-      routeAvailabilityNote: "Abilene Wylie route availability is confirmed by address and current route capacity.",
-      servicesOffered: defaultLocationServiceSlugs,
-      faqs: buildLocationFaqs("Abilene Wylie"),
+        "Abilene Wylie homeowners rely on Shipwrecked Pools for recurring service plus one-time resets when weather, travel, or algae issues knock pools out of balance.",
+      localContext: "Abilene Wylie routes prioritize consistent maintenance cadence with practical corrective options when needed.",
+      routeNotes: "Best fit for homeowners balancing recurring upkeep with occasional cleanup or recovery needs.",
+      routeAvailabilityNote: "Abilene Wylie openings are confirmed by address and current route alignment for that service window.",
+      servicesOffered: [
+        "weekly-services",
+        "one-time-cleans",
+        "algae-removal",
+        "bi-weekly-services",
+        "filter-cleaning",
+        "drain-and-refill",
+        "acid-wash",
+        "pump-repair-and-installation",
+        "sand-replacement",
+      ],
+      faqs: [
+        {
+          question: "Do you offer one-time pool cleans in Abilene Wylie?",
+          answer:
+            "Yes, one-time cleans are available for catch-up support, seasonal resets, and pre-event preparation when scheduling allows.",
+        },
+        {
+          question: "Can Abilene Wylie service include algae recovery?",
+          answer:
+            "Yes. Green-to-clean and algae-removal support can be scheduled based on condition and route availability.",
+        },
+        {
+          question: "What is the fastest way to request service in Abilene Wylie?",
+          answer:
+            "Texting your address and pool condition details is the quickest way to confirm route options and next steps.",
+        },
+      ],
       imagePath: "/images/areas-abilene-wylie.png",
       imageAlt: "Pool service area in Abilene Wylie",
       nearbyLocationSlugs: ["south-abilene", "north-abilene", "potosi"],
@@ -1520,6 +1641,12 @@ export const site = {
         "A practical cleaning routine that helps maintain flow and filter performance.",
       summaryBody:
         "Cartridge filter performance depends on consistent intervals, proper rinsing technique, and replacing media before severe restriction impacts circulation.",
+      bodySections: [
+        "Start by shutting off the system, relieving pressure, and removing the cartridge according to manufacturer guidance. A controlled process protects both the filter housing and the media.",
+        "Rinse each pleat top-to-bottom with steady pressure and inspect for tears, flattening, or heavy scale. If the cartridge is physically damaged or badly compacted, replacement is usually a better long-term choice than repeated deep cleaning.",
+        "After reassembly, check startup pressure and record the clean baseline. That number helps you spot when filtration performance is sliding and when professional service should step in.",
+      ],
+      relatedServiceSlugs: ["filter-cleaning", "weekly-services"],
     },
     {
       slug: "low-calcium-pool-corrosion-risk",
@@ -1528,6 +1655,12 @@ export const site = {
       excerpt: "How calcium balance affects long-term equipment and surface health.",
       summaryBody:
         "Low calcium can make water aggressive, increasing wear risk on surfaces and components. LSI-balanced chemistry is the safer long-term target.",
+      bodySections: [
+        "Calcium hardness is one part of overall water balance, but it has outsized impact on plaster and equipment longevity. When water is too aggressive, it can pull minerals from surfaces over time.",
+        "The practical goal is balanced chemistry, not chasing one isolated number. Pair calcium readings with pH, alkalinity, and temperature context so adjustments move the water toward a stable LSI range.",
+        "If readings drift repeatedly, recurring professional checks can prevent corrective swings and help protect finishes, heaters, and circulation components.",
+      ],
+      relatedServiceSlugs: ["weekly-services", "drain-and-refill"],
     },
     {
       slug: "fiberglass-pool-maintenance-tips",
@@ -1537,6 +1670,12 @@ export const site = {
         "Key maintenance habits that keep fiberglass pools cleaner and easier to manage.",
       summaryBody:
         "Fiberglass pools still need disciplined chemistry and filtration routines. Consistency is what keeps maintenance easy over time.",
+      bodySections: [
+        "Fiberglass pools can be more forgiving on brushing than rougher finishes, but chemistry discipline still drives long-term clarity and comfort. Skipping tests often leads to avoidable drift.",
+        "Keep circulation and filtration on a predictable cadence, especially during heavy-use periods. Clean filters and stable sanitizer levels do more for clarity than occasional one-off corrections.",
+        "A recurring plan with periodic equipment checks helps fiberglass pools stay low-stress while reducing the likelihood of expensive catch-up work.",
+      ],
+      relatedServiceSlugs: ["weekly-services", "filter-cleaning"],
     },
     {
       slug: "which-pool-cleaner-is-right",
@@ -1546,6 +1685,12 @@ export const site = {
         "A framework for choosing the cleaner type that fits your pool and routine.",
       summaryBody:
         "Cleaner selection should account for debris load, pool shape, and owner preferences. A practical match improves day-to-day maintenance outcomes.",
+      bodySections: [
+        "Start with debris type and volume. Leaves, fine dust, and heavier organic load can demand different cleaner behavior and filtration support.",
+        "Pool shape, obstacles, and owner routine matter just as much as cleaner specs. The best fit is the one you can run consistently without adding maintenance friction.",
+        "If cleaner performance remains uneven after setup changes, system-level checks on flow, filter condition, and overall service cadence are usually the next practical step.",
+      ],
+      relatedServiceSlugs: ["filter-cleaning", "pump-repair-and-installation"],
     },
     {
       slug: "black-algae-the-pool-owners-nightmare",
@@ -1555,6 +1700,12 @@ export const site = {
         "Why black algae persists and what a professional remediation path looks like.",
       summaryBody:
         "Black algae can anchor deep in surface imperfections, requiring a staged corrective process rather than one-time shock treatment.",
+      bodySections: [
+        "Black algae is persistent because it can anchor below the visible surface layer. A one-step shock approach often misses the deeper hold points.",
+        "Professional recovery generally combines targeted brushing, chemistry control, and follow-up checks to confirm progress between treatment stages.",
+        "Once water stabilizes, recurring maintenance and filtration discipline are critical to reducing the chance of fast recurrence.",
+      ],
+      relatedServiceSlugs: ["algae-removal", "weekly-services"],
     },
     {
       slug: "salt-pool-maintenance-checklist",
@@ -1563,6 +1714,12 @@ export const site = {
       excerpt: "A seasonal checklist for keeping salt pools balanced and stable.",
       summaryBody:
         "Salt pools still depend on full chemistry management, filtration discipline, and periodic system checks to avoid gradual performance drift.",
+      bodySections: [
+        "Salt systems still require full water management, including pH, alkalinity, stabilizer, and calcium oversight. Chlorine generation does not replace routine testing.",
+        "Inspect cell condition, clean filters on schedule, and verify circulation performance before peak season demand builds up.",
+        "When seasonal drift or repeated balancing issues show up, a structured service cadence can restore consistency and protect equipment life.",
+      ],
+      relatedServiceSlugs: ["weekly-services", "filter-cleaning"],
     },
   ] as BlogSummary[],
   careers: {

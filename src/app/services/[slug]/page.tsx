@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 import { HomeReviewsCarouselSection } from "@/components/home-reviews-carousel-section";
 import { InternalHero } from "@/components/internal-hero";
 import { site } from "@/content/site";
-import { getServiceBySlug } from "@/lib/site";
+import { getServiceBySlug, siteUrl } from "@/lib/site";
 
 type ServiceRouteParams = {
   slug: string;
@@ -30,8 +30,11 @@ export async function generateMetadata({ params }: { params: Promise<ServiceRout
   }
 
   return {
-    title: `${service.name} in Abilene, TX`,
-    description: `${service.summary} ${service.supportingParagraph}`,
+    title: service.seoTitle ?? `${service.name} in Abilene, TX`,
+    description: service.seoDescription ?? `${service.summary} ${service.supportingParagraph}`,
+    alternates: {
+      canonical: `/services/${service.slug}`,
+    },
   };
 }
 
@@ -156,12 +159,35 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
     ? getExistingPublicImage("/images/proof-pool-comparison-2.png")
     : null;
   const showBenefitsSection = service.showBenefitsSection ?? true;
+  const relatedServices = service.relatedServices
+    .map((serviceSlug) => site.services.find((entry) => entry.slug === serviceSlug))
+    .filter((entry): entry is (typeof site.services)[number] => Boolean(entry));
+  const relatedLocations = site.locations.filter((location) =>
+    ["south-abilene", "north-abilene", "abilene-wylie"].includes(location.slug),
+  );
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.seoH1 ?? service.name,
+    description: service.seoDescription ?? service.summary,
+    areaServed: "Abilene, TX",
+    provider: {
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}/#organization`,
+      name: site.brand.name,
+      url: siteUrl,
+      telephone: site.brand.phone,
+    },
+    url: `${siteUrl}/services/${service.slug}`,
+  };
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+
       <InternalHero
         eyebrow={useCleanedServiceHeroLayout ? undefined : "Pool Service Detail"}
-        title={service.name}
+        title={service.seoH1 ?? service.name}
         description={service.summary}
         primaryAction={
           useCleanedServiceHeroLayout ? undefined : { label: site.ctas.primary.label, href: site.ctas.primary.href }
@@ -239,6 +265,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                         height={900}
                         className="block h-auto w-[clamp(220px,24vw,340px)] max-w-full object-contain"
                         sizes="(min-width: 1024px) 340px, (min-width: 768px) 30vw, 70vw"
+                        loading="lazy"
+                        quality={76}
                       />
                     ) : (
                       <Image
@@ -263,6 +291,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                         fill
                         className="object-contain"
                         sizes="(min-width: 1024px) 36vw, (min-width: 768px) 48vw, 100vw"
+                        loading="lazy"
+                        quality={76}
                       />
                     )
                   ) : null}
@@ -285,6 +315,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
               </article>
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-light-blue-soft/20 py-10 md:py-12">
+        <div className="container-page">
+          <div className="mx-auto max-w-4xl rounded-[1.35rem] border border-line/70 bg-white p-6 shadow-[0_12px_28px_rgba(11,30,75,0.08)] md:p-7">
+            <h2 className="text-balance font-sans text-[1.55rem] font-extrabold leading-[0.95] tracking-[-0.022em] text-navy md:text-[2rem]">
+              Service Overview
+            </h2>
+            <p className="mt-3 text-[0.98rem] leading-relaxed text-ink-muted md:text-base">{service.supportingParagraph}</p>
+          </div>
         </div>
       </section>
 
@@ -386,6 +427,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                         fill
                         className="object-cover object-center"
                         sizes="(min-width: 1200px) 1100px, (min-width: 768px) 92vw, 96vw"
+                        loading="lazy"
+                        quality={78}
                       />
                     ) : (
                       <>
@@ -411,6 +454,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                         fill
                         className="object-cover object-center"
                         sizes="(min-width: 1200px) 960px, (min-width: 768px) 84vw, 95vw"
+                        loading="lazy"
+                        quality={78}
                       />
                     ) : (
                       <>
@@ -433,6 +478,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                           fill
                           className="object-contain object-center"
                           sizes="(min-width: 768px) 42vw, 92vw"
+                          loading="lazy"
+                          quality={78}
                         />
                       ) : (
                         <>
@@ -455,6 +502,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                           fill
                           className="object-contain object-center"
                           sizes="(min-width: 768px) 42vw, 92vw"
+                          loading="lazy"
+                          quality={78}
                         />
                       ) : (
                         <>
@@ -480,6 +529,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                         fill
                         className="object-cover"
                         sizes="(min-width: 768px) 50vw, 100vw"
+                        loading="lazy"
+                        quality={78}
                       />
                     ) : (
                       <>
@@ -502,6 +553,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                         fill
                         className="object-cover"
                         sizes="(min-width: 768px) 50vw, 100vw"
+                        loading="lazy"
+                        quality={78}
                       />
                     ) : (
                       <>
@@ -522,6 +575,60 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
           </div>
         </section>
       ) : null}
+
+      <section className="container-page py-12 md:py-14">
+        <div className="grid gap-6 md:grid-cols-2">
+          <article className="rounded-[1.35rem] border border-line/75 bg-white p-6 shadow-[0_14px_30px_rgba(11,30,75,0.08)]">
+            <h2 className="text-balance font-sans text-[1.7rem] font-extrabold leading-[0.95] tracking-[-0.022em] text-navy md:text-[2.15rem]">
+              Frequently Asked Questions
+            </h2>
+            <div className="mt-5 space-y-3">
+              {service.faqs.map((faq) => (
+                <article key={faq.question} className="rounded-[1rem] border border-line/75 bg-[linear-gradient(180deg,#ffffff_0%,#f5fbff_100%)] px-4 py-4">
+                  <h3 className="text-sm font-semibold text-ink md:text-base">{faq.question}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">{faq.answer}</p>
+                </article>
+              ))}
+            </div>
+          </article>
+
+          <article className="rounded-[1.35rem] border border-line/75 bg-white p-6 shadow-[0_14px_30px_rgba(11,30,75,0.08)]">
+            <h2 className="text-balance font-sans text-[1.7rem] font-extrabold leading-[0.95] tracking-[-0.022em] text-navy md:text-[2.15rem]">
+              Related Services and Areas
+            </h2>
+
+            <div className="mt-5">
+              <h3 className="text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-ink-soft">Related Services</h3>
+              <div className="mt-3 flex flex-wrap gap-2.5">
+                {relatedServices.map((relatedService) => (
+                  <Link
+                    key={relatedService.slug}
+                    href={`/services/${relatedService.slug}`}
+                    className="focus-ring inline-flex rounded-full border border-line bg-light-blue-soft/55 px-3 py-1.5 text-sm font-medium text-navy transition hover:border-navy/25 hover:bg-light-blue-soft"
+                  >
+                    {relatedService.seoH1 ?? relatedService.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <h3 className="text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-ink-soft">Related Service Areas</h3>
+              <div className="mt-3 flex flex-wrap gap-2.5">
+                {relatedLocations.map((location) => (
+                  <Link
+                    key={location.slug}
+                    href={`/locations/${location.slug}`}
+                    className="focus-ring inline-flex rounded-full border border-line bg-white px-3 py-1.5 text-sm font-medium text-navy transition hover:border-navy/25 hover:bg-light-blue-soft/40"
+                  >
+                    Pool Service in {location.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <HomeReviewsCarouselSection />
 
@@ -555,6 +662,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                 fill
                 className="object-cover object-center"
                 sizes="(min-width: 768px) 38vw, 100vw"
+                loading="lazy"
+                quality={74}
               />
               <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(4,17,55,0.42)_0%,rgba(4,17,55,0.2)_34%,rgba(4,17,55,0.08)_70%,rgba(4,17,55,0.28)_100%)]" aria-hidden="true" />
             </aside>

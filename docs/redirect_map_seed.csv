@@ -1,0 +1,20 @@
+source_url,proposed_target_url,status,notes
+/pages/acid-wash,/services/acid-wash,seed,Legacy service page to new canonical service route.
+/pages/green-to-cleans,/services/algae-removal,seed,Legacy naming should consolidate into algae-removal canonical.
+/pages/contact,/contact,seed,Legacy contact page to new contact route.
+/pages/baird-pool-service,/locations/baird,seed,Legacy location route to new location canonical.
+/pages/buffalo-gap-pool-service,/locations/buffalo-gap,seed,Legacy location route to new location canonical.
+/pages/clyde-pool-service,/locations/clyde,seed,Legacy location route to new location canonical.
+/pages/hamby-pool-service,/locations/hamby,seed,Legacy location route to new location canonical.
+/pages/hawley-pool-service,/locations/hawley,seed,Legacy location route to new location canonical.
+/pages/merkel-pool-service,/locations/merkel,seed,Legacy location route to new location canonical.
+/pages/potosi-pool-service,/locations/potosi,seed,Legacy location route to new location canonical.
+/pages/tuscola-pool-service,/locations/tuscola,seed,Legacy location route to new location canonical.
+/pages/tye-pool-service,/locations/tye,seed,Legacy location route to new location canonical.
+/products/weekly-cleaning-service-text-325-665-8877-for-a-quote,/services/weekly-services,seed,Legacy product-style route should not rank or remain indexable.
+/blogs/news/how-to-clean-cartridge-filters,/blog/how-to-clean-cartridge-filters,seed,Implement only after destination article exists.
+/blogs/news/low-calcium-pool-corrosion-risk,/blog/low-calcium-pool-corrosion-risk,seed,Implement only after destination article exists.
+/blogs/news/fiberglass-pool-maintenance-tips,/blog/fiberglass-pool-maintenance-tips,seed,Implement only after destination article exists.
+/blogs/news/which-pool-cleaner-is-right,/blog/which-pool-cleaner-is-right,seed,Implement only after destination article exists.
+/blogs/news/black-algae-the-pool-owners-nightmare,/blog/black-algae-the-pool-owners-nightmare,seed,Implement only after destination article exists.
+/blogs/news/salt-pool-maintenance-checklist,/blog/salt-pool-maintenance-checklist,seed,Implement only after destination article exists.

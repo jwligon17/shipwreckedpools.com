@@ -26,7 +26,6 @@ function getExistingPublicImage(imagePath?: string) {
 
 export default function ServicesPage() {
   const servicesPage = site.servicesPage;
-  const heroVideo = getExistingPublicImage("/videos/services-hero.mp4");
   const proofComparisonImage = getExistingPublicImage("/images/proof-pool-comparison-2.png");
 
   return (
@@ -38,7 +37,6 @@ export default function ServicesPage() {
         description={servicesPage.hero.description}
         primaryAction={{ label: servicesPage.hero.primaryCta.label, href: servicesPage.hero.primaryCta.href }}
         secondaryAction={{ label: servicesPage.hero.secondaryCta.label, href: servicesPage.hero.secondaryCta.href }}
-        backgroundVideoSrc={heroVideo ?? undefined}
         containerClassName="min-h-[clamp(19.5rem,48vh,25rem)] justify-center pb-6 pt-[calc(var(--header-stack-height)+1.05rem)] md:min-h-[clamp(21rem,45vh,23.5rem)] md:pb-8 md:pt-[calc(var(--header-stack-height)+1.3rem)]"
         contentClassName="mx-auto flex w-full max-w-5xl flex-col items-center text-center"
         titleClassName="text-[clamp(2rem,5vw,4rem)] leading-[0.92] sm:leading-[0.9]"

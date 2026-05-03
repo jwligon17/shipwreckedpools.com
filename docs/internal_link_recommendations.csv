@@ -1,0 +1,26 @@
+source_url,anchor_text,target_url,reason
+/,Weekly Pool Service in Abilene,/services/weekly-services,Strengthen recurring-service money page from homepage.
+/,Green-to-Clean Pool Cleanup,/services/algae-removal,Strengthen urgent recovery intent from homepage.
+/,Pool Filter Cleaning,/services/filter-cleaning,Strengthen maintenance intent from homepage.
+/,Pool Services in Abilene,/services,Create clear hub path from homepage.
+/,Pool Service Areas Around Abilene,/locations,Create clear local cluster path from homepage.
+/services/weekly-services,Green-to-Clean pool cleanup,/services/algae-removal,Bridge routine service to urgent cleanup.
+/services/weekly-services,Pool Filter Cleaning,/services/filter-cleaning,Bridge routine service to maintenance support.
+/services/weekly-services,Pool service in South Abilene,/locations/south-abilene,Push service-to-location relevance.
+/services/weekly-services,Pool service in North Abilene,/locations/north-abilene,Push service-to-location relevance.
+/services/algae-removal,Weekly Pool Service,/services/weekly-services,Convert recovery jobs to recurring service.
+/services/algae-removal,Pool Filter Cleaning,/services/filter-cleaning,Common follow-up after algae cleanup.
+/services/filter-cleaning,Weekly Pool Service,/services/weekly-services,Upsell recurring care from maintenance page.
+/services/filter-cleaning,Drain & Refill,/services/drain-and-refill,Related chemistry-reset path.
+/services/drain-and-refill,Pool Filter Cleaning,/services/filter-cleaning,Related maintenance path.
+/services/acid-wash,Drain & Refill,/services/drain-and-refill,Common restoration pairing.
+/services/pump-repair-and-installation,Weekly Pool Service,/services/weekly-services,Support recurring care cross-sell.
+/locations/south-abilene,Weekly Services,/services/weekly-services,Location page should point to top money page.
+/locations/south-abilene,Algae Removal,/services/algae-removal,Location page should point to urgent service.
+/locations/south-abilene,Filter Cleaning,/services/filter-cleaning,Location page should point to maintenance service.
+/locations/north-abilene,Weekly Services,/services/weekly-services,Location page should point to top money page.
+/locations/north-abilene,Algae Removal,/services/algae-removal,Location page should point to urgent service.
+/locations/north-abilene,Filter Cleaning,/services/filter-cleaning,Location page should point to maintenance service.
+/blog/how-to-clean-cartridge-filters,professional filter cleaning in Abilene,/services/filter-cleaning,Convert educational traffic into service intent.
+/blog/low-calcium-pool-corrosion-risk,weekly pool service in Abilene,/services/weekly-services,Convert chemistry-content traffic into recurring care.
+/blog/black-algae-the-pool-owners-nightmare,green-to-clean pool cleanup in Abilene,/services/algae-removal,Convert educational traffic into urgent cleanup leads.

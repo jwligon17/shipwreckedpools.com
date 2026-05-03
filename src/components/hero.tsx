@@ -5,6 +5,8 @@ import { site } from "@/content/site";
 export function Hero() {
   const { hero } = site.home;
   const { googleReviews } = site;
+  const heroVideoSrc = "/videos/homescreenvideo.mp4";
+  const heroPosterSrc = "/images/proof-pool-comparison-2.png";
   const ratingText = typeof googleReviews.rating === "number" ? googleReviews.rating.toFixed(1) : null;
   const reviewCountDisplayText = typeof googleReviews.reviewCount === "number" ? "45+" : null;
   const hasReviewMetrics = googleReviews.rating !== null && googleReviews.reviewCount !== null;
@@ -14,16 +16,23 @@ export function Hero() {
       data-home-hero
       className="relative min-h-[calc(100svh-var(--utility-bar-height))] overflow-hidden bg-hero-deep text-white"
     >
+      <div
+        className="pointer-events-none absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${heroPosterSrc})` }}
+        aria-hidden="true"
+      />
       <video
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+        className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover md:block motion-reduce:hidden"
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
+        poster={heroPosterSrc}
         aria-hidden="true"
+        tabIndex={-1}
       >
-        <source src="/videos/homescreenvideo.mp4" type="video/mp4" />
+        <source src={heroVideoSrc} type="video/mp4" />
       </video>
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(145deg,#020b21_0%,#08163a_42%,#0b1e4b_100%)] opacity-50" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(112deg,rgba(4,14,38,0.84)_0%,rgba(7,22,56,0.58)_45%,rgba(6,20,51,0.8)_100%)]" aria-hidden="true" />
@@ -73,15 +82,10 @@ export function Hero() {
               →
             </span>
           </a>
-          <h1 className="mt-2.5 max-w-[23ch] font-sans text-[clamp(2rem,5.2vw,4.25rem)] font-black uppercase leading-[0.9] tracking-[-0.028em] sm:leading-[0.88] lg:max-w-none lg:leading-[0.84] lg:tracking-[-0.032em]">
-            {hero.titleLines.map((line, index) => (
-              <span
-                key={line}
-                className={`block lg:whitespace-nowrap ${index === 0 ? "mt-0" : "mt-[0.1em] md:mt-[0.12em] lg:mt-[0.14em]"} ${index === 1 ? "text-light-blue" : "text-white"}`}
-              >
-                {line}
-              </span>
-            ))}
+          <h1 className="mt-2.5 max-w-[23ch] font-sans text-[clamp(2rem,5.2vw,4.25rem)] font-black uppercase leading-[0.9] tracking-[-0.028em] sm:leading-[0.88] lg:max-w-[20ch] lg:leading-[0.84] lg:tracking-[-0.032em]">
+            <span className="text-white lg:block lg:whitespace-nowrap">Pool Cleaning &amp; </span>
+            <span className="text-white lg:mt-[0.14em] lg:block lg:whitespace-nowrap">Weekly Pool Service </span>
+            <span className="text-light-blue lg:mt-[0.14em] lg:block lg:whitespace-nowrap">in Abilene, TX</span>
           </h1>
           <p className="mt-2.5 max-w-2xl text-[0.9rem] leading-relaxed text-white/[0.9] md:mt-3 md:text-[1rem]">{hero.description}</p>
 

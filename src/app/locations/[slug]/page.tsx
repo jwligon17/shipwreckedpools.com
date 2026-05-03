@@ -82,8 +82,11 @@ export async function generateMetadata({ params }: { params: Promise<LocationRou
   }
 
   return {
-    title: `Pool Service in ${location.name} | Shipwrecked Pools`,
+    title: location.seoTitle ?? `Pool Service in ${location.name} | Shipwrecked Pools`,
     description: `Dependable pool care for homeowners in ${location.name} who want clear water, practical communication, and protected equipment.`,
+    alternates: {
+      canonical: `/locations/${location.slug}`,
+    },
   };
 }
 
@@ -95,7 +98,9 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
     notFound();
   }
 
-  const availableServices = LOCATION_SERVICE_SLUGS
+  const prioritizedServiceSlugs =
+    location.servicesOffered.length > 0 ? location.servicesOffered : LOCATION_SERVICE_SLUGS;
+  const availableServices = prioritizedServiceSlugs
     .map((serviceSlug) => site.services.find((service) => service.slug === serviceSlug))
     .filter((service): service is (typeof site.services)[number] => Boolean(service));
   const nearbyLocations = location.nearbyLocationSlugs
@@ -190,6 +195,8 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
                     fill
                     className="object-cover"
                     sizes="(min-width: 1024px) 34vw, 100vw"
+                    priority
+                    quality={76}
                   />
                 ) : (
                   <div className="absolute inset-0 bg-[linear-gradient(150deg,#0f2760_0%,#0a1a45_56%,#1b438f_100%)]">
@@ -239,6 +246,8 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
                   fill
                   className="object-cover"
                   sizes="(min-width: 768px) 36vw, 100vw"
+                  loading="lazy"
+                  quality={76}
                 />
               ) : (
                 <div className="absolute inset-0 bg-[linear-gradient(150deg,#0f2760_0%,#0a1a45_56%,#1b438f_100%)]">
@@ -275,7 +284,7 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
                   href={`/services/${service.slug}`}
                   className="focus-ring mt-4 inline-flex text-sm font-semibold text-white underline decoration-light-blue decoration-2 underline-offset-4 transition hover:text-light-blue"
                 >
-                  View {service.name}
+                  View {service.seoH1 ?? service.name}
                 </Link>
               </article>
             ))}

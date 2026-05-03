@@ -12,9 +12,9 @@ import { HomeReviewsCarouselSection } from "@/components/home-reviews-carousel-s
 import { site } from "@/content/site";
 
 export const metadata = {
-  title: "Pool Service in Abilene, TX",
+  title: "Pool Cleaning & Weekly Pool Service in Abilene, TX | Shipwrecked Pools",
   description:
-    "Shipwrecked Pools provides professional pool cleaning and asset-management focused pool care for homeowners in Abilene and surrounding towns.",
+    "Professional pool cleaning, weekly service, green-to-clean recovery, and filter care for Abilene homeowners. Call or text Shipwrecked Pools for a quote.",
 };
 
 function getExistingPublicImage(imagePath?: string) {
@@ -38,6 +38,32 @@ export default function HomePage() {
     <>
       <Hero />
 
+      <section className="container-page pt-6 md:pt-8">
+        <p className="text-sm leading-relaxed text-ink-muted md:text-base">
+          Looking for a specific service? Explore{" "}
+          <Link href="/services/weekly-services" className="link-inline focus-ring">
+            Weekly Pool Service in Abilene
+          </Link>
+          ,{" "}
+          <Link href="/services/algae-removal" className="link-inline focus-ring">
+            Green-to-Clean Pool Cleanup
+          </Link>
+          , and{" "}
+          <Link href="/services/filter-cleaning" className="link-inline focus-ring">
+            Pool Filter Cleaning
+          </Link>
+          . You can also browse{" "}
+          <Link href="/services" className="link-inline focus-ring">
+            Pool Services in Abilene
+          </Link>{" "}
+          or review{" "}
+          <Link href="/locations" className="link-inline focus-ring">
+            Pool Service Areas Around Abilene
+          </Link>
+          .
+        </p>
+      </section>
+
       <section className="relative overflow-hidden bg-white pb-16 pt-10 md:pb-24 md:pt-14">
         <div className="pointer-events-none absolute inset-0 bg-[url(/images/wave-pattern.svg)] bg-[length:1100px_auto] bg-center opacity-[0.03]" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 z-0 hidden md:block" aria-hidden="true">
@@ -50,6 +76,8 @@ export default function HomePage() {
                 height={680}
                 className="pointer-events-none absolute -left-[14rem] top-[50%] w-[24rem] opacity-95 lg:-left-[16rem] lg:top-[48%] lg:w-[26rem]"
                 sizes="(min-width: 1024px) 26rem, 24rem"
+                loading="lazy"
+                quality={52}
                 aria-hidden="true"
               />
               <Image
@@ -59,6 +87,8 @@ export default function HomePage() {
                 height={650}
                 className="pointer-events-none absolute -right-[14rem] top-[39%] w-[24rem] opacity-95 lg:-right-[16rem] lg:top-[37%] lg:w-[26rem]"
                 sizes="(min-width: 1024px) 26rem, 24rem"
+                loading="lazy"
+                quality={52}
                 aria-hidden="true"
               />
             </>
@@ -102,6 +132,8 @@ export default function HomePage() {
                       fill
                       className="object-cover transition duration-500 group-hover:scale-[1.05]"
                       sizes="(min-width: 1024px) 30vw, (min-width: 768px) 46vw, 100vw"
+                      loading="lazy"
+                      quality={76}
                     />
                   ) : (
                     <>

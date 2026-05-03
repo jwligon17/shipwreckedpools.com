@@ -23,7 +23,7 @@ export function SiteFooter() {
               </li>
             ))}
             <li>
-              <Link href="/pay-now" className="text-sm text-white/88 underline decoration-pink underline-offset-4 hover:text-white hover:decoration-pink focus-ring">
+              <Link href="https://shipwreckedpools.mypoolportal.com/auth/sign-in" className="text-sm text-white/88 underline decoration-pink underline-offset-4 hover:text-white hover:decoration-pink focus-ring">
                 Pay Now
               </Link>
             </li>

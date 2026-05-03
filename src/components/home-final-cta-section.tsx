@@ -91,6 +91,8 @@ export function HomeFinalCtaSection({
                 fill
                 className="object-cover brightness-[1.1] contrast-[1.04]"
                 sizes="(min-width: 1024px) 35vw, (min-width: 768px) 43vw, 100vw"
+                loading="lazy"
+                quality={78}
               />
             ) : (
               <>

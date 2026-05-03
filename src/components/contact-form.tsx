@@ -2,6 +2,8 @@
 
 import { FormEvent, useMemo, useState } from "react";
 
+import { trackAnalyticsEvent } from "@/lib/analytics";
+
 type PreferredContactMethod = "text" | "phone" | "email";
 
 type ContactFormValues = {
@@ -101,6 +103,11 @@ export function ContactForm() {
       }
 
       setStatus("success");
+      trackAnalyticsEvent("generate_lead", {
+        form_name: "contact_quote",
+        contact_method: values.preferredContactMethod,
+        page_path: window.location.pathname,
+      });
       setMessage("Thanks. Your quote request was sent successfully.");
       setValues(initialValues);
       setFieldErrors({});
@@ -118,7 +125,9 @@ export function ContactForm() {
       />
       <div className="relative z-10 space-y-4">
       <h2 className="font-sans text-[1.85rem] font-bold leading-[0.95] tracking-[-0.02em] text-navy md:text-[2.3rem]">Quote Request Form</h2>
-      <p className="text-sm text-ink-soft">Share your pool concerns and preferred contact method. This form is staging-safe.</p>
+      <p className="text-sm leading-relaxed text-ink-soft">
+        Share your pool concerns, service address, and preferred contact method. We use this to route your quote request and follow up with practical next steps.
+      </p>
 
       <label className="block">
         <span className="mb-1 block text-sm font-medium text-ink-muted">Name</span>
@@ -133,7 +142,9 @@ export function ContactForm() {
           aria-invalid={Boolean(fieldErrors.name)}
           aria-describedby={fieldErrors.name ? "contact-name-error" : undefined}
         />
-        {fieldErrors.name ? <p id="contact-name-error" className="mt-1 text-xs text-red-700">{fieldErrors.name}</p> : null}
+        <p id="contact-name-error" className="mt-1 min-h-4 text-xs text-red-700">
+          {fieldErrors.name ?? ""}
+        </p>
       </label>
 
       <label className="block">
@@ -150,7 +161,9 @@ export function ContactForm() {
           aria-invalid={Boolean(fieldErrors.email)}
           aria-describedby={fieldErrors.email ? "contact-email-error" : undefined}
         />
-        {fieldErrors.email ? <p id="contact-email-error" className="mt-1 text-xs text-red-700">{fieldErrors.email}</p> : null}
+        <p id="contact-email-error" className="mt-1 min-h-4 text-xs text-red-700">
+          {fieldErrors.email ?? ""}
+        </p>
       </label>
 
       <label className="block">
@@ -167,7 +180,9 @@ export function ContactForm() {
           aria-invalid={Boolean(fieldErrors.phone)}
           aria-describedby={fieldErrors.phone ? "contact-phone-error" : undefined}
         />
-        {fieldErrors.phone ? <p id="contact-phone-error" className="mt-1 text-xs text-red-700">{fieldErrors.phone}</p> : null}
+        <p id="contact-phone-error" className="mt-1 min-h-4 text-xs text-red-700">
+          {fieldErrors.phone ?? ""}
+        </p>
       </label>
 
       <label className="block">
@@ -182,7 +197,9 @@ export function ContactForm() {
           aria-invalid={Boolean(fieldErrors.comment)}
           aria-describedby={fieldErrors.comment ? "contact-comment-error" : undefined}
         />
-        {fieldErrors.comment ? <p id="contact-comment-error" className="mt-1 text-xs text-red-700">{fieldErrors.comment}</p> : null}
+        <p id="contact-comment-error" className="mt-1 min-h-4 text-xs text-red-700">
+          {fieldErrors.comment ?? ""}
+        </p>
       </label>
 
       <fieldset>
@@ -207,9 +224,7 @@ export function ContactForm() {
             </label>
           ))}
         </div>
-        {fieldErrors.preferredContactMethod ? (
-          <p className="mt-1 text-xs text-red-700">{fieldErrors.preferredContactMethod}</p>
-        ) : null}
+        <p className="mt-1 min-h-4 text-xs text-red-700">{fieldErrors.preferredContactMethod ?? ""}</p>
       </fieldset>
 
       <input
@@ -227,17 +242,17 @@ export function ContactForm() {
         {status === "submitting" ? "Submitting..." : "Get a Quote"}
       </button>
 
-      {message ? (
-        <p
-          role="status"
-          aria-live="polite"
-          className={status === "success" ? "text-sm text-green-700" : "text-sm text-red-700"}
-        >
-          {message}
-        </p>
-      ) : null}
+      <p
+        role="status"
+        aria-live="polite"
+        className={`min-h-5 text-sm ${status === "success" ? "text-green-700" : "text-red-700"}`}
+      >
+        {message}
+      </p>
 
-      {hasErrors && status === "error" ? <p className="text-xs text-ink-soft">Please review the highlighted fields and try again.</p> : null}
+      <p className="min-h-4 text-xs text-ink-soft">
+        {hasErrors && status === "error" ? "Please review the highlighted fields and try again." : ""}
+      </p>
       </div>
     </form>
   );

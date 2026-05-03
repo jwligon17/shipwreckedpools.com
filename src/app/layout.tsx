@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Sora } from "next/font/google";
 
+import { AnalyticsEvents } from "@/components/analytics-events";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { LocalBusinessJsonLd } from "@/components/local-business-json-ld";
@@ -13,11 +14,15 @@ import "./globals.css";
 const sans = Sora({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const display = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -43,9 +48,6 @@ export const metadata: Metadata = {
     title: `${site.brand.name} | Pool Service in Abilene, TX`,
     description: site.brand.description,
   },
-  icons: {
-    icon: "/icon.svg",
-  },
   robots: {
     index: isSiteLive,
     follow: isSiteLive,
@@ -63,6 +65,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${sans.variable} ${display.variable}`}>
+        <AnalyticsEvents />
         <LocalBusinessJsonLd />
         <div className="flex min-h-screen flex-col">
           <Header />

@@ -24,6 +24,10 @@
     linear-gradient(154deg, #020b21 0%, #08163a 40%, #0b1e4b 64%, #12326f 100%);
 }
 
+html {
+  overflow-y: scroll;
+}
+
 @media (min-width: 768px) {
   :root {
     --utility-bar-height: 2.1rem;

@@ -50,6 +50,8 @@ export function HomePoolAreaHighlightsSection() {
                       fill
                       className="object-cover saturate-[0.94] transition duration-500 group-hover:scale-[1.06] group-focus-within:scale-[1.06]"
                       sizes="(min-width: 1024px) 30vw, (min-width: 768px) 46vw, 100vw"
+                      loading="lazy"
+                      quality={76}
                     />
                   ) : (
                     <div className="absolute inset-0 bg-[linear-gradient(150deg,#0f2760_0%,#0a1a45_56%,#1b438f_100%)] transition duration-500 group-hover:scale-[1.04] group-focus-within:scale-[1.04]">

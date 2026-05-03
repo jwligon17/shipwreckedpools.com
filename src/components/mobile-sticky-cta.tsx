@@ -9,7 +9,7 @@ export function MobileStickyCta() {
         <Link href={site.ctas.textUs.href} className="btn-secondary focus-ring px-2 py-2 text-xs">
           {site.ctas.textUs.label}
         </Link>
-        <Link href="/pay-now" className="btn-subtle focus-ring px-2 py-2 text-xs">
+        <Link href="https://shipwreckedpools.mypoolportal.com/auth/sign-in" className="btn-subtle focus-ring px-2 py-2 text-xs">
           {site.ctas.payNow.label}
         </Link>
         <Link href={site.ctas.primary.href} className="btn-primary focus-ring px-2 py-2 text-xs">

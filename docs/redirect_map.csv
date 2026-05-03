@@ -1,0 +1,24 @@
+source_url,target_url,status,rationale
+/pages/acid-wash,/services/acid-wash,ready,Legacy service path consolidates into canonical service route.
+/pages/green-to-cleans,/services/algae-removal,ready,Legacy naming variant should consolidate to canonical green-to-clean service route.
+/pages/contact,/contact,ready,Legacy contact path consolidates to canonical contact page.
+/pages/baird-pool-service,/locations/baird,ready,Legacy location path consolidates to canonical location page.
+/pages/buffalo-gap-pool-service,/locations/buffalo-gap,ready,Legacy location path consolidates to canonical location page.
+/pages/clyde-pool-service,/locations/clyde,ready,Legacy location path consolidates to canonical location page.
+/pages/hamby-pool-service,/locations/hamby,ready,Legacy location path consolidates to canonical location page.
+/pages/hawley-pool-service,/locations/hawley,ready,Legacy location path consolidates to canonical location page.
+/pages/merkel-pool-service,/locations/merkel,ready,Legacy location path consolidates to canonical location page.
+/pages/potosi-pool-service,/locations/potosi,ready,Legacy location path consolidates to canonical location page.
+/pages/tuscola-pool-service,/locations/tuscola,ready,Legacy location path consolidates to canonical location page.
+/pages/tye-pool-service,/locations/tye,ready,Legacy location path consolidates to canonical location page.
+/products/weekly-cleaning-service-text-325-665-8877-for-a-quote,/services/weekly-services,ready,Legacy product-like URL consolidates to canonical weekly service page.
+/blogs/news/how-to-clean-cartridge-filters,/blog/how-to-clean-cartridge-filters,ready,Validated live blog article route; safe to consolidate legacy path.
+/blogs/news/low-calcium-pool-corrosion-risk,/blog/low-calcium-pool-corrosion-risk,ready,Validated live blog article route; safe to consolidate legacy path.
+/blogs/news/fiberglass-pool-maintenance-tips,/blog/fiberglass-pool-maintenance-tips,ready,Validated live blog article route; safe to consolidate legacy path.
+/blogs/news/which-pool-cleaner-is-right,/blog/which-pool-cleaner-is-right,ready,Validated live blog article route; safe to consolidate legacy path.
+/blogs/news/black-algae-the-pool-owners-nightmare,/blog/black-algae-the-pool-owners-nightmare,ready,Validated live blog article route; safe to consolidate legacy path.
+/blogs/news/salt-pool-maintenance-checklist,/blog/salt-pool-maintenance-checklist,ready,Validated live blog article route; safe to consolidate legacy path.
+/pages/free-estimate-pool-skimmer-giveaway,,blocked-needs-destination,Route is still canonical on legacy namespace and has no approved non-legacy destination yet.
+/pages/*,,retire-410,Unknown non-seeded legacy pages should return 410 unless a canonical target is defined.
+/products/*,,retire-410,Unknown non-seeded legacy product pages should return 410 unless a canonical target is defined.
+/blogs/news/*,/blog,blocked-needs-destination,Wildcard mapping is unsafe without slug-level coverage; requires catch strategy or explicit per-slug map.

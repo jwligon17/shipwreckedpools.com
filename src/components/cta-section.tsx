@@ -23,7 +23,7 @@ export function CTASection() {
             <Link href={site.ctas.textUs.href} className="btn-inverse focus-ring">
               {site.ctas.textUs.label}
             </Link>
-            <Link href="/pay-now" className="btn-inverse focus-ring">
+            <Link href="https://shipwreckedpools.mypoolportal.com/auth/sign-in" className="btn-inverse focus-ring">
               {site.ctas.payNow.label}
             </Link>
           </div>

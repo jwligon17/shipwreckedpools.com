@@ -5,17 +5,17 @@ import { InternalHero } from "@/components/internal-hero";
 import { site } from "@/content/site";
 
 export const metadata = {
-  title: "Contact Shipwrecked Pools",
+  title: "Get a Pool Service Quote in Abilene, TX | Shipwrecked Pools",
   description:
-    "Request a quote, text, or call Shipwrecked Pools for professional pool service in Abilene and surrounding areas.",
+    "Call or text Shipwrecked Pools for weekly service, green-to-clean help, filter cleaning, and pool care quotes in Abilene.",
 };
 
 export default function ContactPage() {
   return (
     <>
       <InternalHero
-        title="Contact Us"
-        description="Tell us what your pool needs and we’ll help you find the right next step."
+        title="Get a Pool Service Quote in Abilene, TX"
+        description="Share your address, pool condition, and preferred contact method. We respond with practical next steps, and you can call or text us now for faster routing."
         backgroundVideoSrc="/videos/contact-hero.mp4"
         contentClassName="mx-auto flex w-full max-w-5xl flex-col items-center text-center"
         titleClassName="text-[clamp(2rem,5vw,4rem)] leading-[0.92] sm:leading-[0.9]"
@@ -24,6 +24,18 @@ export default function ContactPage() {
       />
 
       <section className="container-page section-shell pt-8 md:pt-10">
+        <section className="mx-auto mb-6 w-full max-w-4xl rounded-[1.25rem] border border-line/80 bg-light-blue-soft/45 px-5 py-4 md:px-6 md:py-5">
+          <h2 className="text-[1.15rem] font-semibold text-navy md:text-[1.25rem]">What to Send With Your Quote Request</h2>
+          <p className="mt-2 text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">
+            Include your service address, pool condition, and what help you need most (weekly service, algae cleanup, filter support, or a one-time clean). Shipwrecked Pools serves Abilene and surrounding service areas, responds quickly, and offers call or text support right away.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-navy">
+            <span className="rounded-full border border-line bg-white px-3 py-1">100% Money-Back Guarantee</span>
+            <span className="rounded-full border border-line bg-white px-3 py-1">Rated 5.0 on Google</span>
+            <span className="rounded-full border border-line bg-white px-3 py-1">Abilene + Surrounding Areas</span>
+          </div>
+        </section>
+
         <div className="mx-auto w-full max-w-4xl">
           <ContactForm />
         </div>
