@@ -22,7 +22,7 @@ export function Hero() {
         aria-hidden="true"
       />
       <video
-        className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover md:block motion-reduce:hidden"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
         autoPlay
         muted
         loop
