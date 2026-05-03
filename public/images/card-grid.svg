@@ -1,0 +1,19 @@
+<svg width="400" height="240" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="240" fill="#F8F0E3"/>
+  <g opacity="0.24" stroke="#0B1730">
+    <path d="M0 40H400"/>
+    <path d="M0 80H400"/>
+    <path d="M0 120H400"/>
+    <path d="M0 160H400"/>
+    <path d="M0 200H400"/>
+    <path d="M40 0V240"/>
+    <path d="M80 0V240"/>
+    <path d="M120 0V240"/>
+    <path d="M160 0V240"/>
+    <path d="M200 0V240"/>
+    <path d="M240 0V240"/>
+    <path d="M280 0V240"/>
+    <path d="M320 0V240"/>
+    <path d="M360 0V240"/>
+  </g>
+</svg>
