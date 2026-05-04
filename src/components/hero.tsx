@@ -19,7 +19,7 @@ export function Hero() {
       data-home-hero
       className="relative min-h-[calc(100svh-var(--header-stack-height))] overflow-hidden bg-hero-deep text-white md:min-h-[calc(100svh-var(--utility-bar-height))]"
     >
-      <div className="pointer-events-none absolute inset-x-0 -top-[var(--utility-bar-height)] bottom-0 md:top-0">
+      <div className="pointer-events-none absolute inset-x-0 -top-[calc(var(--utility-bar-height)+env(safe-area-inset-top,0px))] bottom-0 md:top-0">
         <div
           className="absolute inset-0 bg-cover bg-center md:hidden"
           style={{ backgroundImage: `url(${heroPosterSrcMobile})` }}
@@ -64,7 +64,7 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,transparent_0%,rgba(4,13,34,0.92)_100%)]" aria-hidden="true" />
       </div>
 
-      <div className="container-page relative z-10 pb-5 pt-[calc(var(--header-stack-height)+1.22rem)] md:pb-16 md:pt-[calc(var(--header-stack-height)+1.5rem)] lg:pb-20 lg:pt-[calc(var(--header-stack-height)+1.75rem)]">
+      <div className="container-page relative z-10 pb-5 pt-[calc(var(--header-stack-height)+env(safe-area-inset-top,0px)+1.22rem)] md:pb-16 md:pt-[calc(var(--header-stack-height)+1.5rem)] lg:pb-20 lg:pt-[calc(var(--header-stack-height)+1.75rem)]">
         <div className="max-w-5xl translate-y-2 md:translate-y-6 lg:max-w-[66rem] lg:translate-y-7 xl:translate-y-8">
           <a
             href={googleReviews.url}
