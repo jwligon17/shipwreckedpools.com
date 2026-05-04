@@ -17,52 +17,54 @@ export function Hero() {
   return (
     <section
       data-home-hero
-      className="relative min-h-[calc(100svh-var(--utility-bar-height))] overflow-hidden bg-hero-deep text-white"
+      className="relative min-h-[calc(100svh-var(--header-stack-height))] overflow-hidden bg-hero-deep text-white md:min-h-[calc(100svh-var(--utility-bar-height))]"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-cover bg-center md:hidden"
-        style={{ backgroundImage: `url(${heroPosterSrcMobile})` }}
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-0 hidden bg-cover bg-center md:block"
-        style={{ backgroundImage: `url(${heroPosterSrcDesktop})` }}
-        aria-hidden="true"
-      />
-      <video
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover motion-reduce:hidden md:hidden"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        poster={heroPosterSrcMobile}
-        aria-hidden="true"
-        tabIndex={-1}
-      >
-        <source src={heroVideoSrc} type="video/mp4" />
-      </video>
-      <video
-        className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover motion-reduce:hidden md:block"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        poster={heroPosterSrcDesktop}
-        aria-hidden="true"
-        tabIndex={-1}
-      >
-        <source src={heroVideoSrc} type="video/mp4" />
-      </video>
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(145deg,#020b21_0%,#08163a_42%,#0b1e4b_100%)] opacity-50" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(112deg,rgba(4,14,38,0.84)_0%,rgba(7,22,56,0.58)_45%,rgba(6,20,51,0.8)_100%)]" aria-hidden="true" />
-      <div className="hero-water-overlay" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_8%,rgba(169,221,245,0.28),transparent_30%)]" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_16%,rgba(169,221,245,0.18),transparent_34%)]" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,transparent_0%,rgba(4,13,34,0.92)_100%)]" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-x-0 -top-[var(--utility-bar-height)] bottom-0 md:top-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center md:hidden"
+          style={{ backgroundImage: `url(${heroPosterSrcMobile})` }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 hidden bg-cover bg-center md:block"
+          style={{ backgroundImage: `url(${heroPosterSrcDesktop})` }}
+          aria-hidden="true"
+        />
+        <video
+          className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden md:hidden"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          poster={heroPosterSrcMobile}
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <source src={heroVideoSrc} type="video/mp4" />
+        </video>
+        <video
+          className="absolute inset-0 hidden h-full w-full object-cover motion-reduce:hidden md:block"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          poster={heroPosterSrcDesktop}
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <source src={heroVideoSrc} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-[linear-gradient(145deg,#020b21_0%,#08163a_42%,#0b1e4b_100%)] opacity-50" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(4,14,38,0.84)_0%,rgba(7,22,56,0.58)_45%,rgba(6,20,51,0.8)_100%)]" aria-hidden="true" />
+        <div className="hero-water-overlay" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_8%,rgba(169,221,245,0.28),transparent_30%)]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_16%,rgba(169,221,245,0.18),transparent_34%)]" aria-hidden="true" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,transparent_0%,rgba(4,13,34,0.92)_100%)]" aria-hidden="true" />
+      </div>
 
-      <div className="container-page relative z-10 pb-8 pt-[calc(var(--header-stack-height)+1.22rem)] md:pb-16 md:pt-[calc(var(--header-stack-height)+1.5rem)] lg:pb-20 lg:pt-[calc(var(--header-stack-height)+1.75rem)]">
+      <div className="container-page relative z-10 pb-5 pt-[calc(var(--header-stack-height)+1.22rem)] md:pb-16 md:pt-[calc(var(--header-stack-height)+1.5rem)] lg:pb-20 lg:pt-[calc(var(--header-stack-height)+1.75rem)]">
         <div className="max-w-5xl translate-y-2 md:translate-y-6 lg:max-w-[66rem] lg:translate-y-7 xl:translate-y-8">
           <a
             href={googleReviews.url}
