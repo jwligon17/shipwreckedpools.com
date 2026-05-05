@@ -38,33 +38,7 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <section className="container-page pt-6 md:pt-8">
-        <p className="text-sm leading-relaxed text-ink-muted md:text-base">
-          Looking for a specific service? Explore{" "}
-          <Link href="/services/weekly-services" className="link-inline focus-ring">
-            Weekly Pool Service in Abilene
-          </Link>
-          ,{" "}
-          <Link href="/services/algae-removal" className="link-inline focus-ring">
-            Green-to-Clean Pool Cleanup
-          </Link>
-          , and{" "}
-          <Link href="/services/filter-cleaning" className="link-inline focus-ring">
-            Pool Filter Cleaning
-          </Link>
-          . You can also browse{" "}
-          <Link href="/services" className="link-inline focus-ring">
-            Pool Services in Abilene
-          </Link>{" "}
-          or review{" "}
-          <Link href="/locations" className="link-inline focus-ring">
-            Pool Service Areas Around Abilene
-          </Link>
-          .
-        </p>
-      </section>
-
-      <section className="relative overflow-hidden bg-white pb-16 pt-10 md:pb-24 md:pt-14">
+      <section className="relative overflow-hidden bg-white pb-16 pt-8 md:pb-24 md:pt-12">
         <div className="pointer-events-none absolute inset-0 bg-[url(/images/wave-pattern.svg)] bg-[length:1100px_auto] bg-center opacity-[0.03]" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 z-0 hidden md:block" aria-hidden="true">
           {differenceBlueCircleImage ? (

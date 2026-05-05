@@ -13,6 +13,8 @@ export function Hero() {
   const hasReviewMetrics = googleReviews.rating !== null && googleReviews.reviewCount !== null;
   const mobileSupportingSentence =
     "Weekly service, green-to-clean recovery, and filter care for Abilene homeowners who want clear water and protected equipment.";
+  const desktopSupportingSentence =
+    "Weekly service, green-to-clean recovery, and filter care for Abilene homeowners who want clear water and protected equipment.";
 
   return (
     <section
@@ -115,12 +117,12 @@ export function Hero() {
             <span className="hidden text-white md:inline lg:mt-[0.14em] lg:block lg:whitespace-nowrap">Weekly Pool Service </span>
             <span className="hidden text-light-blue md:inline lg:mt-[0.14em] lg:block lg:whitespace-nowrap">in Abilene, TX</span>
           </h1>
-          <p className="mt-4 max-w-[35ch] text-[0.9rem] leading-[1.58] text-white/[0.9] md:mt-3 md:max-w-2xl md:text-[1rem] md:leading-relaxed">
+          <p className="mt-4 max-w-[35ch] text-[0.9rem] leading-[1.58] text-white/[0.9] md:mt-2.5 md:max-w-2xl md:text-[1rem] md:leading-relaxed">
             <span className="md:hidden">{mobileSupportingSentence}</span>
-            <span className="hidden md:inline">{hero.description}</span>
+            <span className="hidden md:inline">{desktopSupportingSentence}</span>
           </p>
 
-          <div className="mt-2.5 flex flex-col items-stretch gap-3.5 sm:flex-row sm:items-center md:mt-3.5 md:gap-3.5">
+          <div className="mt-2.5 flex flex-col items-stretch gap-3.5 sm:flex-row sm:items-center md:mt-3 md:gap-3.5">
             <Link
               href={hero.primaryCta.href}
               className="focus-ring inline-flex min-h-14 min-w-[12rem] w-full items-center justify-center rounded-full border border-white bg-white px-8 py-3.5 text-[1.02rem] font-black uppercase tracking-[0.04em] text-navy shadow-[0_16px_34px_rgba(6,20,51,0.42)] transition hover:-translate-y-0.5 hover:bg-light-blue-soft [--tw-ring-offset-color:var(--color-navy-deep)] sm:w-auto md:min-h-[3.85rem] md:min-w-[13.25rem] md:px-10 md:text-[1.1rem]"
