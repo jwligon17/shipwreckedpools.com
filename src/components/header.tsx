@@ -197,8 +197,9 @@ export function Header() {
         data-homepage={isHomePage ? "true" : "false"}
         data-scroll-state={navIsSolid ? "solid" : "overlay"}
         data-nav-state-source={usesOverlayNav ? "js-scroll-state" : "static"}
+        data-mobile-overlay-active={isHomePage && !navIsSolid ? "true" : "false"}
         className={cn(
-          "border-none backdrop-blur-0",
+          "border-none backdrop-blur-0 transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out",
           navIsSolid ? "solid-nav" : "home-scroll-nav",
         )}
       >
@@ -275,7 +276,12 @@ export function Header() {
 
           <button
             type="button"
-            className="focus-ring ml-auto inline-flex min-h-10 items-center justify-center rounded-full border border-light-blue/60 bg-light-blue/10 px-4 py-2 text-sm font-semibold text-white transition hover:border-light-blue hover:bg-light-blue/20 [--tw-ring-offset-color:var(--color-navy)] lg:hidden"
+            className={cn(
+              "focus-ring ml-auto inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-white transition [--tw-ring-offset-color:var(--color-navy)] lg:hidden",
+              isHomePage && !navIsSolid
+                ? "border border-white/60 bg-white/[0.08] hover:border-white/85 hover:bg-white/[0.16]"
+                : "border border-light-blue/60 bg-light-blue/10 hover:border-light-blue hover:bg-light-blue/20",
+            )}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
             aria-label="Toggle navigation menu"
