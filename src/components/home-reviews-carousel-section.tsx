@@ -152,7 +152,7 @@ export function HomeReviewsCarouselSection({
   };
 
   const cardBaseClass =
-    "flex min-h-[16.75rem] w-[84vw] max-w-[44rem] shrink-0 snap-start flex-col rounded-[1.6rem] border border-line bg-white p-6 shadow-[0_16px_36px_rgba(11,30,75,0.1)] md:min-h-[17.25rem] md:w-[80vw] md:p-7 lg:w-[42rem]";
+    "flex min-h-[16.75rem] w-[78vw] max-w-[44rem] shrink-0 snap-start flex-col rounded-[1.6rem] border border-line bg-white p-6 shadow-[0_16px_36px_rgba(11,30,75,0.1)] md:min-h-[17.25rem] md:w-[80vw] md:p-7 lg:w-[42rem]";
 
   return (
     <section className="relative overflow-hidden bg-white py-12 md:py-16">
@@ -223,7 +223,7 @@ export function HomeReviewsCarouselSection({
                   onPointerUp={handleTrackPointerUp}
                   onPointerCancel={handleTrackPointerUp}
                   onClickCapture={handleTrackClickCapture}
-                  className="scrollbar-none focus-ring relative mx-auto flex max-w-[96rem] snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-2 pt-1 [touch-action:pan-x] md:gap-6"
+                  className="scrollbar-none focus-ring relative mx-auto flex max-w-[96rem] snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-2 pt-1 [touch-action:pan-x] md:gap-6"
                 >
                   {visibleReviews.map((review, index) => (
                     <ReviewCard

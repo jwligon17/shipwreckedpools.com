@@ -254,11 +254,21 @@ body {
 }
 
 @media (max-width: 767px) {
-  .home-scroll-nav[data-homepage="true"][data-scroll-state="overlay"]::before {
+  .home-scroll-nav[data-homepage="true"][data-scroll-state="overlay"] {
     background: linear-gradient(
       to bottom,
-      rgba(11, 30, 75, 0.34) 0%,
-      rgba(11, 30, 75, 0.16) 55%,
+      rgba(6, 18, 46, 0.28) 0%,
+      rgba(6, 18, 46, 0.12) 52%,
+      rgba(6, 18, 46, 0) 100%
+    ) !important;
+  }
+
+  .home-scroll-nav[data-homepage="true"][data-scroll-state="overlay"]::before {
+    top: calc(env(safe-area-inset-top, 0px) * -1);
+    background: linear-gradient(
+      to bottom,
+      rgba(11, 30, 75, 0.24) 0%,
+      rgba(11, 30, 75, 0.1) 52%,
       rgba(11, 30, 75, 0) 100%
     );
   }

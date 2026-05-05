@@ -52,9 +52,9 @@ export function HomePoolCareServicesSection({
   const sectionSupportingLine = supportingLine ?? section.supportingLine;
 
   return (
-    <section className="shipwrecked-home-services-lmh-style relative overflow-hidden bg-light-blue-soft/30 py-12 md:py-16">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_14%,rgba(169,221,245,0.1),transparent_34%)]" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_92%_86%,rgba(169,221,245,0.08),transparent_30%)]" aria-hidden="true" />
+    <section className="shipwrecked-home-services-lmh-style relative overflow-hidden border-y border-line/60 bg-white py-12 md:border-y-0 md:bg-light-blue-soft/30 md:py-16">
+      <div className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_8%_14%,rgba(169,221,245,0.1),transparent_34%)] md:block" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_92%_86%,rgba(169,221,245,0.08),transparent_30%)] md:block" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 z-0 hidden md:block" aria-hidden="true">
         <Image
           src="/images/decorative-blue-circle.png"
