@@ -54,6 +54,13 @@ body {
     radial-gradient(circle at 94% 102%, rgba(169, 221, 245, 0.16), transparent 33%);
 }
 
+@media (max-width: 767px) {
+  body:has([data-home-hero]) {
+    background-color: var(--color-navy-deep);
+    background-image: none;
+  }
+}
+
 @layer base {
   h1,
   h2,
