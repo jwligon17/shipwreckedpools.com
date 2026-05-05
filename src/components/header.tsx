@@ -105,7 +105,13 @@ export function Header() {
   const isHomePage = resolvedPathname === "/";
   const utilitySocialLinks = site.socialLinks.filter((link) => link.enabled);
   const usesOverlayNav = useMemo(() => isDesignedPublicRoute(resolvedPathname), [resolvedPathname]);
-  const [navIsSolid, setNavIsSolid] = useState(!usesOverlayNav);
+  const [navIsSolid, setNavIsSolid] = useState(() => {
+    if (typeof window === "undefined") {
+      return !usesOverlayNav;
+    }
+
+    return !usesOverlayNav || window.scrollY > 160;
+  });
   const rafRef = useRef<number | null>(null);
   const navSolidRef = useRef(navIsSolid);
 
