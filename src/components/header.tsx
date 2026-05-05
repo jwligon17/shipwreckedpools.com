@@ -193,6 +193,7 @@ export function Header() {
       </div>
 
       <div
+        data-homepage={isHomePage ? "true" : "false"}
         data-scroll-state={navIsSolid ? "solid" : "overlay"}
         data-nav-state-source={usesOverlayNav ? "js-scroll-state" : "static"}
         className={cn(

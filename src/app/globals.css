@@ -253,6 +253,21 @@ body {
   box-shadow: 0 10px 24px rgba(6, 18, 46, 0.28);
 }
 
+@media (max-width: 767px) {
+  .home-scroll-nav[data-homepage="true"][data-scroll-state="overlay"]::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(11, 30, 75, 0.34) 0%,
+      rgba(11, 30, 75, 0.16) 55%,
+      rgba(11, 30, 75, 0) 100%
+    );
+  }
+
+  .home-scroll-nav[data-homepage="true"][data-scroll-state="overlay"]::after {
+    box-shadow: none;
+  }
+}
+
 .shipwrecked-home-services-lmh-style .service-card {
   transition:
     transform 180ms ease,
