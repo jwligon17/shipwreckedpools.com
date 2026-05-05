@@ -84,6 +84,7 @@ const DESIGNED_PUBLIC_ROUTES = new Set([
   "/contact",
   "/pages/free-estimate-pool-skimmer-giveaway",
 ]);
+const SCROLL_SOLID_THRESHOLD = 160;
 
 function isDesignedPublicRoute(pathname: string | null) {
   if (!pathname) {
@@ -105,19 +106,22 @@ export function Header() {
   const isHomePage = resolvedPathname === "/";
   const utilitySocialLinks = site.socialLinks.filter((link) => link.enabled);
   const usesOverlayNav = useMemo(() => isDesignedPublicRoute(resolvedPathname), [resolvedPathname]);
-  const [navIsSolid, setNavIsSolid] = useState(() => {
+  const computeNavIsSolid = (overlayNavEnabled: boolean) => {
     if (typeof window === "undefined") {
-      return !usesOverlayNav;
+      return !overlayNavEnabled;
     }
 
-    return !usesOverlayNav || window.scrollY > 160;
+    return !overlayNavEnabled || window.scrollY > SCROLL_SOLID_THRESHOLD;
+  };
+  const [navIsSolid, setNavIsSolid] = useState(() => {
+    return computeNavIsSolid(usesOverlayNav);
   });
   const rafRef = useRef<number | null>(null);
   const navSolidRef = useRef(navIsSolid);
 
   useEffect(() => {
     setNavIsSolid((current) => {
-      const next = !usesOverlayNav || window.scrollY > 160;
+      const next = computeNavIsSolid(usesOverlayNav);
       navSolidRef.current = next;
       return current === next ? current : next;
     });
@@ -130,7 +134,7 @@ export function Header() {
       }
       rafRef.current = window.requestAnimationFrame(() => {
         rafRef.current = null;
-        const next = !usesOverlayNav || window.scrollY > 160;
+        const next = computeNavIsSolid(usesOverlayNav);
         if (navSolidRef.current === next) {
           return;
         }

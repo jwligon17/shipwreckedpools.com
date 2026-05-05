@@ -255,7 +255,6 @@ body {
 
 @media (max-width: 767px) {
   header[data-header-stack="fixed"] {
-    position: relative;
     isolation: isolate;
     padding-top: env(safe-area-inset-top, 0px);
     background: transparent;
