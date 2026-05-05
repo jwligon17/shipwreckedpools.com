@@ -101,9 +101,10 @@ function isDesignedPublicRoute(pathname: string | null) {
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
+  const resolvedPathname = pathname ?? (typeof window !== "undefined" ? window.location.pathname : null);
+  const isHomePage = resolvedPathname === "/";
   const utilitySocialLinks = site.socialLinks.filter((link) => link.enabled);
-  const usesOverlayNav = useMemo(() => isDesignedPublicRoute(pathname), [pathname]);
+  const usesOverlayNav = useMemo(() => isDesignedPublicRoute(resolvedPathname), [resolvedPathname]);
   const [navIsSolid, setNavIsSolid] = useState(!usesOverlayNav);
   const rafRef = useRef<number | null>(null);
   const navSolidRef = useRef(navIsSolid);
