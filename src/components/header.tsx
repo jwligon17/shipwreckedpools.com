@@ -148,7 +148,13 @@ export function Header() {
   }
 
   return (
-    <header className="fixed inset-x-0 top-0 z-[70]" data-header-stack="fixed">
+    <header
+      className={cn("fixed inset-x-0 top-0 z-[70]", isHomePage && "bg-navy md:bg-transparent")}
+      data-header-stack="fixed"
+    >
+      {isHomePage ? (
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[env(safe-area-inset-top,0px)] bg-navy md:hidden" aria-hidden="true" />
+      ) : null}
       <div
         className={cn(
           "border-b border-navy/10 bg-white text-navy",
