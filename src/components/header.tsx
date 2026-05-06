@@ -102,39 +102,24 @@ function isDesignedPublicRoute(pathname: string | null) {
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const resolvedPathname = pathname ?? (typeof window !== "undefined" ? window.location.pathname : null);
+  const resolvedPathname = pathname ?? "/";
   const isHomePage = resolvedPathname === "/";
   const utilitySocialLinks = site.socialLinks.filter((link) => link.enabled);
   const usesOverlayNav = useMemo(() => isDesignedPublicRoute(resolvedPathname), [resolvedPathname]);
-  const computeNavIsSolid = (overlayNavEnabled: boolean) => {
-    if (typeof window === "undefined") {
-      return !overlayNavEnabled;
-    }
-
-    return !overlayNavEnabled || window.scrollY > SCROLL_SOLID_THRESHOLD;
-  };
-  const [navIsSolid, setNavIsSolid] = useState(() => {
-    return computeNavIsSolid(usesOverlayNav);
-  });
+  const [navIsSolid, setNavIsSolid] = useState(() => !usesOverlayNav);
   const rafRef = useRef<number | null>(null);
   const navSolidRef = useRef(navIsSolid);
+  const mobileOverlayActive = isHomePage;
 
   useEffect(() => {
-    setNavIsSolid((current) => {
-      const next = computeNavIsSolid(usesOverlayNav);
-      navSolidRef.current = next;
-      return current === next ? current : next;
-    });
-  }, [usesOverlayNav]);
-
-  useEffect(() => {
+    const computeNavIsSolidFromScroll = () => !usesOverlayNav || window.scrollY > SCROLL_SOLID_THRESHOLD;
     function updateNavState() {
       if (rafRef.current !== null) {
         return;
       }
       rafRef.current = window.requestAnimationFrame(() => {
         rafRef.current = null;
-        const next = computeNavIsSolid(usesOverlayNav);
+        const next = computeNavIsSolidFromScroll();
         if (navSolidRef.current === next) {
           return;
         }
@@ -156,6 +141,17 @@ export function Header() {
 
   function isActive(href: string) {
     return href === "/" ? pathname === "/" : pathname?.startsWith(href);
+  }
+
+  function handleLogoClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    setIsOpen(false);
+
+    if (!isHomePage) {
+      return;
+    }
+
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (
@@ -204,7 +200,7 @@ export function Header() {
         data-homepage={isHomePage ? "true" : "false"}
         data-scroll-state={navIsSolid ? "solid" : "overlay"}
         data-nav-state-source={usesOverlayNav ? "js-scroll-state" : "static"}
-        data-mobile-overlay-active={isHomePage && !navIsSolid ? "true" : "false"}
+        data-mobile-overlay-active={mobileOverlayActive ? "true" : "false"}
         className={cn(
           "border-none backdrop-blur-0 transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out",
           navIsSolid ? "solid-nav" : "home-scroll-nav",
@@ -214,7 +210,7 @@ export function Header() {
           <Link
             href="/"
             className="focus-ring flex shrink-0 items-center rounded-xl border border-transparent px-1.5 py-1 transition hover:border-white/20 hover:bg-white/[0.1] md:px-2 md:py-1.5 [--tw-ring-offset-color:var(--color-navy)]"
-            onClick={() => setIsOpen(false)}
+            onClick={handleLogoClick}
           >
             <Image
               src="/images/logo.png?v=2"

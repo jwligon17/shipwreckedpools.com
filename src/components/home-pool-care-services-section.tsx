@@ -85,7 +85,7 @@ export function HomePoolCareServicesSection({
           <p className="mx-auto mt-4 max-w-2xl text-[0.98rem] leading-relaxed text-ink-muted md:text-base">{sectionSupportingLine}</p>
         </div>
 
-        <div className="mx-auto mt-8 grid w-full max-w-[68rem] grid-cols-1 gap-5 md:mt-10 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+        <div className="mx-auto mt-8 grid w-full max-w-[68rem] grid-cols-2 gap-3 [&>*:last-child]:col-span-2 [&>*:last-child]:mx-auto [&>*:last-child]:w-[calc(50%-0.375rem)] md:mt-10 md:grid-cols-2 md:gap-6 md:[&>*:last-child]:col-span-1 md:[&>*:last-child]:mx-0 md:[&>*:last-child]:w-full lg:grid-cols-3">
           {section.cards.map((card) => {
             const hasHref = Boolean(card.href?.trim());
             const hasDetailRoute =
@@ -100,7 +100,7 @@ export function HomePoolCareServicesSection({
                 key={card.title}
                 href={href}
                 aria-label={`View ${card.title} service details`}
-                className="shipwrecked-home-services-card service-card group relative flex h-[14.6rem] flex-col items-center justify-start overflow-hidden rounded-sm border border-navy/18 bg-white px-4 pb-7 pt-7 text-center focus-ring sm:h-[14.9rem] sm:px-5 sm:pb-7 sm:pt-7 md:h-[15.2rem] md:px-5 md:pb-8 md:pt-8 lg:h-[15.6rem]"
+                className="shipwrecked-home-services-card service-card group relative flex h-[12.6rem] min-w-0 flex-col items-center justify-start overflow-hidden rounded-sm border border-navy/18 bg-white px-3 pb-6 pt-5 text-center focus-ring sm:h-[14.9rem] sm:px-5 sm:pb-7 sm:pt-7 md:h-[15.2rem] md:px-5 md:pb-8 md:pt-8 lg:h-[15.6rem]"
               >
                 <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-light-blue/65" aria-hidden="true" />
                 <div className="pointer-events-none absolute right-4 top-4 h-1.5 w-1.5 rounded-full bg-pink/45 opacity-70 transition group-hover:opacity-100" aria-hidden="true" />

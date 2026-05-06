@@ -38,7 +38,7 @@ export function HomePoolAreaHighlightsSection() {
           <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-light-blue md:text-lg">{section.supportingLine}</p>
         </div>
 
-        <div className="mt-11 grid gap-5 md:mt-14 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-11 grid grid-cols-2 gap-4 md:mt-14 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
           {cards.map((card) => {
             const cardContent = (
               <article className="group relative aspect-[4/3] overflow-hidden rounded-[1.8rem] border border-white/18 bg-navy-deep/60 shadow-[0_18px_50px_rgba(3,10,30,0.55)] transition duration-300 hover:-translate-y-0.5 hover:border-light-blue/60 hover:shadow-[0_26px_64px_rgba(3,10,30,0.66)] focus-within:border-light-blue/60">
@@ -49,7 +49,7 @@ export function HomePoolAreaHighlightsSection() {
                       alt={card.imageAlt}
                       fill
                       className="object-cover saturate-[0.94] transition duration-500 group-hover:scale-[1.06] group-focus-within:scale-[1.06]"
-                      sizes="(min-width: 1024px) 30vw, (min-width: 768px) 46vw, 100vw"
+                      sizes="(min-width: 1024px) 30vw, (min-width: 768px) 46vw, 50vw"
                       loading="lazy"
                       quality={76}
                     />
@@ -67,8 +67,8 @@ export function HomePoolAreaHighlightsSection() {
                 </div>
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(2,8,23,0.06)_0%,rgba(3,10,29,0.58)_54%,rgba(2,8,23,0.9)_100%)] transition duration-300 group-hover:bg-[linear-gradient(180deg,rgba(2,8,23,0.02)_0%,rgba(3,10,29,0.5)_52%,rgba(2,8,23,0.86)_100%)] group-focus-within:bg-[linear-gradient(180deg,rgba(2,8,23,0.02)_0%,rgba(3,10,29,0.5)_52%,rgba(2,8,23,0.86)_100%)]" />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-pink/70 to-transparent opacity-70" aria-hidden="true" />
-                <div className="absolute bottom-5 left-5 right-5">
-                  <p className="text-center font-serif text-[1.55rem] leading-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.52)] md:text-[1.9rem]">{card.title}</p>
+                <div className="absolute bottom-4 left-3 right-3 md:bottom-5 md:left-5 md:right-5">
+                  <p className="text-center font-serif text-[1.22rem] leading-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.52)] md:text-[1.9rem]">{card.title}</p>
                 </div>
               </article>
             );
