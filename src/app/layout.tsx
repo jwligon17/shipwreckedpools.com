@@ -5,7 +5,6 @@ import { AnalyticsEvents } from "@/components/analytics-events";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { LocalBusinessJsonLd } from "@/components/local-business-json-ld";
-import { MobileStickyCta } from "@/components/mobile-sticky-cta";
 import { site } from "@/content/site";
 import { isSiteLive, siteUrl } from "@/lib/site";
 
@@ -76,10 +75,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <LocalBusinessJsonLd />
         <div className="flex min-h-screen flex-col">
           <Header />
-          <main className="flex-1 pb-20 md:pb-0">{children}</main>
+          <main className="flex-1">{children}</main>
           <Footer />
         </div>
-        <MobileStickyCta />
       </body>
     </html>
   );

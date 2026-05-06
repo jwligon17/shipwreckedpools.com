@@ -164,10 +164,7 @@ export function Header() {
       data-header-stack="fixed"
     >
       <div
-        className={cn(
-          "border-b border-navy/10 bg-white text-navy",
-          isHomePage && "hidden md:block",
-        )}
+        className="hidden border-b border-navy/10 bg-white text-navy md:block"
       >
         <div className="container-page flex h-[var(--utility-bar-height)] flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[0.62rem] md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-3 md:text-[0.7rem]">
           <p className="font-medium text-navy/90 md:justify-self-start">{site.home.utilityMessage}</p>
@@ -288,7 +285,7 @@ export function Header() {
             type="button"
             className={cn(
               "focus-ring ml-auto inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-white transition [--tw-ring-offset-color:var(--color-navy)] lg:hidden",
-              isHomePage && !navIsSolid
+              !navIsSolid
                 ? "border border-white/60 bg-white/[0.08] hover:border-white/85 hover:bg-white/[0.16]"
                 : "border border-light-blue/60 bg-light-blue/10 hover:border-light-blue hover:bg-light-blue/20",
             )}
@@ -329,69 +326,67 @@ export function Header() {
               </Link>
             </nav>
 
-            {isHomePage ? (
-              <div className="mt-4 space-y-4 border-t border-light-blue/25 pt-4 md:hidden">
-                <div className="space-y-2 text-sm text-white/90">
-                  <p className="font-medium text-white">{site.home.utilityMessage}</p>
-                  <div className="flex items-center gap-3">
-                    <Link
-                      href={site.brand.phoneHref}
-                      onClick={() => setIsOpen(false)}
-                      className="focus-ring rounded-sm underline decoration-white/45 underline-offset-4 transition hover:text-light-blue"
-                    >
-                      Call {site.brand.phone}
-                    </Link>
-                    <span className="h-1 w-1 rounded-full bg-white/55" aria-hidden="true" />
-                    <Link
-                      href={site.brand.textHref}
-                      onClick={() => setIsOpen(false)}
-                      className="focus-ring rounded-sm underline decoration-white/45 underline-offset-4 transition hover:text-light-blue"
-                    >
-                      {site.ctas.textUs.label}
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2" aria-label="Social media links">
-                  {utilitySocialLinks.map((socialLink) => (
-                    <Link
-                      key={socialLink.id}
-                      href={socialLink.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={socialLink.ariaLabel}
-                      className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-full border border-light-blue/40 text-white transition hover:border-light-blue hover:text-light-blue [--tw-ring-offset-color:var(--color-navy-deep)]"
-                    >
-                      <UtilitySocialIcon id={socialLink.id} />
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="flex flex-col gap-2">
+            <div className="mt-4 space-y-4 border-t border-light-blue/25 pt-4 md:hidden">
+              <div className="space-y-2 text-sm text-white/90">
+                <p className="font-medium text-white">{site.home.utilityMessage}</p>
+                <div className="flex items-center gap-3">
                   <Link
-                    href={site.ctas.textUs.href}
+                    href={site.brand.phoneHref}
                     onClick={() => setIsOpen(false)}
-                    className="btn-secondary focus-ring w-full justify-center"
+                    className="focus-ring rounded-sm underline decoration-white/45 underline-offset-4 transition hover:text-light-blue"
+                  >
+                    Call {site.brand.phone}
+                  </Link>
+                  <span className="h-1 w-1 rounded-full bg-white/55" aria-hidden="true" />
+                  <Link
+                    href={site.brand.textHref}
+                    onClick={() => setIsOpen(false)}
+                    className="focus-ring rounded-sm underline decoration-white/45 underline-offset-4 transition hover:text-light-blue"
                   >
                     {site.ctas.textUs.label}
                   </Link>
-                  <Link
-                    href="https://shipwreckedpools.mypoolportal.com/auth/sign-in"
-                    onClick={() => setIsOpen(false)}
-                    className="btn-subtle focus-ring w-full justify-center"
-                  >
-                    {site.ctas.payNow.label}
-                  </Link>
-                  <Link
-                    href={site.ctas.primary.href}
-                    onClick={() => setIsOpen(false)}
-                    className="btn-primary focus-ring w-full justify-center"
-                  >
-                    {site.ctas.primary.label}
-                  </Link>
                 </div>
               </div>
-            ) : null}
+
+              <div className="flex items-center gap-2" aria-label="Social media links">
+                {utilitySocialLinks.map((socialLink) => (
+                  <Link
+                    key={socialLink.id}
+                    href={socialLink.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={socialLink.ariaLabel}
+                    className="focus-ring inline-flex h-8 w-8 items-center justify-center rounded-full border border-light-blue/40 text-white transition hover:border-light-blue hover:text-light-blue [--tw-ring-offset-color:var(--color-navy-deep)]"
+                  >
+                    <UtilitySocialIcon id={socialLink.id} />
+                  </Link>
+                ))}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <Link
+                  href={site.ctas.textUs.href}
+                  onClick={() => setIsOpen(false)}
+                  className="btn-secondary focus-ring w-full justify-center"
+                >
+                  {site.ctas.textUs.label}
+                </Link>
+                <Link
+                  href="https://shipwreckedpools.mypoolportal.com/auth/sign-in"
+                  onClick={() => setIsOpen(false)}
+                  className="btn-subtle focus-ring w-full justify-center"
+                >
+                  {site.ctas.payNow.label}
+                </Link>
+                <Link
+                  href={site.ctas.primary.href}
+                  onClick={() => setIsOpen(false)}
+                  className="btn-primary focus-ring w-full justify-center"
+                >
+                  {site.ctas.primary.label}
+                </Link>
+              </div>
+            </div>
           </div>
         ) : null}
       </div>
