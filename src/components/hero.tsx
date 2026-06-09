@@ -9,7 +9,7 @@ export function Hero() {
   const heroPosterSrcDesktop = "/images/proof-pool-comparison-2.png";
   const heroPosterSrcMobile = "/images/weekly-services-detail.png";
   const ratingText = typeof googleReviews.rating === "number" ? googleReviews.rating.toFixed(1) : null;
-  const reviewCountDisplayText = typeof googleReviews.reviewCount === "number" ? "45+" : null;
+  const reviewCountDisplayText = typeof googleReviews.reviewCount === "number" ? "50+" : null;
   const hasReviewMetrics = googleReviews.rating !== null && googleReviews.reviewCount !== null;
   const mobileSupportingSentence =
     "Weekly service, green-to-clean recovery, and filter care for Abilene homeowners who want clear water and protected equipment.";

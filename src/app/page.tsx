@@ -17,6 +17,27 @@ export const metadata = {
     "Professional pool cleaning, weekly service, green-to-clean recovery, and filter care for Abilene homeowners. Call or text Shipwrecked Pools for a quote.",
 };
 
+const commercialClients = [
+  {
+    name: "Sleep Inn & Suites",
+    logoSrc: "/images/trusted-by/sleep-inn-suites.png",
+    alt: "Sleep Inn & Suites",
+    sizeClassName: "h-[6.25rem] max-w-[15rem] md:h-[9.5rem] md:max-w-[20rem] lg:h-[10.5rem] lg:max-w-[22rem]",
+  },
+  {
+    name: "Virtu on Denali",
+    logoSrc: "/images/trusted-by/virtu-on-denali.png",
+    alt: "Virtu on Denali",
+    sizeClassName: "h-[7.25rem] max-w-[16.75rem] md:h-[10.75rem] md:max-w-[22.5rem] lg:h-[11.75rem] lg:max-w-[24.5rem]",
+  },
+  {
+    name: "Dyess Family Homes",
+    logoSrc: "/images/trusted-by/dyess-family-homes-full-logo.png",
+    alt: "Dyess Family Homes",
+    sizeClassName: "h-[6.25rem] max-w-[15rem] md:h-[9.5rem] md:max-w-[20rem] lg:h-[10.5rem] lg:max-w-[22rem]",
+  },
+];
+
 function getExistingPublicImage(imagePath?: string) {
   if (!imagePath || !imagePath.startsWith("/")) {
     return null;
@@ -37,6 +58,39 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+
+      <section className="bg-white pt-14 md:pt-16" aria-labelledby="commercial-clients-heading">
+        <div className="container-page">
+          <div className="relative pb-8 md:pb-10">
+            <div className="text-center">
+              <h2 id="commercial-clients-heading" className="text-4xl font-extrabold leading-tight text-navy md:text-5xl lg:text-[3.5rem]">
+                Our Commercial Clients
+              </h2>
+            </div>
+
+            <div className="mx-auto mt-6 flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-6 md:flex-nowrap md:gap-x-14 lg:gap-x-16">
+              {commercialClients.map((client) => (
+                <Image
+                  key={client.name}
+                  src={client.logoSrc}
+                  alt={client.alt}
+                  width={260}
+                  height={260}
+                  className={`${client.sizeClassName} w-auto origin-center object-contain opacity-90 transition duration-300 ease-out will-change-transform hover:-translate-y-1 hover:scale-105 hover:drop-shadow-[0_12px_18px_rgba(11,30,75,0.14)]`}
+                  sizes={
+                    client.name === "Virtu on Denali"
+                      ? "(min-width: 1024px) 24.5rem, (min-width: 768px) 22.5rem, 16.75rem"
+                      : "(min-width: 1024px) 22rem, (min-width: 768px) 20rem, 15rem"
+                  }
+                  loading="lazy"
+                  quality={82}
+                />
+              ))}
+            </div>
+            <div className="absolute inset-x-0 bottom-0 h-[4px] rounded-full bg-navy" aria-hidden="true" />
+          </div>
+        </div>
+      </section>
 
       <section className="relative overflow-hidden bg-white pb-16 pt-8 md:pb-24 md:pt-12">
         <div className="pointer-events-none absolute inset-0 bg-[url(/images/wave-pattern.svg)] bg-[length:1100px_auto] bg-center opacity-[0.03]" aria-hidden="true" />
