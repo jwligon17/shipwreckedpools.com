@@ -59,7 +59,7 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <section className="bg-white pt-14 md:pt-16" aria-labelledby="commercial-clients-heading">
+      <section className="bg-white pt-2 md:pt-16" aria-labelledby="commercial-clients-heading">
         <div className="container-page">
           <div className="relative pb-8 md:pb-10">
             <div className="text-center">
