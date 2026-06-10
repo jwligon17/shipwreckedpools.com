@@ -59,6 +59,40 @@ export default function DiyPoolCarePage() {
               />
             </article>
           </div>
+
+          <div className="mx-auto mt-14 w-full max-w-5xl md:mt-16">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-3xl font-semibold tracking-tight text-navy md:text-4xl">
+                Bi-Weekly Off-Week Checklist
+              </h2>
+              <p className="mt-4 text-base leading-7 text-slate-700 md:text-lg">
+                For bi-weekly service clients, use this checklist between
+                scheduled visits to help keep your pool clear and protected.
+              </p>
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
+              <article className="overflow-hidden rounded-[1.2rem] border border-line/70 bg-white shadow-[0_16px_34px_rgba(11,30,75,0.08)]">
+                <Image
+                  src="/images/diy-pool-care/off-week-checklist-side-a.png"
+                  alt="Bi-weekly off-week pool care checklist side A"
+                  width={1294}
+                  height={2000}
+                  className="h-auto w-full object-contain"
+                />
+              </article>
+
+              <article className="overflow-hidden rounded-[1.2rem] border border-line/70 bg-white shadow-[0_16px_34px_rgba(11,30,75,0.08)]">
+                <Image
+                  src="/images/diy-pool-care/off-week-checklist-side-b.png"
+                  alt="Bi-weekly off-week pool care checklist side B"
+                  width={1294}
+                  height={2000}
+                  className="h-auto w-full object-contain"
+                />
+              </article>
+            </div>
+          </div>
         </div>
       </section>
     </>
