@@ -985,7 +985,7 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
 
       <HomeReviewsCarouselSection
         title="Trusted by Homeowners Near You"
-        supportingLine="Rated 5.0 on Google with 35+ reviews from local homeowners."
+        supportingLine="Rated 5.0 on Google with 85+ reviews from local homeowners."
       />
 
       <section className="container-page pb-16 pt-8 md:pb-24 md:pt-10">

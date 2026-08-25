@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { site } from "@/content/site";
@@ -85,6 +85,7 @@ const DESIGNED_PUBLIC_ROUTES = new Set([
   "/pages/free-estimate-pool-skimmer-giveaway",
 ]);
 const SCROLL_SOLID_THRESHOLD = 160;
+const MOBILE_MENU_PREFETCH_ROUTES = ["/blog", "/services", "/locations", "/contact", "/diy-pool-care"] as const;
 
 function isDesignedPublicRoute(pathname: string | null) {
   if (!pathname) {
@@ -102,6 +103,7 @@ function isDesignedPublicRoute(pathname: string | null) {
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const resolvedPathname = pathname ?? "/";
   const isHomePage = resolvedPathname === "/";
   const utilitySocialLinks = site.socialLinks.filter((link) => link.enabled);
@@ -139,6 +141,16 @@ export function Header() {
     };
   }, [usesOverlayNav]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    MOBILE_MENU_PREFETCH_ROUTES.forEach((href) => {
+      router.prefetch(href);
+    });
+  }, [isOpen, router]);
+
   function isActive(href: string) {
     return href === "/" ? pathname === "/" : pathname?.startsWith(href);
   }
@@ -152,6 +164,10 @@ export function Header() {
 
     event.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function handleMobileMenuLinkClick() {
+    setIsOpen(false);
   }
 
   return (
@@ -301,7 +317,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleMobileMenuLinkClick}
                   className={cn(
                     "focus-ring rounded-xl border border-transparent px-3 py-3 text-sm font-medium text-white/[0.95] hover:border-light-blue/40 hover:bg-white/10 hover:text-light-blue [--tw-ring-offset-color:var(--color-navy-deep)]",
                     isActive(item.href) && "border-light-blue/40 bg-white/10 text-white",
@@ -312,7 +328,7 @@ export function Header() {
               ))}
               <Link
                 href="https://shipwreckedpools.mypoolportal.com/auth/sign-in"
-                onClick={() => setIsOpen(false)}
+                onClick={handleMobileMenuLinkClick}
                 className={cn(
                   "focus-ring rounded-xl border border-transparent px-3 py-3 text-sm font-medium text-white/[0.95] hover:border-light-blue/40 hover:bg-white/10 hover:text-light-blue [--tw-ring-offset-color:var(--color-navy-deep)]",
                   isActive("/pay-now") && "border-light-blue/40 bg-white/10 text-white",
@@ -328,7 +344,7 @@ export function Header() {
                 <div className="flex items-center gap-3">
                   <Link
                     href={site.brand.phoneHref}
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleMobileMenuLinkClick}
                     className="focus-ring rounded-sm underline decoration-white/45 underline-offset-4 transition hover:text-light-blue"
                   >
                     Call {site.brand.phone}
@@ -336,7 +352,7 @@ export function Header() {
                   <span className="h-1 w-1 rounded-full bg-white/55" aria-hidden="true" />
                   <Link
                     href={site.brand.textHref}
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleMobileMenuLinkClick}
                     className="focus-ring rounded-sm underline decoration-white/45 underline-offset-4 transition hover:text-light-blue"
                   >
                     {site.ctas.textUs.label}
@@ -362,21 +378,21 @@ export function Header() {
               <div className="flex flex-col gap-2">
                 <Link
                   href={site.ctas.textUs.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleMobileMenuLinkClick}
                   className="btn-secondary focus-ring w-full justify-center"
                 >
                   {site.ctas.textUs.label}
                 </Link>
                 <Link
                   href="https://shipwreckedpools.mypoolportal.com/auth/sign-in"
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleMobileMenuLinkClick}
                   className="btn-subtle focus-ring w-full justify-center"
                 >
                   {site.ctas.payNow.label}
                 </Link>
                 <Link
                   href={site.ctas.primary.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleMobileMenuLinkClick}
                   className="btn-primary focus-ring w-full justify-center"
                 >
                   {site.ctas.primary.label}
