@@ -106,6 +106,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/blogs/news/:slug",
+        destination: "/blog/:slug",
+        permanent: true,
+      },
+      {
         source: "/blogs/news/how-to-clean-cartridge-filters",
         destination: "/blog/how-to-clean-cartridge-filters",
         permanent: true,

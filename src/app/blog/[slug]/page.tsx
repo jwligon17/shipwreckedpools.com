@@ -6,12 +6,17 @@ import { InternalHero } from "@/components/internal-hero";
 import { site } from "@/content/site";
 import { siteUrl } from "@/lib/site";
 
+type BlogRouteParams = {
+  slug: string;
+};
+
 export function generateStaticParams() {
   return site.blogSummaries.map((post) => ({ slug: post.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = site.blogSummaries.find((item) => item.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<BlogRouteParams> }) {
+  const { slug } = await params;
+  const post = site.blogSummaries.find((item) => item.slug === slug);
 
   if (!post) {
     return {
@@ -37,8 +42,9 @@ function formatPostDate(value: string) {
   });
 }
 
-export default function BlogDetailPage({ params }: { params: { slug: string } }) {
-  const post = site.blogSummaries.find((item) => item.slug === params.slug);
+export default async function BlogDetailPage({ params }: { params: Promise<BlogRouteParams> }) {
+  const { slug } = await params;
+  const post = site.blogSummaries.find((item) => item.slug === slug);
 
   if (!post) {
     notFound();
