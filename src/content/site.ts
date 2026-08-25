@@ -124,8 +124,8 @@ export type ReviewsData = {
 
 const reviewsData: ReviewsData = {
   rating: 5.0,
-  reviewCount: 50,
-  displayReviewCount: "50+",
+  reviewCount: 85,
+  displayReviewCount: "85+",
   googleReviewsUrl:
     "https://www.google.com/search?q=shipwrecked+pools&oq=shipwrecked+pools&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDsyCAgCEEUYJxg7MgYIAxBFGDwyBggEEEUYPTIGCAUQRRhBMgYIBhBFGEEyBggHEEUYQdIBCDM1ODhqMGo0qAIBsAIB8QW_u7c0Ik4Grw&sourceid=chrome&ie=UTF-8#lrd=0x6535013210ab0793:0xb436b7ca7f578316,1,,,,",
   reviews: [
@@ -369,7 +369,7 @@ export const site = {
     },
     reviews: {
       title: "Why Homeowners Trust Shipwrecked Pools",
-      supportingLine: "Rated 5.0 on Google with 50+ reviews from local homeowners.",
+      supportingLine: "Rated 5.0 on Google with 85+ reviews from local homeowners.",
     },
     finalCta: {
       title: "Need help choosing the right pool service?",
@@ -518,7 +518,7 @@ export const site = {
     },
     reviewsSection: {
       title: "Why Homeowners Trust Shipwrecked Pools",
-      supportingLine: "Rated 5.0 on Google with 50+ reviews from local homeowners.",
+      supportingLine: "Rated 5.0 on Google with 85+ reviews from local homeowners.",
     },
     poolCareServices: {
       title: "Our Pool Care Services",
