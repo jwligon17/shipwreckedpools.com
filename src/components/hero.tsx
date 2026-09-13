@@ -11,10 +11,6 @@ export function Hero() {
   const ratingText = typeof googleReviews.rating === "number" ? googleReviews.rating.toFixed(1) : null;
   const reviewCountDisplayText = typeof googleReviews.reviewCount === "number" ? "85+" : null;
   const hasReviewMetrics = googleReviews.rating !== null && googleReviews.reviewCount !== null;
-  const mobileSupportingSentence =
-    "Weekly service, green-to-clean recovery, and filter care for Abilene homeowners who want clear water and protected equipment.";
-  const desktopSupportingSentence =
-    "Weekly service, green-to-clean recovery, and filter care for Abilene homeowners who want clear water and protected equipment.";
 
   return (
     <section
@@ -118,8 +114,10 @@ export function Hero() {
             <span className="hidden text-light-blue md:inline lg:mt-[0.14em] lg:block lg:whitespace-nowrap">in Abilene, TX</span>
           </h1>
           <p className="mt-4 max-w-[35ch] text-[0.9rem] leading-[1.58] text-white/[0.9] md:mt-2.5 md:max-w-2xl md:text-[1rem] md:leading-relaxed">
-            <span className="md:hidden">{mobileSupportingSentence}</span>
-            <span className="hidden md:inline">{desktopSupportingSentence}</span>
+            <Link href="/services/weekly-services" className="focus-ring underline decoration-light-blue/85 underline-offset-4 hover:text-light-blue">
+              Weekly service
+            </Link>
+            , green-to-clean recovery, and filter care for Abilene homeowners who want clear water and protected equipment.
           </p>
 
           <div className="mt-2.5 flex flex-col items-stretch gap-3.5 sm:flex-row sm:items-center md:mt-3 md:gap-3.5">

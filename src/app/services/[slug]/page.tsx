@@ -188,10 +188,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
       <InternalHero
         eyebrow={useCleanedServiceHeroLayout ? undefined : "Pool Service Detail"}
         title={service.seoH1 ?? service.name}
-        description={service.summary}
-        primaryAction={
-          useCleanedServiceHeroLayout ? undefined : { label: site.ctas.primary.label, href: site.ctas.primary.href }
+        description={
+          isWeeklyServicesPage
+            ? "Weekly pool care for Abilene homeowners: skimming, brushing, debris removal, chemistry testing and adjustment, and visual equipment checks."
+            : service.summary
         }
+        primaryAction={
+          isWeeklyServicesPage
+            ? { label: "Get a Weekly Service Quote", href: site.ctas.primary.href }
+            : useCleanedServiceHeroLayout ? undefined : { label: site.ctas.primary.label, href: site.ctas.primary.href }
+        }
+        actionsClassName={isWeeklyServicesPage ? "justify-center" : undefined}
         secondaryAction={useCleanedServiceHeroLayout ? undefined : { label: site.ctas.textUs.label, href: site.ctas.textUs.href }}
         showDecorativeCircle={!useCleanedServiceHeroLayout}
         contentClassName={useCleanedServiceHeroLayout ? "mx-auto text-center" : undefined}
