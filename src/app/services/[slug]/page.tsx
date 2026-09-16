@@ -204,6 +204,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
         contentClassName={useCleanedServiceHeroLayout ? "mx-auto text-center" : undefined}
         descriptionClassName={useCleanedServiceHeroLayout ? "mx-auto mt-4 max-w-[40rem]" : undefined}
       >
+        {isBiWeeklyServicesPage ? (
+          <p className="mt-4 text-center text-[0.98rem] leading-relaxed text-white/82 md:text-base">
+            <Link href="/services/weekly-services" className="focus-ring underline underline-offset-4">
+              Explore weekly pool service for new customers
+            </Link>
+          </p>
+        ) : null}
         {useCleanedServiceHeroLayout ? null : (
           <p className="max-w-[44rem] text-[0.98rem] leading-relaxed text-white/82 md:text-base">
             {service.supportingParagraph}

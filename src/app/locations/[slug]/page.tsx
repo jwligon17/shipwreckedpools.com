@@ -57,9 +57,9 @@ const SOUTH_ABILENE_STANDARDS_CARDS = [
 
 const SOUTH_ABILENE_FAQS = [
   {
-    question: "Is weekly or bi-weekly better for most South Abilene pools?",
+    question: "What recurring schedule is available for new South Abilene customers?",
     answer:
-      "For most active pools, weekly service is the stronger fit because it keeps chemistry and debris control tighter between visits. Bi-weekly can work in specific cases, but we usually recommend weekly when homeowners want fewer surprises and steadier water quality.",
+      "New recurring pool-service customers are enrolled on a weekly schedule. Existing customer agreements are unchanged. Weekly service keeps chemistry and debris control tighter between visits.",
   },
   {
     question: "How often should filter cleaning be folded into recurring service?",
@@ -74,7 +74,7 @@ const SOUTH_ABILENE_FAQS = [
   {
     question: "How fast can recurring service start in South Abilene?",
     answer:
-      "Start timing depends on current route density and the pool's condition at onboarding. Text us your address and a quick pool snapshot, and we will confirm whether we can place you on a weekly or bi-weekly route and what first-step service is needed.",
+      "Start timing depends on current route density and the pool's condition at onboarding. Text us your address and a quick pool snapshot, and we will confirm whether we can place you on a weekly route and what first-step service is needed.",
   },
 ] as const;
 
@@ -119,7 +119,7 @@ const NORTH_ABILENE_FAQS = [
 const ABILENE_WYLIE_STANDARDS_CARDS = [
   {
     title: "Recurring Stability First",
-    body: "Consistent weekly or bi-weekly service keeps day-to-day maintenance predictable and reduces preventable drift.",
+    body: "Consistent weekly service keeps day-to-day maintenance predictable and reduces preventable drift.",
   },
   {
     title: "Cleanup Support When Needed",
@@ -262,9 +262,9 @@ const CLYDE_FAQS = [
       "We start with a condition assessment and recommend whether catch-up service is needed before routine recurring care begins. Once the pool is stabilized, we transition to an ongoing cadence designed to keep it there.",
   },
   {
-    question: "How do I know whether weekly or bi-weekly is realistic?",
+    question: "How do I know whether weekly service is available in Clyde?",
     answer:
-      "That depends on pool condition, usage patterns, and current route fit. We review your address and pool status, then recommend a cadence that is both workable and consistent for ongoing results.",
+      "New recurring pool-service customers are enrolled on a weekly schedule. Existing customer agreements are unchanged. We review your address and pool status to confirm weekly route availability.",
   },
 ] as const;
 
@@ -427,7 +427,7 @@ const TUSCOLA_STANDARDS_CARDS = [
   },
   {
     title: "Recurring Stability by Design",
-    body: "Weekly or bi-weekly cadence is selected to support consistent maintenance and avoid avoidable stop-start patterns.",
+    body: "Weekly service for new recurring customers supports consistent maintenance and avoids avoidable stop-start patterns.",
   },
   {
     title: "Cleanup Support Before Onboarding When Needed",
@@ -447,9 +447,9 @@ const TUSCOLA_FAQS = [
       "Yes. If the pool condition is too far off for routine maintenance to stabilize quickly, we may recommend cleanup or recovery first, then transition into recurring care.",
   },
   {
-    question: "How do weekly and bi-weekly options get decided?",
+    question: "What recurring schedule is available for new Tuscola customers?",
     answer:
-      "Cadence is based on current condition, maintenance demands, and practical route fit. We recommend the option that gives the most stable ongoing result.",
+      "New recurring pool-service customers are enrolled on a weekly schedule. Existing customer agreements are unchanged. We review current condition, maintenance demands, and practical route fit before scheduling weekly service.",
   },
   {
     question: "How is onboarding timing confirmed?",
@@ -617,7 +617,7 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
         ? "Reliable Pool Service for Tye Homeowners"
       : `Pool Service in ${location.name}`;
   const heroSupportingParagraph = isSouthAbilene
-    ? "Recurring pool service in South Abilene for homeowners who want consistent weekly or bi-weekly care, clear updates, and long-term equipment protection."
+    ? "Recurring pool service in South Abilene for homeowners who want consistent weekly care, clear updates, and long-term equipment protection."
     : isNorthAbilene
       ? "Route-based pool upkeep in North Abilene for homeowners who want dependable recurring support, clear maintenance planning, and practical next-step guidance."
       : isAbileneWylie
@@ -652,13 +652,13 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
         : isBuffaloGap
             ? "Getting pool service started in Buffalo Gap should be simple. Shipwrecked Pools begins by confirming your address, reviewing your pool’s current condition, and recommending the kind of care that makes the most sense—ongoing maintenance for long-term consistency or targeted cleanup support when the pool needs more than a routine visit."
         : isClyde
-              ? "Clyde homeowners usually get the best long-term results from pool care that stays consistent. Shipwrecked Pools provides dependable weekly and bi-weekly service to help keep water clear, equipment protected, and routine upkeep from falling behind. When a pool needs more than standard maintenance, we can also recommend the right next step."
+              ? "Clyde homeowners usually get the best long-term results from pool care that stays consistent. Shipwrecked Pools provides dependable weekly service to help keep water clear, equipment protected, and routine upkeep from falling behind. When a pool needs more than standard maintenance, we can also recommend the right next step."
         : isHamby
                 ? "Getting pool service started in Hamby should be simple. Shipwrecked Pools begins by confirming your address, reviewing your pool’s current condition, and recommending the kind of care that fits best—ongoing maintenance for dependable results or targeted help when your pool needs more than a routine visit."
         : isHawley
                   ? "Hawley homeowners often need pool service that does more than keep the surface clean. Shipwrecked Pools combines dependable routine care with a closer eye on circulation, filtration, and the equipment that keeps your pool running the way it should. That means service built to support clear water, protected equipment, and stronger long-term performance."
         : isMerkel
-                    ? "Merkel homeowners usually get the best long-term results from pool care that starts with consistency. Shipwrecked Pools helps build that consistency with dependable weekly and bi-weekly service designed to keep water clear, protect equipment, and keep routine maintenance from falling behind. When a pool needs more than standard upkeep, we can also recommend the right next step without losing sight of the long-term plan."
+                    ? "Merkel homeowners usually get the best long-term results from pool care that starts with consistency. Shipwrecked Pools helps build that consistency with dependable weekly service designed to keep water clear, protect equipment, and keep routine maintenance from falling behind. When a pool needs more than standard upkeep, we can also recommend the right next step without losing sight of the long-term plan."
         : isPotosi
                       ? "Getting the right pool service in Potosi starts with a clear look at your pool’s current condition. Shipwrecked Pools reviews the water, overall condition, and any signs that routine maintenance is no longer enough. From there, we recommend the kind of help that fits best—recurring service for steady care or more targeted support when the pool needs extra attention."
         : isTuscola
@@ -667,7 +667,7 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
                           ? "Tye homeowners usually want clear answers before service begins. Shipwrecked Pools starts by reviewing your address, your pool’s current condition, and whether recurring care or more targeted help makes the most sense. That gives you a realistic idea of timing, available service options, and the right next step from the start."
     : `Shipwrecked Pools serves homeowners in ${location.name} with pool care built around consistency, communication, and long-term system health. Whether your pool needs recurring service, green-to-clean recovery, filter care, or practical maintenance support, we keep the process straightforward and local.`;
   const ctaAvailabilityParagraph = isSouthAbilene
-    ? "If you are comparing weekly vs bi-weekly service, text us your address and current pool condition. We will walk through route fit, recommended cadence, and whether to begin with recurring care or a cleanup first."
+    ? "If you are starting weekly service, text us your address and current pool condition. We will walk through route fit and whether to begin with recurring care or a cleanup first."
     : isNorthAbilene
       ? "Text us your address and current pool condition, and we will run a quick planning assessment for route fit, service cadence, and immediate maintenance priorities before you commit."
     : isAbileneWylie
@@ -687,7 +687,7 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
         : isPotosi
                       ? "Text us your address, a quick description of what your pool looks like, and a few photos if you have them. We’ll help you understand the right next step, what current availability looks like, and how to get started without guesswork."
         : isTuscola
-                        ? "Text us your address and a quick update on your pool, and we’ll help you understand the right next step, what kind of service makes the most sense, and what current availability looks like before you commit to a weekly or bi-weekly plan."
+                        ? "Text us your address and a quick update on your pool, and we’ll help you understand the right next step, what kind of service makes the most sense, and what current availability looks like before you commit to a weekly plan."
         : isTye
                           ? "Text us your address and a quick update on your pool, and we’ll help you understand current availability, whether recurring service is the right fit, and how to move forward without guesswork."
     : "Route availability can vary by season and current service density, so the fastest way to confirm service is to text us your address or request a quick quote.";

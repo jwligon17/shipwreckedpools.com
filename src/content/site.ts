@@ -533,9 +533,9 @@ export const site = {
           icon: "weekly",
         },
         {
-          title: "Bi-Weekly Services",
+          title: "Bi-Weekly (Existing)",
           summary:
-            "A practical maintenance option for pools that need dependable care on a lighter recurring schedule.",
+            "New recurring pool-service customers are enrolled on a weekly schedule. Existing customer agreements are unchanged.",
           href: "/services/bi-weekly-services",
           icon: "biweekly",
         },
@@ -826,6 +826,11 @@ export const site = {
           answer:
             "Yes. We flag concerns early and communicate practical next steps before issues turn into bigger disruptions.",
         },
+        {
+          question: "What happens when I start or switch to weekly pool service?",
+          answer:
+            "We visit your pool on site and confirm technician availability before setting your first service date. If initial cleanup is needed, it is charged as a one-time or green-to-clean service. For new weekly-service customers, routine chemicals are billed separately. After each visit, you receive an After Service Pool Report through Skimmer.",
+        },
       ],
       relatedServices: ["bi-weekly-services", "filter-cleaning", "pump-repair-and-installation"],
       ctaTitle: "Ready to hand off weekly pool care?",
@@ -843,16 +848,16 @@ export const site = {
       seoTitle: "Bi-Weekly Pool Service in Abilene, TX | Shipwrecked Pools",
       seoH1: "Bi-Weekly Pool Service in Abilene, TX",
       seoDescription:
-        "Professional bi-weekly pool service for Abilene homeowners who need lighter recurring support with clean, balanced water.",
+        "Bi-weekly pool service information for existing Abilene customers. New recurring customers enroll weekly; existing agreements are unchanged.",
       summary:
-        "A practical recurring service option for pools that can stay stable with professional care every other week.",
+        "New recurring pool-service customers are enrolled on a weekly schedule. Existing customer agreements are unchanged.",
       supportingParagraph:
-        "Bi-weekly service gives homeowners structured support on a lighter cadence while keeping water quality and system health in view.",
-      idealFor: "Homeowners looking for scheduled maintenance on a lighter recurring cadence.",
+        "This page provides service information for customers with existing bi-weekly agreements.",
+      idealFor: "Customers with existing bi-weekly service agreements.",
       problemStatement:
         "Pools managed without a schedule can drift out of range, especially when maintenance happens reactively instead of by plan.",
       solutionStatement:
-        "Bi-weekly service provides repeatable cleaning and balancing visits with clear recommendations to support stability between appointments.",
+        "For customers with existing agreements, bi-weekly service provides repeatable cleaning and balancing visits with clear recommendations to support stability between appointments.",
       bullets: [
         "Scheduled cleaning and debris removal every other week",
         "Chemistry testing and adjustment during each visit",
@@ -878,10 +883,10 @@ export const site = {
         {
           question: "How is bi-weekly different from weekly service?",
           answer:
-            "Bi-weekly follows the same professional approach but on an every-other-week schedule for pools that can hold stability on a lighter cadence.",
+            "Existing bi-weekly agreements follow an every-other-week schedule. New recurring pool-service customers are enrolled on a weekly schedule. Existing customer agreements are unchanged.",
         },
         {
-          question: "Can I switch to weekly later?",
+          question: "Can an existing bi-weekly customer switch to weekly service?",
           answer:
             "Yes. If pool conditions or usage change, recurring plans can be adjusted to a more frequent schedule.",
         },
@@ -892,7 +897,7 @@ export const site = {
         },
       ],
       relatedServices: ["weekly-services", "filter-cleaning", "one-time-cleans"],
-      ctaTitle: "Need recurring care on a lighter schedule?",
+      ctaTitle: "Starting recurring pool service? Explore weekly care.",
       proof: {
         heading: "The Proof is in the Pool",
         body:
@@ -1353,7 +1358,7 @@ export const site = {
       introCopy:
         "South Abilene homeowners often choose Shipwrecked Pools for dependable recurring care that keeps pool chemistry stable through long heat stretches and heavy seasonal use.",
       localContext: "South Abilene service is structured around recurring route consistency, with practical follow-up when conditions shift.",
-      routeNotes: "Strong fit for homeowners prioritizing weekly or bi-weekly service with proactive communication.",
+      routeNotes: "Strong fit for homeowners prioritizing weekly service with proactive communication.",
       routeAvailabilityNote: "South Abilene availability is confirmed by address and current recurring-route openings.",
       servicesOffered: [
         "weekly-services",
@@ -1370,7 +1375,7 @@ export const site = {
         {
           question: "Do you offer weekly pool service in South Abilene?",
           answer:
-            "Yes, weekly and bi-weekly support are both available when route capacity allows. We confirm options after checking your address and pool details.",
+            "New recurring pool-service customers are enrolled on a weekly schedule. Existing customer agreements are unchanged. We confirm weekly availability after checking your address and pool details.",
         },
         {
           question: "What services are most common in South Abilene?",
@@ -1419,7 +1424,7 @@ export const site = {
         {
           question: "Is recurring pool service available in North Abilene?",
           answer:
-            "Yes. Weekly and bi-weekly options may be available depending on route load and your pool’s service needs.",
+            "New recurring pool-service customers are enrolled on a weekly schedule. Existing customer agreements are unchanged. Weekly availability depends on route load and your pool’s service needs.",
         },
         {
           question: "How do I confirm North Abilene availability?",
