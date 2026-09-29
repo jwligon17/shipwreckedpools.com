@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "tsc -p tsconfig.sos-101-test.json && node --test \".tmp/sos-101-tests/tests/sos-101/**/*.test.js\""
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "next": "16.3.4",
+    "pg": "^8.13.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "resend": "6.17.2",

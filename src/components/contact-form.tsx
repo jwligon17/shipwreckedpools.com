@@ -7,6 +7,7 @@ import { trackAnalyticsEvent } from "@/lib/analytics";
 type PreferredContactMethod = "text" | "phone" | "email";
 
 type ContactFormValues = {
+  clientSubmissionToken: string;
   name: string;
   email: string;
   phone: string;
@@ -17,14 +18,21 @@ type ContactFormValues = {
 
 type FieldErrors = Partial<Record<keyof ContactFormValues, string>>;
 
-const initialValues: ContactFormValues = {
-  name: "",
-  email: "",
-  phone: "",
-  comment: "",
-  preferredContactMethod: "text",
-  company: "",
-};
+function createSubmissionToken() {
+  return globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function createInitialValues(): ContactFormValues {
+  return {
+    clientSubmissionToken: createSubmissionToken(),
+    name: "",
+    email: "",
+    phone: "",
+    comment: "",
+    preferredContactMethod: "text",
+    company: "",
+  };
+}
 
 const preferredContactMethodLabels: Record<PreferredContactMethod, string> = {
   text: "Text",
@@ -64,7 +72,7 @@ function validate(values: ContactFormValues): FieldErrors {
 }
 
 export function ContactForm() {
-  const [values, setValues] = useState<ContactFormValues>(initialValues);
+  const [values, setValues] = useState<ContactFormValues>(() => createInitialValues());
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState<string>("");
@@ -92,7 +100,11 @@ export function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          landingPagePath: window.location.pathname,
+          referrer: document.referrer,
+        }),
       });
 
       if (!response.ok) {
@@ -109,7 +121,7 @@ export function ContactForm() {
         page_path: window.location.pathname,
       });
       setMessage("Thanks. Your quote request was sent successfully.");
-      setValues(initialValues);
+      setValues(createInitialValues());
       setFieldErrors({});
     } catch (error) {
       setStatus("error");

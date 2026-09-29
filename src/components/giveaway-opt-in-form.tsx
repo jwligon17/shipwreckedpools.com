@@ -6,6 +6,7 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 export function GiveawayOptInForm() {
   const [email, setEmail] = useState("");
+  const [clientSubmissionToken, setClientSubmissionToken] = useState(() => createSubmissionToken());
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
@@ -30,8 +31,12 @@ export function GiveawayOptInForm() {
         },
         body: JSON.stringify({
           email: trimmedEmail,
+          clientSubmissionToken,
           company: "",
           mode: "giveaway",
+          source: "free-estimate-pool-skimmer-giveaway",
+          landingPagePath: window.location.pathname,
+          referrer: document.referrer,
         }),
       });
 
@@ -43,6 +48,7 @@ export function GiveawayOptInForm() {
       setStatus("success");
       setMessage("You’re in. We’ll share updates by email.");
       setEmail("");
+      setClientSubmissionToken(createSubmissionToken());
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Something went wrong.");
@@ -86,4 +92,8 @@ export function GiveawayOptInForm() {
       ) : null}
     </form>
   );
+}
+
+function createSubmissionToken() {
+  return globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }

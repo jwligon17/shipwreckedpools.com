@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "ES2022",
+    "noEmit": false,
+    "outDir": ".tmp/sos-101-tests",
+    "rootDir": ".",
+    "incremental": false,
+    "tsBuildInfoFile": ".tmp/sos-101-tests.tsbuildinfo",
+    "paths": {}
+  },
+  "include": ["src/lib/intake/**/*.ts", "tests/sos-101/**/*.ts"]
+}

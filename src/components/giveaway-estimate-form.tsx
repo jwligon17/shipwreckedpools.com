@@ -5,6 +5,7 @@ import { FormEvent, ReactNode, useEffect, useMemo, useRef, useState } from "reac
 type FreeEstimateChoice = "yes" | "no";
 
 type GiveawayEstimateValues = {
+  clientSubmissionToken: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -25,24 +26,31 @@ type GiveawayEstimateValues = {
 
 type FieldErrors = Partial<Record<keyof GiveawayEstimateValues, string>>;
 
-const initialValues: GiveawayEstimateValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  address: "",
-  city: "",
-  state: "",
-  zipCode: "",
-  poolKind: "",
-  poolSize: "",
-  filterType: "",
-  debrisExposure: "",
-  poolCaretaker: "",
-  biggestIssue: "",
-  wantsFreeEstimate: "yes",
-  company: "",
-};
+function createSubmissionToken() {
+  return globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function createInitialValues(): GiveawayEstimateValues {
+  return {
+    clientSubmissionToken: createSubmissionToken(),
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    poolKind: "",
+    poolSize: "",
+    filterType: "",
+    debrisExposure: "",
+    poolCaretaker: "",
+    biggestIssue: "",
+    wantsFreeEstimate: "yes",
+    company: "",
+  };
+}
 
 function validate(values: GiveawayEstimateValues): FieldErrors {
   const errors: FieldErrors = {};
@@ -73,7 +81,7 @@ function validate(values: GiveawayEstimateValues): FieldErrors {
 }
 
 export function GiveawayEstimateForm() {
-  const [values, setValues] = useState<GiveawayEstimateValues>(initialValues);
+  const [values, setValues] = useState<GiveawayEstimateValues>(() => createInitialValues());
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -98,6 +106,7 @@ export function GiveawayEstimateForm() {
     try {
       const submissionPayload = {
         firstName: values.firstName,
+        clientSubmissionToken: values.clientSubmissionToken,
         lastName: values.lastName,
         email: values.email,
         phone: values.phone,
@@ -113,6 +122,8 @@ export function GiveawayEstimateForm() {
         biggestPoolIssue: values.biggestIssue,
         wantsFreeEstimate: values.wantsFreeEstimate,
         source: "free-estimate-pool-skimmer-giveaway",
+        landingPagePath: window.location.pathname,
+        referrer: document.referrer,
         company: values.company,
         mode: "giveaway",
       };
@@ -130,7 +141,7 @@ export function GiveawayEstimateForm() {
 
       setStatus("success");
       setMessage("Thanks. Your giveaway entry has been submitted.");
-      setValues(initialValues);
+      setValues(createInitialValues());
       setFieldErrors({});
     } catch (error) {
       setStatus("error");

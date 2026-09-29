@@ -1,0 +1,779 @@
+add @humanfs/types 0.15.0
+change update-browserslist-db 1.2.3 => 1.3.3
+change postcss-selector-parser 6.1.2 => 6.1.4
+change node-releases 2.0.37 => 2.0.55
+change js-yaml 4.1.1 => 4.3.2
+change electron-to-chromium 1.5.340 => 1.5.427
+change caniuse-lite 1.0.30001788 => 1.0.30001810
+change browserslist 4.28.2 => 4.28.9
+change brace-expansion 1.1.14 => 1.1.18
+change baseline-browser-mapping 2.10.19 => 2.11.23
+change brace-expansion 5.0.5 => 5.0.9
+change @humanfs/node 0.16.7 => 0.16.8
+change @humanfs/core 0.19.1 => 0.19.2
+change @babel/types 7.29.0 => 7.29.8
+change @babel/traverse 7.29.0 => 7.29.8
+change @babel/template 7.28.6 => 7.29.7
+change @babel/parser 7.29.2 => 7.29.8
+change @babel/helpers 7.29.2 => 7.29.7
+change @babel/helper-validator-option 7.27.1 => 7.29.7
+change @babel/helper-validator-identifier 7.28.5 => 7.29.7
+change @babel/helper-string-parser 7.27.1 => 7.29.7
+change @babel/helper-module-transforms 7.28.6 => 7.29.7
+change @babel/helper-module-imports 7.28.6 => 7.29.7
+change @babel/helper-globals 7.28.0 => 7.29.7
+change @babel/helper-compilation-targets 7.28.6 => 7.29.7
+change @babel/generator 7.29.1 => 7.29.8
+change @babel/core 7.29.0 => 7.29.7
+change @babel/compat-data 7.29.0 => 7.29.7
+change @babel/code-frame 7.29.0 => 7.29.7
+{
+  "add": [
+    {
+      "name": "@humanfs/types",
+      "version": "0.15.0",
+      "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@humanfs\\types"
+    }
+  ],
+  "added": 1,
+  "audited": 406,
+  "change": [
+    {
+      "from": {
+        "name": "update-browserslist-db",
+        "version": "1.2.3",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\update-browserslist-db"
+      },
+      "to": {
+        "name": "update-browserslist-db",
+        "version": "1.3.3",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\update-browserslist-db"
+      }
+    },
+    {
+      "from": {
+        "name": "postcss-selector-parser",
+        "version": "6.1.2",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\postcss-selector-parser"
+      },
+      "to": {
+        "name": "postcss-selector-parser",
+        "version": "6.1.4",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\postcss-selector-parser"
+      }
+    },
+    {
+      "from": {
+        "name": "node-releases",
+        "version": "2.0.37",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\node-releases"
+      },
+      "to": {
+        "name": "node-releases",
+        "version": "2.0.55",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\node-releases"
+      }
+    },
+    {
+      "from": {
+        "name": "js-yaml",
+        "version": "4.1.1",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\js-yaml"
+      },
+      "to": {
+        "name": "js-yaml",
+        "version": "4.3.2",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\js-yaml"
+      }
+    },
+    {
+      "from": {
+        "name": "electron-to-chromium",
+        "version": "1.5.340",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\electron-to-chromium"
+      },
+      "to": {
+        "name": "electron-to-chromium",
+        "version": "1.5.427",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\electron-to-chromium"
+      }
+    },
+    {
+      "from": {
+        "name": "caniuse-lite",
+        "version": "1.0.30001788",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\caniuse-lite"
+      },
+      "to": {
+        "name": "caniuse-lite",
+        "version": "1.0.30001810",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\caniuse-lite"
+      }
+    },
+    {
+      "from": {
+        "name": "browserslist",
+        "version": "4.28.2",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\browserslist"
+      },
+      "to": {
+        "name": "browserslist",
+        "version": "4.28.9",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\browserslist"
+      }
+    },
+    {
+      "from": {
+        "name": "brace-expansion",
+        "version": "1.1.14",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\brace-expansion"
+      },
+      "to": {
+        "name": "brace-expansion",
+        "version": "1.1.18",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\brace-expansion"
+      }
+    },
+    {
+      "from": {
+        "name": "baseline-browser-mapping",
+        "version": "2.10.19",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\baseline-browser-mapping"
+      },
+      "to": {
+        "name": "baseline-browser-mapping",
+        "version": "2.11.23",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\baseline-browser-mapping"
+      }
+    },
+    {
+      "from": {
+        "name": "brace-expansion",
+        "version": "5.0.5",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@typescript-eslint\\typescript-estree\\node_modules\\brace-expansion"
+      },
+      "to": {
+        "name": "brace-expansion",
+        "version": "5.0.9",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@typescript-eslint\\typescript-estree\\node_modules\\brace-expansion"
+      }
+    },
+    {
+      "from": {
+        "name": "@humanfs/node",
+        "version": "0.16.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@humanfs\\node"
+      },
+      "to": {
+        "name": "@humanfs/node",
+        "version": "0.16.8",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@humanfs\\node"
+      }
+    },
+    {
+      "from": {
+        "name": "@humanfs/core",
+        "version": "0.19.1",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@humanfs\\core"
+      },
+      "to": {
+        "name": "@humanfs/core",
+        "version": "0.19.2",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@humanfs\\core"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/types",
+        "version": "7.29.0",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\types"
+      },
+      "to": {
+        "name": "@babel/types",
+        "version": "7.29.8",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\types"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/traverse",
+        "version": "7.29.0",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\traverse"
+      },
+      "to": {
+        "name": "@babel/traverse",
+        "version": "7.29.8",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\traverse"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/template",
+        "version": "7.28.6",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\template"
+      },
+      "to": {
+        "name": "@babel/template",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\template"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/parser",
+        "version": "7.29.2",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\parser"
+      },
+      "to": {
+        "name": "@babel/parser",
+        "version": "7.29.8",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\parser"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/helpers",
+        "version": "7.29.2",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helpers"
+      },
+      "to": {
+        "name": "@babel/helpers",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helpers"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/helper-validator-option",
+        "version": "7.27.1",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-validator-option"
+      },
+      "to": {
+        "name": "@babel/helper-validator-option",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-validator-option"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/helper-validator-identifier",
+        "version": "7.28.5",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-validator-identifier"
+      },
+      "to": {
+        "name": "@babel/helper-validator-identifier",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-validator-identifier"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/helper-string-parser",
+        "version": "7.27.1",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-string-parser"
+      },
+      "to": {
+        "name": "@babel/helper-string-parser",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-string-parser"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/helper-module-transforms",
+        "version": "7.28.6",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-module-transforms"
+      },
+      "to": {
+        "name": "@babel/helper-module-transforms",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-module-transforms"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/helper-module-imports",
+        "version": "7.28.6",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-module-imports"
+      },
+      "to": {
+        "name": "@babel/helper-module-imports",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-module-imports"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/helper-globals",
+        "version": "7.28.0",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-globals"
+      },
+      "to": {
+        "name": "@babel/helper-globals",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-globals"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/helper-compilation-targets",
+        "version": "7.28.6",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-compilation-targets"
+      },
+      "to": {
+        "name": "@babel/helper-compilation-targets",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\helper-compilation-targets"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/generator",
+        "version": "7.29.1",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\generator"
+      },
+      "to": {
+        "name": "@babel/generator",
+        "version": "7.29.8",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\generator"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/core",
+        "version": "7.29.0",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\core"
+      },
+      "to": {
+        "name": "@babel/core",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\core"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/compat-data",
+        "version": "7.29.0",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\compat-data"
+      },
+      "to": {
+        "name": "@babel/compat-data",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\compat-data"
+      }
+    },
+    {
+      "from": {
+        "name": "@babel/code-frame",
+        "version": "7.29.0",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\code-frame"
+      },
+      "to": {
+        "name": "@babel/code-frame",
+        "version": "7.29.7",
+        "path": "C:\\Users\\krist\\shipwreckedpools.com\\node_modules\\@babel\\code-frame"
+      }
+    }
+  ],
+  "changed": 28,
+  "funding": 150,
+  "remove": [],
+  "removed": 0,
+  "audit": {
+    "auditReportVersion": 2,
+    "vulnerabilities": {
+      "@babel/core": {
+        "name": "@babel/core",
+        "severity": "low",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1123528,
+            "name": "@babel/core",
+            "dependency": "@babel/core",
+            "title": "@babel/core: Arbitrary File Read via sourceMappingURL Comment",
+            "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8",
+            "severity": "low",
+            "cwe": [
+              "CWE-22",
+              "CWE-200"
+            ],
+            "cvss": {
+              "score": 3.2,
+              "vectorString": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:N"
+            },
+            "range": "<=7.29.0"
+          }
+        ],
+        "effects": [],
+        "range": "<=7.29.0",
+        "nodes": [
+          ""
+        ],
+        "fixAvailable": true
+      },
+      "@humanfs/node": {
+        "name": "@humanfs/node",
+        "severity": "moderate",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1158499,
+            "name": "@humanfs/node",
+            "dependency": "@humanfs/node",
+            "title": "humanfs: Recursive copy follows symlinked files and copies data from outside the source tree",
+            "url": "https://github.com/advisories/GHSA-p498-v437-472g",
+            "severity": "moderate",
+            "cwe": [
+              "CWE-22"
+            ],
+            "cvss": {
+              "score": 0,
+              "vectorString": null
+            },
+            "range": "<0.16.8"
+          }
+        ],
+        "effects": [],
+        "range": "<0.16.8",
+        "nodes": [
+          ""
+        ],
+        "fixAvailable": true
+      },
+      "baseline-browser-mapping": {
+        "name": "baseline-browser-mapping",
+        "severity": "moderate",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1193686,
+            "name": "baseline-browser-mapping",
+            "dependency": "baseline-browser-mapping",
+            "title": "baseline-browser-mapping process termination on invalid input causes denial of service",
+            "url": "https://github.com/advisories/GHSA-w5vr-8v7q-w6rv",
+            "severity": "moderate",
+            "cwe": [
+              "CWE-705"
+            ],
+            "cvss": {
+              "score": 0,
+              "vectorString": null
+            },
+            "range": ">=2.0.0 <2.11.0"
+          }
+        ],
+        "effects": [],
+        "range": ">=2.0.0 <2.11.0",
+        "nodes": [
+          ""
+        ],
+        "fixAvailable": true
+      },
+      "brace-expansion": {
+        "name": "brace-expansion",
+        "severity": "high",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1120311,
+            "name": "brace-expansion",
+            "dependency": "brace-expansion",
+            "title": "brace-expansion: Large numeric range defeats documented `max` DoS protection",
+            "url": "https://github.com/advisories/GHSA-jxxr-4gwj-5jf2",
+            "severity": "moderate",
+            "cwe": [
+              "CWE-400"
+            ],
+            "cvss": {
+              "score": 6.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H"
+            },
+            "range": ">=5.0.0 <5.0.6"
+          },
+          {
+            "source": 1123897,
+            "name": "brace-expansion",
+            "dependency": "brace-expansion",
+            "title": "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups",
+            "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
+            "severity": "high",
+            "cwe": [
+              "CWE-400",
+              "CWE-407"
+            ],
+            "cvss": {
+              "score": 5.3,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+            },
+            "range": "<1.1.16"
+          },
+          {
+            "source": 1123898,
+            "name": "brace-expansion",
+            "dependency": "brace-expansion",
+            "title": "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups",
+            "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
+            "severity": "high",
+            "cwe": [
+              "CWE-400",
+              "CWE-407"
+            ],
+            "cvss": {
+              "score": 5.3,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+            },
+            "range": ">=3.0.0 <5.0.7"
+          },
+          {
+            "source": 1130588,
+            "name": "brace-expansion",
+            "dependency": "brace-expansion",
+            "title": "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash",
+            "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+            "severity": "high",
+            "cwe": [
+              "CWE-400",
+              "CWE-770"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": "<1.1.17"
+          },
+          {
+            "source": 1130591,
+            "name": "brace-expansion",
+            "dependency": "brace-expansion",
+            "title": "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash",
+            "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+            "severity": "high",
+            "cwe": [
+              "CWE-400",
+              "CWE-770"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": ">=4.0.0 <5.0.8"
+          },
+          {
+            "source": 1130734,
+            "name": "brace-expansion",
+            "dependency": "brace-expansion",
+            "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation",
+            "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+            "severity": "high",
+            "cwe": [
+              "CWE-400",
+              "CWE-770"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": ">=4.0.0 <5.0.9"
+          },
+          {
+            "source": 1130737,
+            "name": "brace-expansion",
+            "dependency": "brace-expansion",
+            "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation",
+            "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+            "severity": "high",
+            "cwe": [
+              "CWE-400",
+              "CWE-770"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": "<1.1.18"
+          }
+        ],
+        "effects": [],
+        "range": "<=1.1.17 || 3.0.0 - 5.0.8",
+        "nodes": [
+          "",
+          ""
+        ],
+        "fixAvailable": true
+      },
+      "browserslist": {
+        "name": "browserslist",
+        "severity": "high",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1153171,
+            "name": "browserslist",
+            "dependency": "browserslist",
+            "title": "Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM",
+            "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
+            "severity": "high",
+            "cwe": [
+              "CWE-770"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": "<=4.28.6"
+          },
+          {
+            "source": 1153172,
+            "name": "browserslist",
+            "dependency": "browserslist",
+            "title": "Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats)",
+            "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
+            "severity": "high",
+            "cwe": [
+              "CWE-248",
+              "CWE-1321"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": "<=4.28.6"
+          }
+        ],
+        "effects": [],
+        "range": "<=4.28.6",
+        "nodes": [
+          ""
+        ],
+        "fixAvailable": true
+      },
+      "js-yaml": {
+        "name": "js-yaml",
+        "severity": "high",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1121860,
+            "name": "js-yaml",
+            "dependency": "js-yaml",
+            "title": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases",
+            "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
+            "severity": "moderate",
+            "cwe": [
+              "CWE-407"
+            ],
+            "cvss": {
+              "score": 5.3,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+            },
+            "range": ">=4.0.0 <=4.1.1"
+          },
+          {
+            "source": 1123911,
+            "name": "js-yaml",
+            "dependency": "js-yaml",
+            "title": "js-yaml: YAML merge-key chains can force quadratic CPU consumption",
+            "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
+            "severity": "high",
+            "cwe": [
+              "CWE-400",
+              "CWE-407"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": ">=4.0.0 <4.3.0"
+          },
+          {
+            "source": 1138115,
+            "name": "js-yaml",
+            "dependency": "js-yaml",
+            "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) — CVE-2026-59870 fix not backported",
+            "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
+            "severity": "high",
+            "cwe": [
+              "CWE-407"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": ">=4.0.0 <4.3.1"
+          },
+          {
+            "source": 1193727,
+            "name": "js-yaml",
+            "dependency": "js-yaml",
+            "title": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources",
+            "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
+            "severity": "high",
+            "cwe": [
+              "CWE-400",
+              "CWE-407"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": ">=4.0.0 <4.3.2"
+          }
+        ],
+        "effects": [],
+        "range": "4.0.0 - 4.3.1",
+        "nodes": [
+          ""
+        ],
+        "fixAvailable": true
+      },
+      "postcss-selector-parser": {
+        "name": "postcss-selector-parser",
+        "severity": "low",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1153170,
+            "name": "postcss-selector-parser",
+            "dependency": "postcss-selector-parser",
+            "title": "postcss-selector-parser allows denial of service through uncontrolled AST recursion",
+            "url": "https://github.com/advisories/GHSA-w9m9-85wc-3x92",
+            "severity": "low",
+            "cwe": [
+              "CWE-404"
+            ],
+            "cvss": {
+              "score": 4.3,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L"
+            },
+            "range": ">=6.1.0 <6.1.3"
+          }
+        ],
+        "effects": [],
+        "range": "6.1.0 - 6.1.2",
+        "nodes": [
+          ""
+        ],
+        "fixAvailable": true
+      }
+    },
+    "metadata": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 2,
+        "moderate": 2,
+        "high": 3,
+        "critical": 0,
+        "total": 7
+      },
+      "dependencies": {
+        "prod": 36,
+        "dev": 361,
+        "optional": 10,
+        "peer": 0,
+        "peerOptional": 0,
+        "total": 405
+      }
+    }
+  }
+}
