@@ -8,7 +8,7 @@ function row(label: string, value: string | null | undefined) {
 
 export function buildNotificationMessage(args: {
   submission: NormalizedSubmission;
-  capture: CapturedIntake;
+  capture?: CapturedIntake;
   contactSubjectPrefix: string;
   fromEmail: string;
   toEmail: string;
@@ -19,14 +19,14 @@ export function buildNotificationMessage(args: {
   const subject = isGiveaway
     ? `[Shipwrecked Pools] Giveaway form from ${name}`
     : `${contactSubjectPrefix} New contact request from ${name}`;
-  const sourceEventLine = `Source event ID: ${capture.sourceEventId}`;
-  const opportunityLine = capture.opportunity
+  const sourceEventLine = capture ? `Source event ID: ${capture.sourceEventId}` : "";
+  const opportunityLine = !capture ? "" : capture.opportunity
     ? `Opportunity ID: ${capture.opportunity.opportunityId}`
     : "Opportunity ID: not created";
 
   const htmlRows = [
-    row("Source event ID", capture.sourceEventId),
-    row("Opportunity ID", capture.opportunity?.opportunityId ?? "not created"),
+    row("Source event ID", capture?.sourceEventId),
+    row("Opportunity ID", capture ? capture.opportunity?.opportunityId ?? "not created" : null),
     row("Name", submission.contactName),
     row("Email", submission.contactEmail),
     row("Phone", submission.contactPhone),
@@ -83,7 +83,11 @@ export function buildNotificationMessage(args: {
     to: toEmail,
     replyTo: submission.contactEmail || undefined,
     subject,
-    idempotencyKey: `source-event:${capture.sourceEventId}:notification:v1`,
+    // The normalized payload hash includes the submission token. Identical retries
+    // reuse a key; a corrected submission gets a new key without claiming saved capture.
+    idempotencyKey: capture
+      ? `source-event:${capture.sourceEventId}:notification:v1`
+      : `email-only:${submission.payloadHash}:notification:v1`,
     html: [
       `<h2>${isGiveaway ? "Giveaway Form Submission" : "New contact / quote request"}</h2>`,
       '<table cellpadding="6" cellspacing="0" border="0">',
