@@ -85,11 +85,13 @@ export function GiveawayEstimateForm() {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const inFlight = useRef(false);
 
   const hasErrors = useMemo(() => Object.keys(fieldErrors).length > 0, [fieldErrors]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (inFlight.current) return;
 
     const nextErrors = validate(values);
     setFieldErrors(nextErrors);
@@ -100,6 +102,7 @@ export function GiveawayEstimateForm() {
       return;
     }
 
+    inFlight.current = true;
     setStatus("submitting");
     setMessage("");
 
@@ -134,18 +137,40 @@ export function GiveawayEstimateForm() {
         body: JSON.stringify(submissionPayload),
       });
 
-      if (!response.ok) {
-        const payload = (await response.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(payload?.error ?? "Submission failed.");
+      const payload = (await response.json().catch(() => null)) as {
+        ok?: boolean;
+        accepted?: boolean;
+        isTest?: boolean;
+        delivery?: string;
+        error?: string;
+      } | null;
+
+      if (!response.ok || payload?.ok !== true) {
+        throw new Error(typeof payload?.error === "string" ? payload.error : "We could not confirm your submission.");
+      }
+
+      if (payload.isTest === true) {
+        setStatus("error");
+        setMessage("Test submission only. Please use the call/text links on this page for a real inquiry.");
+        return;
+      }
+
+      if (payload.accepted !== true) {
+        throw new Error("Your request was not accepted.");
       }
 
       setStatus("success");
-      setMessage("Thanks. Your giveaway entry has been submitted.");
+      setMessage(payload.delivery === "email_only"
+        ? "Thanks. Your giveaway entry was accepted for email delivery."
+        : "Thanks. Your giveaway entry was received.");
       setValues(createInitialValues());
       setFieldErrors({});
     } catch (error) {
       setStatus("error");
-      setMessage(error instanceof Error ? error.message : "Something went wrong.");
+      const detail = error instanceof Error ? error.message : "We could not confirm your submission.";
+      setMessage(`${detail} Please try again, or use the call/text links on this page.`);
+    } finally {
+      inFlight.current = false;
     }
   }
 

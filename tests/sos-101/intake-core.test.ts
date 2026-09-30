@@ -200,7 +200,7 @@ test("honeypot, malformed, invalid, and oversized requests are rejected safely",
     env,
   });
 
-  assert.deepEqual(honeypot, { status: 200, body: { ok: true } });
+  assert.deepEqual(honeypot, { status: 200, body: { ok: true, accepted: false } });
   assert.equal(malformed.status, 400);
   assert.equal(invalid.status, 400);
   assert.equal(oversized.status, 413);

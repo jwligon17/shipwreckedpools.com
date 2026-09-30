@@ -3,13 +3,21 @@ import { parseContactRequestText } from "./normalize";
 import { getPostgresConnectionString, PostgresIntakeStore } from "./postgres";
 import { safeErrorMessage } from "./safety";
 import { IntakeConflictError, MemoryIntakeStore } from "./store";
-import { IntakeStore, NotificationMessage, NotificationSender, NotificationSendResult } from "./types";
+import { IntakeStore, NormalizedSubmission, NotificationMessage, NotificationSender, NotificationSendResult } from "./types";
 
 type IntakeEnv = Record<string, string | undefined>;
 
 export type ContactServiceResponse = {
   status: number;
-  body: { ok?: true; error?: string; sourceEventId?: string; opportunityId?: string | null };
+  body: {
+    ok?: true;
+    accepted?: boolean;
+    isTest?: true;
+    delivery?: "email_only" | "durable" | "memory";
+    error?: string;
+    sourceEventId?: string;
+    opportunityId?: string | null;
+  };
 };
 
 export type ContactServiceDeps = {
@@ -91,6 +99,41 @@ function createNotificationSender(env: IntakeEnv): NotificationSender {
   return new ResendNotificationSender({ apiKey, fromEmail, toEmail: resolvedToEmail });
 }
 
+async function sendEmailOnly(
+  submission: NormalizedSubmission, deps: ContactServiceDeps, env: IntakeEnv,
+): Promise<ContactServiceResponse> {
+  try {
+    const sender = deps.notificationSender ?? createNotificationSender(env);
+    const message = buildNotificationMessage({
+      submission,
+      contactSubjectPrefix: env.CONTACT_SUBJECT_PREFIX ?? "[Shipwrecked Pools]",
+      fromEmail: env.CONTACT_FROM_EMAIL ?? "configured-sender@example.invalid",
+      toEmail: env.RESEND_TEST_MODE === "true"
+        ? "delivered@resend.dev"
+        : env.CONTACT_TO_EMAIL ?? "configured-recipient@example.invalid",
+    });
+    const result = await sender.send(message);
+    if (result.status === "accepted" && result.providerMessageId?.trim()) {
+      return {
+        status: 200,
+        body: {
+          ok: true,
+          accepted: env.RESEND_TEST_MODE !== "true",
+          ...(env.RESEND_TEST_MODE === "true" ? { isTest: true as const } : {}),
+          delivery: "email_only",
+        },
+      };
+    }
+  } catch {
+    // Provider errors may contain recipient details. Return a public-safe error;
+    // an uncertain send can be retried with the same provider idempotency key.
+  }
+  return {
+    status: 503,
+    body: { error: "Unable to confirm your request was sent." },
+  };
+}
+
 // Both initial dispatch and a future recovery caller must enter here before sending.
 // Claim/start failures and acknowledgement uncertainty never undo saved capture.
 export async function dispatchNotification(
@@ -134,11 +177,17 @@ export async function handleContactRequestText(
   const parsed = parseContactRequestText(rawBody);
 
   if (!parsed.ok) {
-    if (parsed.suppressed) return { status: 200, body: { ok: true } };
+    if (parsed.suppressed) return { status: 200, body: { ok: true, accepted: false } };
     return { status: parsed.status, body: { error: parsed.error } };
   }
 
   try {
+    // Deliberate recovery for deployments with email configured but no storage.
+    // Never switch to email-only after an explicit store configuration or failed write.
+    if (!deps.store && !env.INTAKE_DURABLE_STORE
+      && !env.DATABASE_URL && !env.POSTGRES_URL && !env.POSTGRES_PRISMA_URL) {
+      return await sendEmailOnly(parsed.submission, deps, env);
+    }
     const store = deps.store ?? createStore(env);
     const capture = await store.captureSubmission(parsed.submission);
 
@@ -164,6 +213,9 @@ export async function handleContactRequestText(
       status: 200,
       body: {
         ok: true,
+        accepted: env.RESEND_TEST_MODE !== "true",
+        ...(env.RESEND_TEST_MODE === "true" ? { isTest: true as const } : {}),
+        delivery: store instanceof MemoryIntakeStore ? "memory" : "durable",
         sourceEventId: capture.sourceEventId,
         opportunityId: capture.opportunity?.opportunityId ?? null,
       },
