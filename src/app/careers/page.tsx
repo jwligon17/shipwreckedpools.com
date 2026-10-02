@@ -5,7 +5,8 @@ import { InternalHero } from "@/components/internal-hero";
 import { site } from "@/content/site";
 
 export const metadata = {
-  title: "Careers at Shipwrecked Pools",
+  title: { absolute: "Careers at Shipwrecked Pools" },
+  alternates: { canonical: "/careers" },
   description:
     "Join the Shipwrecked Pools team and learn about current opportunities, benefits, requirements, and how to apply.",
 };

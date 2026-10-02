@@ -29,8 +29,11 @@ export async function generateMetadata({ params }: { params: Promise<ServiceRout
     };
   }
 
+  const title = service.seoTitle ?? `${service.name} in Abilene, TX`;
+  const brandSuffix = ` | ${site.brand.name}`;
+
   return {
-    title: service.seoTitle ?? `${service.name} in Abilene, TX`,
+    title: title.endsWith(brandSuffix) ? title.slice(0, -brandSuffix.length) : title,
     description: service.seoDescription ?? `${service.summary} ${service.supportingParagraph}`,
     alternates: {
       canonical: `/services/${service.slug}`,
@@ -168,15 +171,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${siteUrl}/services/${service.slug}#service`,
     name: service.seoH1 ?? service.name,
     description: service.seoDescription ?? service.summary,
+    serviceType: service.name,
     areaServed: "Abilene, TX",
     provider: {
-      "@type": "LocalBusiness",
       "@id": `${siteUrl}/#organization`,
-      name: site.brand.name,
-      url: siteUrl,
-      telephone: site.brand.phone,
     },
     url: `${siteUrl}/services/${service.slug}`,
   };

@@ -11,6 +11,7 @@ import { site } from "@/content/site";
 
 export const metadata = {
   title: "Pool Services in Abilene, TX",
+  alternates: { canonical: "/services" },
   description:
     "Explore Shipwrecked Pools services in Abilene, including recurring maintenance, algae recovery, equipment support, and practical next steps for clear water.",
 };

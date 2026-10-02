@@ -13,7 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/careers",
     "/contact",
-    "/pay-now",
   ];
 
   const serviceRoutes = site.services.map((service) => `/services/${service.slug}`);

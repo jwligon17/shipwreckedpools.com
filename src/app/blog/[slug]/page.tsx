@@ -63,10 +63,12 @@ export default async function BlogDetailPage({ params }: { params: Promise<BlogR
     description: post.excerpt,
     author: {
       "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
       name: site.brand.name,
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
       name: site.brand.name,
       url: siteUrl,
     },
@@ -102,9 +104,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<BlogR
           />
           <div className="relative z-10">
             <p className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">Published {formatPostDate(post.publishedOn)}</p>
-            <h1 className="mt-4 text-balance font-sans text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-[0.92] tracking-[-0.03em] text-navy">
+            <p className="mt-4 text-balance font-sans text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-[0.92] tracking-[-0.03em] text-navy">
               {post.title}
-            </h1>
+            </p>
             <p className="mt-5 max-w-3xl text-[1rem] leading-relaxed text-ink-muted md:text-lg">{post.excerpt}</p>
 
             <div className="mt-8 rounded-[1.25rem] border border-line/80 bg-[linear-gradient(180deg,#ffffff_0%,#f5faff_100%)] p-5 md:p-6">
