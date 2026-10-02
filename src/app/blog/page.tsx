@@ -5,6 +5,7 @@ import { site } from "@/content/site";
 
 export const metadata = {
   title: "Pool Care Blog",
+  alternates: { canonical: "/blog" },
   description:
     "Read Shipwrecked Pools blog summaries covering filter care, chemistry balance, algae response, and pool maintenance guidance.",
 };

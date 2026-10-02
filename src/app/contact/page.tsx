@@ -5,7 +5,8 @@ import { InternalHero } from "@/components/internal-hero";
 import { site } from "@/content/site";
 
 export const metadata = {
-  title: "Get a Pool Service Quote in Abilene, TX | Shipwrecked Pools",
+  title: "Get a Pool Service Quote in Abilene, TX",
+  alternates: { canonical: "/contact" },
   description:
     "Call or text Shipwrecked Pools for weekly service, green-to-clean help, filter cleaning, and pool care quotes in Abilene.",
 };

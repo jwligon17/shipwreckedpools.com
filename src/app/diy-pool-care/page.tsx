@@ -6,6 +6,7 @@ import { InternalHero } from "@/components/internal-hero";
 
 export const metadata = {
   title: "DIY Pool Care Cheat Sheet",
+  alternates: { canonical: "/diy-pool-care" },
   description:
     "Download the free Shipwrecked Pools DIY pool care cheat sheet and keep your pool healthier between professional visits.",
 };

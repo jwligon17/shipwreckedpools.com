@@ -5,7 +5,8 @@ import { site } from "@/content/site";
 import aboutShipwreckedPoolsCollageV3 from "../../../public/images/about-shipwrecked-pools-collage.png";
 
 export const metadata = {
-  title: "About Shipwrecked Pools",
+  title: { absolute: "About Shipwrecked Pools" },
+  alternates: { canonical: "/about" },
   description:
     "Learn about Jason Ligon and Shipwrecked Pools' asset-management approach to professional pool service in Abilene.",
 };

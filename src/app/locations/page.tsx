@@ -8,6 +8,7 @@ import { site, type Location } from "@/content/site";
 
 export const metadata = {
   title: "Service Areas",
+  alternates: { canonical: "/locations" },
   description:
     "Browse Shipwrecked Pools service areas in Abilene and nearby towns. Find your town and request professional pool service.",
 };

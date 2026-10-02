@@ -537,8 +537,11 @@ export async function generateMetadata({ params }: { params: Promise<LocationRou
     };
   }
 
+  const title = location.seoTitle ?? `Pool Service in ${location.name}`;
+  const brandSuffix = ` | ${site.brand.name}`;
+
   return {
-    title: location.seoTitle ?? `Pool Service in ${location.name} | Shipwrecked Pools`,
+    title: title.endsWith(brandSuffix) ? title.slice(0, -brandSuffix.length) : title,
     description: `Dependable pool care for homeowners in ${location.name} who want clear water, practical communication, and protected equipment.`,
     alternates: {
       canonical: `/locations/${location.slug}`,
