@@ -13,7 +13,7 @@ export const metadata = {
   title: "Pool Services in Abilene, TX",
   alternates: { canonical: "/services" },
   description:
-    "Explore Shipwrecked Pools services in Abilene, including recurring maintenance, algae recovery, equipment support, and practical next steps for clear water.",
+    "Weekly service, algae cleanup, filter cleaning, drain and refill, acid wash, pump repair, and more for Abilene pool owners.",
 };
 
 function getExistingPublicImage(imagePath?: string) {
