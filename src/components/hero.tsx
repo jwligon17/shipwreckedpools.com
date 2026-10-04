@@ -115,7 +115,7 @@ export function Hero() {
           </h1>
           <p className="mt-4 max-w-[35ch] text-[0.9rem] leading-[1.58] text-white/[0.9] md:mt-2.5 md:max-w-2xl md:text-[1rem] md:leading-relaxed">
             <Link href="/services/weekly-services" className="focus-ring underline decoration-light-blue/85 underline-offset-4 hover:text-light-blue">
-              Weekly service
+              Weekly Pool Service in Abilene
             </Link>
             , green-to-clean recovery, and filter care for Abilene homeowners who want clear water and protected equipment.
           </p>

@@ -342,9 +342,9 @@ export const site = {
   servicesPage: {
     hero: {
       eyebrow: "Pool Services",
-      titleLines: ["Professional Pool Care", "Built for Clear Water."],
+      titleLines: ["Pool Services in Abilene, TX", ""],
       description:
-        "From weekly maintenance to green-to-clean recovery and equipment support, Shipwrecked Pools helps Abilene homeowners protect their water, equipment, and weekends.",
+        "Weekly service, algae cleanup, filter cleaning, drain and refill, acid wash, pump repair, and more for Abilene pool owners.",
       primaryCta: { label: "Get a Quote", href: "/contact" },
       secondaryCta: { label: "Text Us", href: "sms:+13256658877", external: true },
     },
@@ -832,7 +832,7 @@ export const site = {
             "We visit your pool on site and confirm technician availability before setting your first service date. If initial cleanup is needed, it is charged as a one-time or green-to-clean service. For new weekly-service customers, routine chemicals are billed separately. After each visit, you receive an After Service Pool Report through Skimmer.",
         },
       ],
-      relatedServices: ["bi-weekly-services", "filter-cleaning", "pump-repair-and-installation"],
+      relatedServices: ["bi-weekly-services", "filter-cleaning", "pump-repair-and-installation", "algae-removal"],
       ctaTitle: "Ready to hand off weekly pool care?",
       proof: {
         heading: "The Proof is in the Pool",
