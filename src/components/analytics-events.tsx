@@ -23,6 +23,21 @@ export function AnalyticsEvents() {
       }
 
       const href = anchor.getAttribute("href") ?? "";
+      const service = anchor.dataset.analyticsServiceCta;
+      if (service) {
+        trackAnalyticsEvent("service_cta_click", {
+          service,
+          destination: href,
+          source_path: pathname ?? "",
+          cta_placement: anchor.dataset.analyticsPlacement ?? "unknown",
+          cta_text:
+            anchor.getAttribute("aria-label") ??
+            anchor.textContent?.replace(/\s+/g, " ").trim() ??
+            "",
+        });
+        return;
+      }
+
       if (href.startsWith("tel:")) {
         trackAnalyticsEvent("phone_click", {
           link_url: href,

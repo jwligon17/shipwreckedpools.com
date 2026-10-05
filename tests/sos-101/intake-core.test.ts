@@ -118,6 +118,8 @@ test("identical token replay returns the same event without another notification
   assert.equal(second.status, 200);
   assert.equal(second.body.sourceEventId, first.body.sourceEventId);
   assert.equal(second.body.opportunityId, first.body.opportunityId);
+  assert.equal(first.body.replayed, undefined);
+  assert.equal(second.body.replayed, true);
   assert.equal(firstSender.messages.length, 1);
   assert.equal(secondSender.messages.length, 0);
 });
