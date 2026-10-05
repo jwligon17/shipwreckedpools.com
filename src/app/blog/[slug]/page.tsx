@@ -118,6 +118,15 @@ export default async function BlogDetailPage({ params }: { params: Promise<BlogR
                     {section}
                   </p>
                 ))}
+                {post.contextualLinks.map((link) => (
+                  <p key={`${link.href}-${link.label}`} className="text-[0.98rem] leading-relaxed text-ink-muted md:text-base">
+                    {link.before}
+                    <Link href={link.href} className="focus-ring font-semibold text-navy underline decoration-navy/35 underline-offset-4 hover:decoration-navy">
+                      {link.label}
+                    </Link>
+                    {link.after}
+                  </p>
+                ))}
               </div>
             </div>
 

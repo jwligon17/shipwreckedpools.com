@@ -38,6 +38,18 @@ export async function generateMetadata({ params }: { params: Promise<ServiceRout
     alternates: {
       canonical: `/services/${service.slug}`,
     },
+    ...(service.slug === "bi-weekly-services"
+      ? {
+          robots: {
+            index: false,
+            follow: true,
+            googleBot: {
+              index: false,
+              follow: true,
+            },
+          },
+        }
+      : {}),
   };
 }
 
@@ -168,6 +180,21 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
   const relatedLocations = site.locations.filter((location) =>
     ["south-abilene", "north-abilene", "abilene-wylie"].includes(location.slug),
   );
+  const relatedPoolCareGuide = isAlgaeRemovalPage
+    ? {
+        href: "/blog/black-algae-the-pool-owners-nightmare",
+        label: "how to recognize black-algae concerns and the staged recovery path",
+        before: "Seeing persistent dark spots? Read ",
+        after: " before deciding on the next step.",
+      }
+    : isWeeklyServicesPage
+      ? {
+          href: "/blog/salt-pool-maintenance-checklist",
+          label: "our salt-pool maintenance checklist",
+          before: "Maintaining a salt pool? Use ",
+          after: " to understand the routine care it still requires.",
+        }
+      : null;
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -344,6 +371,98 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
         </div>
       </section>
 
+      {isWeeklyServicesPage ? (
+        <section className="relative overflow-hidden bg-white py-14 md:py-18">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_16%,rgba(169,221,245,0.18),transparent_34%)]" aria-hidden="true" />
+          <div className="container-page relative z-10">
+            <div className="mx-auto max-w-4xl text-center">
+              <h2 className="text-balance font-sans text-[2.1rem] font-extrabold leading-[0.92] tracking-[-0.03em] text-navy md:text-[3.15rem]">
+                What weekly service includes
+              </h2>
+              <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-ink-muted md:text-lg">
+                Weekly visits include skimming, brushing, debris removal, chemistry testing and adjustment, and visual equipment checks.
+              </p>
+            </div>
+
+            <div className="mx-auto mt-8 grid max-w-5xl gap-5 md:mt-10 md:grid-cols-[0.9fr_1.1fr] md:gap-6">
+              <article className="rounded-[1.35rem] border border-line/75 bg-[linear-gradient(180deg,#ffffff_0%,#f3faff_100%)] p-6 shadow-[0_14px_30px_rgba(11,30,75,0.08)]">
+                <h3 className="text-[1.4rem] font-semibold leading-tight text-navy">Each weekly visit</h3>
+                <ul className="mt-4 grid gap-2.5 text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">
+                  {["Skimming and brushing", "Debris removal", "Chemistry testing and adjustment", "Visual equipment checks"].map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-navy" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+
+              <article className="rounded-[1.35rem] border border-line/75 bg-white p-6 shadow-[0_14px_30px_rgba(11,30,75,0.08)]">
+                <h3 className="text-[1.4rem] font-semibold leading-tight text-navy">Before weekly service begins</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">
+                  We confirm your pool&apos;s condition, route availability, pricing, and first service date. If initial cleanup is needed, it is handled as a separately quoted one-time or Green-to-Clean service. For new weekly-service customers, routine chemicals are billed separately. Filter cleaning, equipment repairs, and other non-routine work are quoted separately.
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">
+                  Weekly route availability is confirmed by address across Abilene and nearby service areas. Review our{" "}
+                  <Link href="/locations" className="focus-ring font-semibold text-navy underline decoration-navy/35 underline-offset-4 hover:decoration-navy">
+                    pool service areas
+                  </Link>
+                  .
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {isWeeklyServicesPage ? (
+        <section className="relative overflow-hidden bg-light-blue-soft/20 py-14 md:py-18">
+          <div className="container-page">
+            <div className="mx-auto max-w-4xl text-center">
+              <h2 className="text-balance font-sans text-[2.1rem] font-extrabold leading-[0.92] tracking-[-0.03em] text-navy md:text-[3.15rem]">
+                From quote request to weekly service
+              </h2>
+              <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-ink-muted md:text-lg">
+                A clear start that accounts for your pool&apos;s condition, service needs, and current route availability.
+              </p>
+            </div>
+
+            <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:mt-10 md:grid-cols-2">
+              {[
+                {
+                  title: "Request a quote",
+                  body: "Send your service address, pool condition, and preferred contact method.",
+                },
+                {
+                  title: "Review the pool and service needs",
+                  body: "We review the pool's current condition and service requirements. Depending on the situation, pricing may be discussed before or finalized after the onsite check.",
+                },
+                {
+                  title: "Confirm route, pricing, and starting condition",
+                  body: "We confirm technician availability, agreed service pricing, and whether separately quoted cleanup or other non-routine work is needed.",
+                },
+                {
+                  title: "Set the first service date",
+                  body: "Weekly service begins on the agreed schedule, followed by an After Service Pool Report after each visit.",
+                },
+              ].map((step, index) => (
+                <article key={step.title} className="relative rounded-[1.35rem] border border-navy/10 bg-white p-5 shadow-[0_14px_30px_rgba(11,30,75,0.07)]">
+                  <div className="grid grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-3">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-navy/20 bg-light-blue-soft/65 text-sm font-semibold text-navy">
+                      {index + 1}
+                    </span>
+                    <div>
+                      <h3 className="font-semibold leading-tight text-navy">{step.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">{step.body}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="relative overflow-hidden bg-light-blue-soft/35 py-14 md:py-18">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_18%,rgba(169,221,245,0.18),transparent_34%)]" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_92%_84%,rgba(230,180,199,0.14),transparent_32%)]" aria-hidden="true" />
@@ -380,6 +499,72 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
           </div>
         </div>
       </section>
+
+      {isWeeklyServicesPage ? (
+        <section className="relative overflow-hidden bg-white py-14 md:py-18">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,rgba(230,180,199,0.16),transparent_32%)]" aria-hidden="true" />
+          <div className="container-page relative z-10">
+            <div className="mx-auto max-w-4xl text-center">
+              <h2 className="text-balance font-sans text-[2.1rem] font-extrabold leading-[0.92] tracking-[-0.03em] text-navy md:text-[3.15rem]">
+                Clear updates after every visit
+              </h2>
+              <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-ink-muted md:text-lg">
+                Every After Service Pool Report through Skimmer documents what was completed and what your technician observed.
+              </p>
+            </div>
+
+            <div className="mx-auto mt-8 max-w-5xl rounded-[1.35rem] border border-line/75 bg-[linear-gradient(180deg,#ffffff_0%,#f3faff_100%)] p-6 shadow-[0_14px_30px_rgba(11,30,75,0.08)] md:mt-10 md:p-7">
+              <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {["Service tasks completed", "Chemistry readings", "Chemical additions", "Photos", "Equipment notes", "Technician notes", "Arrival time", "Departure time"].map((item) => (
+                  <li key={item} className="flex items-center gap-3 rounded-[0.9rem] border border-line/65 bg-white px-4 py-3 text-sm font-medium text-navy">
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-navy" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">
+                If equipment concerns are identified, Shipwrecked flags them early and communicates practical next steps.
+              </p>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {isWeeklyServicesPage ? (
+        <section className="relative overflow-hidden bg-light-blue-soft/25 py-14 md:py-20">
+          <div className="container-page">
+            <div className="mx-auto max-w-4xl text-center">
+              <h2 className="text-balance font-sans text-[2.1rem] font-extrabold leading-[0.92] tracking-[-0.03em] text-navy md:text-[3.15rem]">
+                The Proof is in the Pool
+              </h2>
+              <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-ink-muted md:text-lg">
+                See a Shipwrecked Pools before-and-after pool recovery result. This Green-to-Clean example shows corrective recovery work, not a routine weekly-service visit or a typical weekly-maintenance result.
+              </p>
+            </div>
+
+            <div className="mx-auto mt-8 max-w-[900px] md:mt-10">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-line/80 bg-white shadow-[0_24px_52px_rgba(11,30,75,0.14)]">
+                <Image
+                  src="/images/proof-pool-comparison-2.png"
+                  alt="Shipwrecked Pools before-and-after Green-to-Clean pool recovery result"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(min-width: 1200px) 900px, (min-width: 768px) 88vw, 94vw"
+                  loading="lazy"
+                  quality={78}
+                />
+              </div>
+              <p className="mt-5 text-center text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">
+                Need help restoring a green or algae-affected pool? Explore our{" "}
+                <Link href="/services/algae-removal" className="focus-ring font-semibold text-navy underline decoration-navy/35 underline-offset-4 hover:decoration-navy">
+                  Green-to-Clean pool recovery service
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {!showBenefitsSection || isWeeklyServicesPage || isBiWeeklyServicesPage || isAlgaeRemovalPage ? null : (
         <section className="relative overflow-hidden bg-white py-14 md:py-18">
@@ -641,6 +826,19 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                 ))}
               </div>
             </div>
+
+            {relatedPoolCareGuide ? (
+              <div className="mt-6">
+                <h3 className="text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-ink-soft">Pool Care Guide</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">
+                  {relatedPoolCareGuide.before}
+                  <Link href={relatedPoolCareGuide.href} className="focus-ring font-semibold text-navy underline decoration-navy/35 underline-offset-4 hover:decoration-navy">
+                    {relatedPoolCareGuide.label}
+                  </Link>
+                  {relatedPoolCareGuide.after}
+                </p>
+              </div>
+            ) : null}
           </article>
         </div>
       </section>

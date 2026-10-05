@@ -15,7 +15,6 @@ type LocationRouteParams = {
 
 const LOCATION_SERVICE_SLUGS = [
   "weekly-services",
-  "bi-weekly-services",
   "algae-removal",
   "acid-wash",
   "drain-and-refill",
@@ -622,7 +621,7 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
   const heroSupportingParagraph = isSouthAbilene
     ? "Recurring pool service in South Abilene for homeowners who want consistent weekly care, clear updates, and long-term equipment protection."
     : isNorthAbilene
-      ? "Route-based pool upkeep in North Abilene for homeowners who want dependable recurring support, clear maintenance planning, and practical next-step guidance."
+      ? "Weekly pool service is the recurring-care path for new North Abilene customers, with clear maintenance planning and practical next-step guidance."
       : isAbileneWylie
         ? "Pool service in Abilene Wylie built for reliable recurring upkeep plus practical cleanup support when a pool needs help catching up."
         : isBaird
@@ -672,9 +671,9 @@ export default async function LocationDetailPage({ params }: { params: Promise<L
   const ctaAvailabilityParagraph = isSouthAbilene
     ? "If you are starting weekly service, text us your address and current pool condition. We will walk through route fit and whether to begin with recurring care or a cleanup first."
     : isNorthAbilene
-      ? "Text us your address and current pool condition, and we will run a quick planning assessment for route fit, service cadence, and immediate maintenance priorities before you commit."
+      ? "Route availability is confirmed by address. Text us your address and current pool condition so we can confirm weekly-service fit and any immediate maintenance priority."
     : isAbileneWylie
-        ? "Tell us what your pool looks like today, and we’ll recommend the right first step—recurring service for ongoing care or targeted cleanup support if the water has already fallen behind."
+        ? "Route availability is confirmed by address. Tell us your address and what your pool looks like today, and we’ll recommend weekly service for ongoing care or targeted cleanup support if the water has already fallen behind."
         : isBaird
           ? "Once we know where you are and what your pool needs, we can give you a realistic idea of timing and help you move forward with a plan that makes sense."
         : isBuffaloGap

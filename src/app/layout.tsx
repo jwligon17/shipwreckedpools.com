@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Sora } from "next/font/google";
+import Script from "next/script";
 
 import { AnalyticsEvents } from "@/components/analytics-events";
 import { Footer } from "@/components/footer";
@@ -71,6 +72,19 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${sans.variable} ${display.variable}`}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KM6X4R2T21"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag("js", new Date());
+            gtag("config", "G-KM6X4R2T21");
+          `}
+        </Script>
         <AnalyticsEvents />
         <LocalBusinessJsonLd />
         <div className="flex min-h-screen flex-col">

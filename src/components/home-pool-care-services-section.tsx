@@ -11,7 +11,6 @@ type IconProps = {
 
 const serviceGraphicByIcon: Record<ServiceIconKey, string> = {
   weekly: "/images/services/weekly-services.png",
-  biweekly: "/images/services/bi-weekly-services.png",
   algae: "/images/services/algae-removal.png",
   acidWash: "/images/services/acid-wash.png",
   drainRefill: "/images/services/drain-and-refill.png",

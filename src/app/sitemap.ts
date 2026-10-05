@@ -15,7 +15,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
   ];
 
-  const serviceRoutes = site.services.map((service) => `/services/${service.slug}`);
+  const serviceRoutes = site.services
+    .filter((service) => service.slug !== "bi-weekly-services")
+    .map((service) => `/services/${service.slug}`);
   const locationRoutes = site.locations.map((location) => `/locations/${location.slug}`);
   const blogRoutes = site.blogSummaries.map((post) => `/blog/${post.slug}`);
 

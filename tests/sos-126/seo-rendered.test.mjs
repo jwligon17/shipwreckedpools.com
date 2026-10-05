@@ -31,7 +31,6 @@ const hubs = [
 ];
 const services = [
   ["weekly-services", "Weekly Pool Service", "Weekly Services"],
-  ["bi-weekly-services", "Bi-Weekly Pool Service", "Bi-Weekly Services"],
   ["algae-removal", "Green-to-Clean Pool Cleanup", "Algae Removal"],
   ["acid-wash", "Pool Acid Wash", "Acid Wash"],
   ["drain-and-refill", "Pool Drain & Refill", "Drain & Refill"],
@@ -40,6 +39,7 @@ const services = [
   ["pump-repair-and-installation", "Pool Pump Repair & Installation", "Pump Repair and Installation"],
   ["one-time-cleans", "One-Time Pool Cleaning", "One Time Cleans"],
 ];
+const legacyService = ["bi-weekly-services", "Bi-Weekly Pool Service", "Bi-Weekly Services"];
 const locations = [
   ["south-abilene", "South Abilene", true],
   ["north-abilene", "North Abilene", true],
@@ -70,8 +70,10 @@ const articles = [
 ];
 const routes = ["/", ...hubs.map(([route]) => route),
   ...services.map(([slug]) => `/services/${slug}`),
+  `/services/${legacyService[0]}`,
   ...locations.map(([slug]) => `/locations/${slug}`),
   ...articles.map(([slug]) => `/blog/${slug}`)];
+const indexableRoutes = routes.filter((route) => route !== `/services/${legacyService[0]}`);
 const allowedRequests = new Set([...routes, "/sitemap.xml", "/pay-now"]);
 const canonical = (route) => route === "/" ? origin : `${origin}${route}`;
 
@@ -128,7 +130,8 @@ before(async () => {
 });
 
 test("sitemap preserves every intended canonical and excludes the payment redirect", () => {
-  assert.deepEqual([...sitemapUrls].sort(), routes.map(canonical).sort());
+  assert.deepEqual([...sitemapUrls].sort(), indexableRoutes.map(canonical).sort());
+  assert.ok(!sitemapUrls.includes(canonical(`/services/${legacyService[0]}`)));
   assert.ok(!sitemapUrls.includes(`${origin}/pay-now`));
 });
 
@@ -185,12 +188,215 @@ for (const [slug, subject, serviceType] of services) {
     assert.ok(!service.provider["@type"] || service.provider["@type"] === "Organization");
   });
 }
+test("Package 06 specialty pages preserve intent, scope, limitations, quote paths and weekly links", async () => {
+  const expectations = {
+    "algae-removal": {
+      required: [
+        "Corrective Green-to-Clean service",
+        "Recovery is handled as separate corrective work before routine weekly care",
+        "We do not promise that every algae condition will clear in one visit or within a fixed timeframe.",
+        "What should I send with a Green-to-Clean quote request?",
+      ],
+      forbidden: ["guaranteed recovery", "guaranteed timeframe"],
+    },
+    "filter-cleaning": {
+      required: [
+        "Professional cleaning for cartridge, DE, and sand pool filters",
+        "damaged or worn equipment may need separate repair or replacement work",
+        "What should I send with a filter-cleaning quote request?",
+      ],
+      forbidden: ["every 6 months", "PSI threshold", "fixed price"],
+    },
+    "pump-repair-and-installation": {
+      required: [
+        "Pool pump assessment, repair, and replacement or installation support",
+        "Assessment does not guarantee that every pump can or should be repaired.",
+        "What should I send with a pump-service quote request?",
+      ],
+      forbidden: ["licensed electrician", "manufacturer-authorized", "warranty"],
+    },
+  };
+
+  for (const [slug, checks] of Object.entries(expectations)) {
+    const route = `/services/${slug}`;
+    const response = await get(route);
+    assert.equal(response.status, 200, `${route} must remain HTTP 200`);
+    const html = stripScripts(response.html);
+    const visibleText = text(html);
+    assert.equal(contents(html, "h1").length, 1, `${route} must retain one H1`);
+    assert.deepEqual(tags(html, "link").filter((tag) => tag.rel === "canonical").map((tag) => tag.href),
+      [canonical(route)], `${route} canonical`);
+    for (const phrase of checks.required) {
+      assert.ok(visibleText.includes(phrase), `${route} must explain: ${phrase}`);
+    }
+    for (const phrase of checks.forbidden) {
+      assert.ok(!visibleText.toLowerCase().includes(phrase.toLowerCase()), `${route} must not claim: ${phrase}`);
+    }
+    const links = tags(html, "a").map((tag) => tag.href);
+    assert.ok(links.includes("/contact"), `${route} must retain the quote CTA`);
+    assert.ok(links.includes("/services/weekly-services"), `${route} must link to weekly pool service`);
+    assert.ok(!links.includes("/services/bi-weekly-services"), `${route} must not rediscover legacy biweekly service`);
+  }
+});
+test("Package 07 remaining service pages preserve intent, limitations, quote paths and next steps", async () => {
+  const expectations = {
+    "one-time-cleans": {
+      required: [
+        "without requiring immediate enrollment in weekly service",
+        "may need separate Green-to-Clean recovery instead",
+        "What should I send with a one-time-clean quote request?",
+      ],
+      forbidden: ["one visit will", "guaranteed recovery", "fixed price"],
+    },
+    "acid-wash": {
+      required: [
+        "Condition-based acid-wash service",
+        "it does not guarantee removal of every stain",
+        "What should I send with an acid-wash quote request?",
+      ],
+      forbidden: ["like new", "resurfacing service", "repairs cracks", "repairs leaks"],
+    },
+    "drain-and-refill": {
+      required: [
+        "Managed water replacement for persistent chemistry conditions",
+        "it is not leak, liner, structural, or resurfacing work",
+        "What should I send with a drain-and-refill quote request?",
+      ],
+      forbidden: ["fixes every chemistry", "guaranteed water condition", "fixed refill time"],
+    },
+    "sand-replacement": {
+      required: [
+        "Sand-filter media replacement",
+        "There is no universal interval that applies to every sand filter.",
+        "What should I send with a sand-replacement quote request?",
+      ],
+      forbidden: ["PSI threshold", "manufacturer warranty", "fixed price"],
+    },
+  };
+
+  for (const [slug, checks] of Object.entries(expectations)) {
+    const route = `/services/${slug}`;
+    const response = await get(route);
+    assert.equal(response.status, 200, `${route} must remain HTTP 200`);
+    const html = stripScripts(response.html);
+    const visibleText = text(html);
+    assert.equal(contents(html, "h1").length, 1, `${route} must retain one H1`);
+    assert.deepEqual(tags(html, "link").filter((tag) => tag.rel === "canonical").map((tag) => tag.href),
+      [canonical(route)], `${route} canonical`);
+    for (const phrase of checks.required) {
+      assert.ok(visibleText.includes(phrase), `${route} must explain: ${phrase}`);
+    }
+    for (const phrase of checks.forbidden) {
+      assert.ok(!visibleText.toLowerCase().includes(phrase.toLowerCase()), `${route} must not claim: ${phrase}`);
+    }
+    const links = tags(html, "a").map((tag) => tag.href);
+    assert.ok(links.includes("/contact"), `${route} must retain the quote CTA`);
+    assert.ok(!links.includes("/services/bi-weekly-services"), `${route} must not rediscover legacy biweekly service`);
+  }
+});
+test("legacy biweekly service remains direct-access, noindex/follow and undiscoverable", async () => {
+  const [slug, subject, serviceType] = legacyService;
+  const route = `/services/${slug}`;
+  const response = await get(route);
+  assert.equal(response.status, 200, `${route} must resolve directly without a redirect`);
+  assert.equal(response.headers.get("location"), null, `${route} must not redirect`);
+
+  const html = stripScripts(response.html);
+  assert.deepEqual(contents(html, "title"), [branded(`${subject} in Abilene, TX`)]);
+  assert.deepEqual(tags(html, "link").filter((tag) => tag.rel === "canonical").map((tag) => tag.href),
+    [canonical(route)]);
+  assert.ok(!sitemapUrls.includes(canonical(route)), `${route} must remain excluded from the sitemap`);
+
+  const robots = tags(html, "meta").filter((tag) => ["robots", "googlebot"].includes(tag.name));
+  assert.equal(robots.length, 2, `${route} must define general and Googlebot directives`);
+  for (const tag of robots) {
+    assert.match(tag.content, /\bnoindex\b/);
+    assert.match(tag.content, /\bfollow\b/);
+    assert.doesNotMatch(tag.content, /\bnofollow\b/);
+  }
+
+  const visibleText = text(html);
+  assert.ok(visibleText.includes("New recurring pool-service customers are enrolled on a weekly schedule."));
+  assert.ok(visibleText.includes("Existing customer agreements are unchanged."));
+  assert.ok(tags(html, "a").some((tag) => tag.href === "/services/weekly-services"));
+
+  const serviceEntities = entitiesOfType(jsonLd(response.html), "Service");
+  assert.equal(serviceEntities.length, 1);
+  assert.equal(serviceEntities[0].serviceType, serviceType);
+});
+test("public discovery pages offer weekly service without linking to legacy biweekly service", async () => {
+  for (const route of ["/", "/services", "/diy-pool-care",
+    ...locations.map(([slug]) => `/locations/${slug}`),
+    ...services.map(([slug]) => `/services/${slug}`),
+    ...articles.map(([slug]) => `/blog/${slug}`)]) {
+    const response = await get(route);
+    assert.equal(response.status, 200, `${route} discovery check`);
+    const links = tags(stripScripts(response.html), "a").map((tag) => tag.href);
+    assert.ok(!links.includes(`/services/${legacyService[0]}`), `${route} must not expose the legacy service`);
+  }
+
+  for (const route of ["/", "/services", ...locations.map(([slug]) => `/locations/${slug}`)]) {
+    const response = await get(route);
+    const links = tags(stripScripts(response.html), "a").map((tag) => tag.href);
+    assert.ok(links.includes("/services/weekly-services"), `${route} must retain weekly service discovery`);
+  }
+});
 for (const [slug, name, hasSeoTitle] of locations) {
   test(`location ${slug}: canonical, title and shared Organization`, async () => {
     await page(`/locations/${slug}`, branded(hasSeoTitle
       ? `Pool Cleaning & Pool Service in ${name}, TX` : `Pool Service in ${name}`));
   });
 }
+test("Package 08 area pages preserve useful service, availability and quote paths without template substitution", async () => {
+  const targetLocations = [
+    ["north-abilene", "North Abilene"],
+    ["south-abilene", "South Abilene"],
+    ["abilene-wylie", "Abilene Wylie"],
+    ["clyde", "Clyde"],
+    ["tuscola", "Tuscola"],
+    ["merkel", "Merkel"],
+  ];
+  const normalizedMainText = new Map();
+  const unsupportedClaims = [
+    "Shipwrecked Pools office in",
+    "local branch",
+    "assigned technician",
+    "completed pool job in",
+    "same-day availability",
+    "guaranteed availability",
+  ];
+
+  for (const [slug, name] of targetLocations) {
+    const route = `/locations/${slug}`;
+    const response = await get(route);
+    assert.equal(response.status, 200, `${route} must remain HTTP 200`);
+    const html = stripScripts(response.html);
+    const visibleText = text(html);
+    assert.equal(contents(html, "h1").length, 1, `${route} must retain one H1`);
+    assert.deepEqual(tags(html, "link").filter((tag) => tag.rel === "canonical").map((tag) => tag.href),
+      [canonical(route)], `${route} canonical`);
+    assert.ok(visibleText.includes(name === "Abilene Wylie" ? "Wylie" : name), `${route} location intent`);
+    assert.ok(visibleText.toLowerCase().includes("weekly"), `${route} must retain the weekly-service path`);
+    assert.ok(visibleText.toLowerCase().includes("address"), `${route} must explain address-based confirmation`);
+    assert.match(visibleText.toLowerCase(), /availability|route fit|confirm weekly route/,
+      `${route} must qualify route availability`);
+    for (const claim of unsupportedClaims) {
+      assert.ok(!visibleText.toLowerCase().includes(claim.toLowerCase()), `${route} must not claim: ${claim}`);
+    }
+    const links = tags(html, "a").map((tag) => tag.href);
+    assert.ok(links.includes("/contact"), `${route} must retain the quote/contact path`);
+    assert.ok(links.includes("/locations"), `${route} must link to the locations hub`);
+    assert.ok(links.includes("/services/weekly-services"), `${route} must link to weekly service`);
+    assert.ok(!links.includes("/services/bi-weekly-services"), `${route} must not rediscover legacy biweekly service`);
+
+    normalizedMainText.set(slug,
+      visibleText.replaceAll(name, "[LOCATION]").replaceAll("Wylie", "[LOCATION]"));
+  }
+
+  const normalizedPages = [...normalizedMainText.values()];
+  assert.equal(new Set(normalizedPages).size, normalizedPages.length,
+    "Target location pages must not be exact location-name substitutions");
+});
 for (const [slug, title, published, summary, relatedServices] of articles) {
   test(`article ${slug}: canonical, title, one H1, content and author/publisher identity`, async () => {
     const route = `/blog/${slug}`;
@@ -219,6 +425,77 @@ for (const [slug, title, published, summary, relatedServices] of articles) {
     assert.equal(article.publisher.url, origin);
   });
 }
+
+test("Package 09 articles retain intent and add supported contextual service paths", async () => {
+  const expectations = {
+    "how-to-clean-cartridge-filters": {
+      links: ["/services/filter-cleaning"],
+      required: ["this cartridge procedure does not apply to every filter type"],
+      forbidden: ["PSI threshold", "every 6 months"],
+    },
+    "salt-pool-maintenance-checklist": {
+      links: ["/services/weekly-services"],
+      required: ["Salt pools are not maintenance-free"],
+      forbidden: ["salt-cell repair", "warranty"],
+    },
+    "low-calcium-pool-corrosion-risk": {
+      links: ["/services/weekly-services"],
+      required: ["without guaranteeing prevention of every corrosion issue"],
+      forbidden: ["guarantees prevention", "calcium target"],
+    },
+    "fiberglass-pool-maintenance-tips": {
+      links: ["/services/weekly-services"],
+      required: ["applicable routine cleaning, chemistry care, and equipment observations"],
+      forbidden: ["structural repair", "resurfacing"],
+    },
+    "which-pool-cleaner-is-right": {
+      links: ["/services/weekly-services"],
+      required: ["Choosing a cleaner means owning and managing equipment"],
+      forbidden: ["we sell", "manufacturer partner"],
+    },
+    "black-algae-the-pool-owners-nightmare": {
+      links: ["/services/algae-removal", "/services/weekly-services"],
+      required: [
+        "not every dark pool spot is black algae",
+        "evaluated and handled apart from routine maintenance",
+        "After corrective work is complete and the water has stabilized",
+      ],
+      forbidden: ["guaranteed removal", "guaranteed recovery"],
+    },
+  };
+
+  for (const [slug, checks] of Object.entries(expectations)) {
+    const route = `/blog/${slug}`;
+    const response = await get(route);
+    assert.equal(response.status, 200, `${route} must remain HTTP 200`);
+    const html = stripScripts(response.html);
+    const visibleText = text(html);
+    const links = tags(html, "a").map((tag) => tag.href);
+    for (const href of checks.links) assert.ok(links.includes(href), `${route} must link to ${href}`);
+    for (const phrase of checks.required) assert.ok(visibleText.includes(phrase), `${route} must explain: ${phrase}`);
+    for (const phrase of checks.forbidden) {
+      assert.ok(!visibleText.toLowerCase().includes(phrase.toLowerCase()), `${route} must not claim: ${phrase}`);
+    }
+  }
+
+  const incoming = new Map(indexableRoutes.map((route) => [route, new Set()]));
+  for (const sourceRoute of indexableRoutes) {
+    const response = await get(sourceRoute);
+    assert.equal(response.status, 200, `${sourceRoute} link-graph source`);
+    for (const tag of tags(stripScripts(response.html), "a")) {
+      if (!tag.href) continue;
+      const target = new URL(tag.href, origin);
+      if (target.origin !== origin) continue;
+      const targetRoute = target.pathname === "/" ? "/" : target.pathname.replace(/\/$/, "");
+      if (incoming.has(targetRoute) && targetRoute !== sourceRoute) incoming.get(targetRoute).add(sourceRoute);
+    }
+  }
+
+  assert.ok(incoming.get("/blog/black-algae-the-pool-owners-nightmare").has("/services/algae-removal"));
+  assert.ok(incoming.get("/blog/salt-pool-maintenance-checklist").has("/services/weekly-services"));
+  const orphanCandidates = [...incoming].filter(([route, sources]) => route !== "/" && sources.size === 0);
+  assert.deepEqual(orphanCandidates, [], "Every sitemapped indexable route must have a rendered incoming link");
+});
 
 test("pay-now retains its exact portal redirect without following it", async () => {
   const response = await get("/pay-now");

@@ -64,6 +64,12 @@ export type BlogSummary = {
   excerpt: string;
   summaryBody: string;
   bodySections: string[];
+  contextualLinks: {
+    before: string;
+    href: string;
+    label: string;
+    after: string;
+  }[];
   relatedServiceSlugs: string[];
 };
 
@@ -78,7 +84,7 @@ export type HomePoolCareService = {
   title: string;
   summary: string;
   href: string;
-  icon: "weekly" | "biweekly" | "algae" | "acidWash" | "drainRefill" | "filter" | "pump" | "oneTime" | "sand";
+  icon: "weekly" | "algae" | "acidWash" | "drainRefill" | "filter" | "pump" | "oneTime" | "sand";
 };
 
 export type HomePoolAreaHighlight = {
@@ -193,7 +199,6 @@ const differenceGoogleRating = reviewsData.rating.toFixed(1);
 const differenceReviewCount = reviewsData.displayReviewCount;
 const defaultLocationServiceSlugs = [
   "weekly-services",
-  "bi-weekly-services",
   "algae-removal",
   "acid-wash",
   "drain-and-refill",
@@ -533,13 +538,6 @@ export const site = {
           icon: "weekly",
         },
         {
-          title: "Bi-Weekly (Existing)",
-          summary:
-            "New recurring pool-service customers are enrolled on a weekly schedule. Existing customer agreements are unchanged.",
-          href: "/services/bi-weekly-services",
-          icon: "biweekly",
-        },
-        {
           title: "Algae Removal",
           summary:
             "Green-to-clean recovery for pools that need focused attention, cleanup, and chemistry correction.",
@@ -832,7 +830,7 @@ export const site = {
             "We visit your pool on site and confirm technician availability before setting your first service date. If initial cleanup is needed, it is charged as a one-time or green-to-clean service. For new weekly-service customers, routine chemicals are billed separately. After each visit, you receive an After Service Pool Report through Skimmer.",
         },
       ],
-      relatedServices: ["bi-weekly-services", "filter-cleaning", "pump-repair-and-installation", "algae-removal"],
+      relatedServices: ["filter-cleaning", "pump-repair-and-installation", "algae-removal"],
       ctaTitle: "Ready to hand off weekly pool care?",
       proof: {
         heading: "The Proof is in the Pool",
@@ -914,24 +912,24 @@ export const site = {
       seoDescription:
         "Turn a green pool clear again with professional algae cleanup and chemistry correction in Abilene from Shipwrecked Pools.",
       summary:
-        "Structured remediation to recover unhealthy water and return your pool to stable, swimmable condition.",
+        "Corrective Green-to-Clean service for algae-affected pools that need more than routine weekly maintenance.",
       supportingParagraph:
-        "When water turns cloudy or green, a clear process matters more than guesswork treatments.",
+        "Recovery is handled as separate corrective work before routine weekly care when the pool's current condition requires it. The treatment sequence and follow-up depend on what we find in the water and circulation system.",
       idealFor: "Pools with visible algae growth, cloudy water, or failed sanitizer balance.",
       problemStatement:
-        "Algae growth can overwhelm normal maintenance, reduce water clarity, and make the pool frustrating or unsafe to use.",
+        "Visible algae and green or severely cloudy water can overwhelm normal maintenance. The starting condition, chemistry, debris load, and circulation all affect the recovery path.",
       solutionStatement:
-        "We diagnose current conditions, run a staged cleanup process, and follow through with balancing steps to support ongoing stability.",
+        "We assess the pool's current condition and circulation, plan the needed cleanup and treatment stages, and make follow-up chemistry adjustments as the water responds.",
       bullets: [
         "Diagnosis of algae severity and circulation limits",
         "Targeted treatment and recovery sequencing",
         "Follow-up balancing and prevention roadmap",
       ],
       process: [
-        "Assess condition and build treatment sequence",
-        "Execute clearing stages with chemistry control",
-        "Stabilize water and establish prevention plan",
-        "Perform follow-up checks and adjustments as conditions improve",
+        "Assess water clarity, visible algae, debris, chemistry, and circulation",
+        "Set a cleanup and treatment sequence based on the pool's starting condition",
+        "Brush, clean, treat, and support filtration through the recovery stages",
+        "Recheck progress, adjust as needed, and explain the next maintenance step",
       ],
       standards: [
         "Process-driven cleanup instead of one-step guessing",
@@ -947,17 +945,22 @@ export const site = {
         {
           question: "Can you help if my pool is fully green?",
           answer:
-            "Yes. Green-to-clean recovery is built for pools with heavy algae pressure and poor water clarity.",
+            "Yes. Green-to-Clean service is intended for algae-affected pools with poor water clarity. We first assess the current condition because the work and follow-up can vary from pool to pool.",
         },
         {
           question: "Is algae cleanup a one-step treatment?",
           answer:
-            "Usually no. Most recoveries require staged treatment, cleanup, and follow-up balancing to get stable results.",
+            "Not necessarily. Recovery may require staged treatment, cleaning, filtration support, and follow-up balancing. We do not promise that every algae condition will clear in one visit or within a fixed timeframe.",
         },
         {
-          question: "What happens after water clears?",
+          question: "Can weekly pool service take over after recovery?",
           answer:
-            "After visual recovery, we confirm chemistry stability and provide practical next steps to help prevent recurrence.",
+            "When the pool is ready for routine care and the route is available, weekly pool service can help maintain cleaning and chemistry after the separately quoted corrective work is complete.",
+        },
+        {
+          question: "What should I send with a Green-to-Clean quote request?",
+          answer:
+            "Share the service address, current water color and visibility, how long the condition has been present, any recent treatment, and any known circulation or equipment concerns. Current photos are also helpful when available.",
         },
       ],
       relatedServices: ["one-time-cleans", "filter-cleaning", "weekly-services"],
@@ -976,27 +979,27 @@ export const site = {
       seoTitle: "Pool Acid Wash in Abilene, TX | Shipwrecked Pools",
       seoH1: "Pool Acid Wash in Abilene, TX",
       seoDescription:
-        "Remove stubborn plaster stains, scale, and discoloration with professional acid wash service in Abilene.",
+        "Acid-wash assessment and service for stubborn plaster staining, scale, or discoloration in Abilene.",
       showBenefitsSection: false,
       summary:
-        "Surface restoration service for stained plaster when a deep reset is necessary.",
+        "Condition-based acid-wash service for plaster staining, scale, or discoloration that standard cleaning may not correct.",
       supportingParagraph:
-        "When stains or buildup go beyond standard cleaning, acid wash can provide a controlled surface reset.",
+        "An acid wash is considered only after reviewing the pool finish and current condition. It is not resurfacing or structural, crack, or leak repair, and it does not guarantee that every stain will be removed.",
       idealFor: "Plaster pools with stubborn staining that standard cleaning cannot resolve.",
       problemStatement:
-        "Surface staining and buildup can remain even with regular brushing and chemistry corrections.",
+        "Staining, scale, and discoloration can remain on a plaster finish after normal cleaning, but not every appearance issue is suitable for acid washing.",
       solutionStatement:
-        "We use a controlled drain-and-treat process, then restart water balance so the pool can return to a manageable maintenance baseline.",
+        "We assess suitability, plan the drain-and-treat sequence, perform the agreed acid-wash service, and complete the refill and chemistry startup steps.",
       bullets: [
         "Drain-and-prepare workflow",
         "Controlled surface treatment by condition",
         "Managed refill and chemistry restart",
       ],
       process: [
-        "Evaluate finish condition and confirm acid wash is the right solution",
-        "Perform controlled wash steps",
-        "Refill, rebalance, and verify safe startup",
-        "Provide post-service care guidance for ongoing maintenance",
+        "Review the plaster finish, staining or buildup, and overall condition for suitability",
+        "Plan the drain, treatment, refill, and restart sequence",
+        "Perform the agreed acid-wash steps based on the observed condition",
+        "Refill, restart chemistry, and explain ongoing care recommendations",
       ],
       standards: [
         "Condition-based treatment planning",
@@ -1012,7 +1015,7 @@ export const site = {
         {
           question: "Is acid wash for every stained pool?",
           answer:
-            "Not always. It is typically recommended when surface staining is beyond what normal cleaning can reasonably correct.",
+            "No. Suitability depends on the pool finish and its current condition. Acid washing is not resurfacing or structural, crack, or leak repair, and it does not guarantee removal of every stain.",
         },
         {
           question: "Do you rebalance the pool after refill?",
@@ -1020,9 +1023,14 @@ export const site = {
             "Yes. Post-service startup includes balancing and verification steps after the refill process.",
         },
         {
+          question: "What should I send with an acid-wash quote request?",
+          answer:
+            "Share the service address, the pool finish if known, where the staining or discoloration appears, any prior cleaning or treatment, and current photos when available.",
+        },
+        {
           question: "Will acid wash replace regular maintenance?",
           answer:
-            "No. Acid wash is a reset service, and recurring maintenance is still important for long-term water and surface care.",
+            "No. Acid washing is separate corrective work. After the refill and chemistry startup, ongoing pool care is still important for maintaining the resulting condition.",
         },
       ],
       relatedServices: ["drain-and-refill", "weekly-services", "filter-cleaning"],
@@ -1030,7 +1038,7 @@ export const site = {
       proof: {
         heading: "The Proof is in the Pool",
         body:
-          "A controlled acid wash can restore appearance and set a stronger starting point for ongoing maintenance.",
+          "When the finish and condition are suitable, an acid wash may improve appearance and provide a cleaner starting point for ongoing maintenance. Results depend on the surface and staining present.",
         beforeImagePath: "/images/services/acid-wash-proof-before.png",
         afterImagePath: "/images/services/acid-wash-proof-after.png",
       },
@@ -1044,24 +1052,24 @@ export const site = {
         "Reset difficult water chemistry with a managed drain and refill service for Abilene pools.",
       showBenefitsSection: false,
       summary:
-        "Managed water replacement to reset chemistry when total dissolved solids or imbalance call for a hard reset.",
+        "Managed water replacement for persistent chemistry conditions, including total dissolved solids or imbalance that standard adjustments are not correcting.",
       supportingParagraph:
-        "When chemistry has drifted beyond practical correction, a managed drain and refill can restore control.",
+        "We review the current water and pool condition before recommending a drain and refill. This service replaces water and restarts chemistry; it does not repair leaks, liners, structural problems, or pool surfaces.",
       idealFor: "Pools with persistent chemistry drift that no longer responds to standard balancing.",
       problemStatement:
-        "Some pools reach a point where routine adjustments no longer hold, and water quality remains difficult to stabilize.",
+        "Some water conditions remain difficult to manage despite standard balancing, but draining and refilling is not the right answer to every chemistry or pool problem.",
       solutionStatement:
-        "We plan a safe drain-and-refill sequence and restart chemistry targets so homeowners have a cleaner baseline to maintain.",
+        "We assess whether water replacement fits the observed condition, coordinate the drain and refill sequence, and complete the supported chemistry and circulation startup checks.",
       bullets: [
         "Site-safe draining and refill process",
         "Post-fill chemistry startup",
         "Equipment and circulation verification",
       ],
       process: [
-        "Confirm reset need and prepare drainage plan",
-        "Coordinate drain, refill, and restart sequence",
-        "Dial in baseline chemistry targets",
-        "Verify circulation and sanitizer performance after startup",
+        "Review the reported water problem, current chemistry condition, and pool setup",
+        "Confirm whether drain and refill is an appropriate water-reset service",
+        "Coordinate the agreed draining, refilling, and chemistry startup sequence",
+        "Check circulation after startup and explain the next maintenance step",
       ],
       standards: [
         "Reset planning based on current pool condition",
@@ -1087,7 +1095,12 @@ export const site = {
         {
           question: "Will this fix every pool issue by itself?",
           answer:
-            "Drain and refill addresses water-reset conditions, but ongoing maintenance is still important for long-term performance.",
+            "No. Drain and refill addresses an appropriate water-reset condition; it is not leak, liner, structural, or resurfacing work and is not a universal fix for every chemistry problem.",
+        },
+        {
+          question: "What should I send with a drain-and-refill quote request?",
+          answer:
+            "Share the service address, the water or chemistry concern, how long it has been present, any recent treatments or test information, and current pool and equipment photos when available.",
         },
       ],
       relatedServices: ["acid-wash", "weekly-services", "filter-cleaning"],
@@ -1102,24 +1115,24 @@ export const site = {
         "Improve circulation and water clarity with professional cartridge, DE, or sand-filter cleaning in Abilene.",
       showBenefitsSection: false,
       summary:
-        "Performance-focused filter maintenance that supports circulation, clarity, and equipment longevity.",
+        "Professional cleaning for cartridge, DE, and sand pool filters to support circulation and water clarity.",
       supportingParagraph:
-        "Filtration is one of the biggest drivers of water clarity, and neglected filters can drag down the entire system.",
+        "A dirty or restricted filter can reduce water movement and make clarity harder to maintain. Cleaning is based on the filter type and observed condition; damaged or worn equipment may need separate repair or replacement work.",
       idealFor: "Pools with reduced flow, elevated pressure, or declining clarity.",
       problemStatement:
-        "Restricted or dirty filters reduce circulation efficiency and can make clear water harder to maintain.",
+        "Debris and buildup can restrict filtration, reduce circulation performance, and make routine pool care less effective.",
       solutionStatement:
-        "We service filter components, verify flow and pressure, and provide a clear cadence for future cleanings.",
+        "We identify the filter type, clean the appropriate media or internal components, inspect the condition we can observe, and check operation after restart.",
       bullets: [
         "Filter breakdown and cleanout",
         "Flow and pressure review",
         "Recommended maintenance cadence",
       ],
       process: [
-        "Shut down and open filter assembly",
-        "Clean internal media/components",
-        "Restart system and verify performance",
-        "Record a clean pressure baseline for future maintenance checks",
+        "Confirm whether the pool uses a cartridge, DE, or sand filter and review its current condition",
+        "Shut down the system and access the filter according to its type",
+        "Clean the appropriate media or internal components and note visible wear or damage",
+        "Restart the system, check circulation and pressure, and communicate any separate equipment concern",
       ],
       standards: [
         "Better circulation support through clean filtration",
@@ -1138,17 +1151,22 @@ export const site = {
             "Common signs include weaker circulation, higher pressure readings, and declining water clarity.",
         },
         {
-          question: "Does filter cleaning help water clarity right away?",
+          question: "Which filter types does Shipwrecked clean?",
           answer:
-            "Clean filtration often improves circulation performance quickly, which supports better clarity.",
+            "We clean cartridge, DE, and sand pool filters. The service steps depend on the filter type and its condition.",
         },
         {
-          question: "Will you recommend a maintenance cadence?",
+          question: "Will cleaning fix every filter or circulation problem?",
           answer:
-            "Yes. We provide practical guidance based on observed filter condition and pool demands.",
+            "No. Cleaning addresses dirt and restriction, but it cannot correct every damaged, worn, or malfunctioning filter or equipment issue. We communicate visible condition concerns and practical next steps.",
+        },
+        {
+          question: "What should I send with a filter-cleaning quote request?",
+          answer:
+            "Share the service address, filter type if known, any change in flow, clarity, or pressure, and when it was last cleaned if you know. Photos of the filter label and equipment area can also help.",
         },
       ],
-      relatedServices: ["weekly-services", "bi-weekly-services", "pump-repair-and-installation"],
+      relatedServices: ["weekly-services", "pump-repair-and-installation"],
       ctaTitle: "Need your filtration performance back?",
     },
     {
@@ -1157,28 +1175,28 @@ export const site = {
       seoTitle: "Pool Filter Sand Replacement in Abilene, TX | Shipwrecked Pools",
       seoH1: "Pool Filter Sand Replacement in Abilene, TX",
       seoDescription:
-        "Restore sand-filter performance with professional filter sand replacement in Abilene from Shipwrecked Pools.",
+        "Professional sand-filter media replacement and system restart service in Abilene from Shipwrecked Pools.",
       showBenefitsSection: false,
       showProofSection: false,
       summary:
-        "Media replacement for sand filters to recover filtration efficiency and improve water quality.",
+        "Sand-filter media replacement when the filter condition indicates that cleaning alone may not be the appropriate next step.",
       supportingParagraph:
-        "Aging filter media can limit filtration performance and make clarity harder to maintain.",
+        "A sand filter can lose effectiveness as its media and internal condition change, but not every clarity or circulation issue requires sand replacement. Filter cleaning or another equipment service may be more appropriate after inspection.",
       idealFor: "Sand filter systems with aging media and recurring clarity issues.",
       problemStatement:
-        "Old or compacted sand media can reduce filtration effectiveness and contribute to recurring water-quality frustration.",
+        "Aging or compacted sand media may contribute to declining filtration, while similar symptoms can also come from a dirty filter or another equipment concern.",
       solutionStatement:
-        "We replace worn media, restart the filter correctly, and confirm operation so homeowners can maintain cleaner water more consistently.",
+        "We inspect the sand filter, confirm that media replacement is the agreed path, replace the filter media, and check system operation after restart.",
       bullets: [
         "Old media removal",
         "Fresh media installation",
         "System restart and verification",
       ],
       process: [
-        "Inspect filter condition and remove old media",
-        "Install and level new sand media",
-        "Run startup sequence and confirm clarity gains",
-        "Set and document a clean baseline for future pressure comparisons",
+        "Inspect the sand filter and review the reported filtration symptoms",
+        "Confirm whether media replacement, filter cleaning, or separate equipment service is appropriate",
+        "Remove the old media and install replacement filter media",
+        "Restart the system, check operation, and communicate any separate concern",
       ],
       standards: [
         "Improved filtration foundation with fresh media",
@@ -1194,7 +1212,7 @@ export const site = {
         {
           question: "When should sand media be replaced?",
           answer:
-            "Replacement is typically considered when filtration performance declines and clarity issues persist despite routine care.",
+            "Replacement may be considered when filtration performance has declined and inspection supports a media issue. There is no universal interval that applies to every sand filter.",
         },
         {
           question: "Does sand replacement include startup checks?",
@@ -1202,9 +1220,19 @@ export const site = {
             "Yes. We restart and verify the system after media replacement.",
         },
         {
+          question: "Does every filtration problem need sand replacement?",
+          answer:
+            "No. Some conditions may call for filter cleaning or another equipment service instead. We review the filter and symptoms before recommending the next step.",
+        },
+        {
+          question: "What should I send with a sand-replacement quote request?",
+          answer:
+            "Share the service address, filter make or model if known, the filtration or clarity symptoms, recent filter service history if available, and photos of the filter label and equipment area.",
+        },
+        {
           question: "Will this replace ongoing maintenance?",
           answer:
-            "No. Sand replacement improves filtration foundation, but recurring cleaning and balancing still matter.",
+            "No. Sand replacement addresses filter media when appropriate, while filter care, circulation, cleaning, and water balancing still matter afterward.",
         },
       ],
       relatedServices: ["filter-cleaning", "weekly-services", "pump-repair-and-installation"],
@@ -1225,24 +1253,24 @@ export const site = {
       seoDescription:
         "Get professional pool pump troubleshooting, replacement, and installation help in Abilene to restore flow and circulation.",
       summary:
-        "Professional troubleshooting, repair, and replacement support for pool pumps and circulation performance.",
+        "Pool pump assessment, repair, and replacement or installation support based on the equipment and its condition.",
       supportingParagraph:
-        "Your pump drives circulation, and when it underperforms, water quality and system reliability both suffer.",
+        "Reliable pump operation keeps water moving through the filtration system for routine pool care. The appropriate repair or replacement path depends on the actual equipment, symptoms, and condition found during assessment.",
       idealFor: "Pools with weak circulation, pump noise, prime loss, or aging pump equipment.",
       problemStatement:
-        "Pump issues can reduce flow, affect sanitation support, and create repeated disruptions if left unresolved.",
+        "Weak circulation, unusual pump noise, loss of prime, or aging equipment can interrupt filtration and make water care harder to manage.",
       solutionStatement:
-        "We diagnose pump behavior, recommend repair or replacement based on condition, and verify operation after service.",
+        "We assess pump behavior, flow, and visible equipment condition, then explain whether the supported repair path or replacement and installation is the practical next step.",
       bullets: [
         "Pump performance diagnostics and issue identification",
         "Repair recommendations based on condition and reliability",
         "Replacement and installation support when needed",
       ],
       process: [
-        "Inspect pump behavior, flow, and operating condition",
-        "Complete repair or replacement path based on findings",
-        "Restart, verify circulation, and confirm stable operation",
-        "Review practical operating and maintenance next steps with the homeowner",
+        "Review the reported symptoms and inspect pump behavior, flow, and visible condition",
+        "Explain the findings and recommend repair or replacement based on the actual equipment",
+        "Complete the agreed supported repair or pump installation work",
+        "Restart the system, check circulation, and review any remaining or separate concern",
       ],
       standards: [
         "Diagnosis-first approach before major decisions",
@@ -1258,20 +1286,25 @@ export const site = {
         {
           question: "Can you help troubleshoot noisy or weak pumps?",
           answer:
-            "Yes. Pump diagnostics are part of this service to identify likely causes and practical next steps.",
+            "Yes. We assess reported noise, weak circulation, loss of prime, and general pump operation to identify practical next steps. A recommendation depends on what the equipment assessment shows.",
         },
         {
           question: "Do you only install new pumps?",
           answer:
-            "No. We evaluate whether repair or replacement is the better path based on condition and reliability.",
+            "No. We evaluate repair and replacement or installation options based on the pump, its condition, and the supported work needed. Assessment does not guarantee that every pump can or should be repaired.",
         },
         {
-          question: "Will circulation be verified after service?",
+          question: "What happens after pump service?",
           answer:
-            "Yes. We confirm operation and flow performance after repair or installation work.",
+            "After the agreed work, we restart the system and check pump operation and circulation. If we observe a separate filter or equipment concern, we explain it rather than treating it as part of the pump work automatically.",
+        },
+        {
+          question: "What should I send with a pump-service quote request?",
+          answer:
+            "Share the service address, the pump symptoms and when they started, whether the pump runs at all, and any known make or model information. Photos of the pump label and equipment area are helpful when available.",
         },
       ],
-      relatedServices: ["filter-cleaning", "weekly-services", "bi-weekly-services"],
+      relatedServices: ["filter-cleaning", "weekly-services"],
       showBenefitsSection: false,
       ctaTitle: "Need help with pump performance issues?",
       proof: {
@@ -1289,24 +1322,24 @@ export const site = {
       seoDescription:
         "Need a catch-up visit after weather, travel, or a party? Get one-time pool cleaning and balancing in Abilene.",
       summary:
-        "Targeted single-visit pool cleanup service for special events, seasonal resets, or catch-up needs.",
+        "Standalone pool-cleaning help for catch-up needs without requiring immediate enrollment in weekly service.",
       supportingParagraph:
-        "When your pool needs immediate attention, a one-time clean can reset conditions and clarify next steps.",
+        "A one-time clean focuses on the agreed debris removal, visible cleaning, water testing, and practical chemistry corrections. A green or heavily algae-affected pool may need separate Green-to-Clean recovery instead.",
       idealFor: "Homeowners needing a one-off cleanup without starting recurring service immediately.",
       problemStatement:
-        "Pools can fall behind after weather, travel, or heavy use, and catching up can feel overwhelming without a plan.",
+        "Pools can fall behind after weather, travel, or heavy use, but the current water, algae, debris, and equipment condition determine whether a standard one-time clean is suitable.",
       solutionStatement:
-        "We complete a focused cleanup and balancing visit, then share practical recommendations for what to do next.",
+        "We assess the starting condition, complete the agreed one-time cleaning and balancing work, and explain whether recovery, equipment service, or ongoing weekly care is a better next step.",
       bullets: [
         "Debris removal and visible cleanup",
         "Water test with practical chemistry corrections",
         "Condition notes with recommended next steps",
       ],
       process: [
-        "Assess current pool condition and immediate priorities",
-        "Perform focused cleaning and water-balance corrections",
-        "Share a practical follow-up plan for ongoing care",
-        "Document whether recurring service would improve long-term stability",
+        "Review the current water, algae, debris, and equipment condition",
+        "Confirm whether a one-time clean or a different corrective service fits the request",
+        "Perform the agreed visible cleaning, debris removal, water testing, and practical corrections",
+        "Explain remaining concerns and options for recovery, equipment help, or weekly service",
       ],
       standards: [
         "Focused service built around current pool condition",
@@ -1314,7 +1347,7 @@ export const site = {
         "Actionable recommendations for next steps",
       ],
       outcomes: [
-        "Cleaner pool condition in a single service visit",
+        "Focused cleaning based on the agreed one-time service scope",
         "A clearer picture of current water and equipment status",
         "Actionable next steps based on observed pool needs",
       ],
@@ -1325,24 +1358,34 @@ export const site = {
             "Yes. One-time cleans are designed for homeowners who need targeted support without immediate recurring enrollment.",
         },
         {
-          question: "Will I get recommendations after the visit?",
+          question: "What does a one-time clean cover?",
           answer:
-            "Yes. We provide practical notes on current condition and next-step options.",
+            "The existing service scope includes agreed debris removal and visible cleaning, water testing with practical chemistry corrections, and condition notes with recommended next steps.",
+        },
+        {
+          question: "When might I need a different service?",
+          answer:
+            "A green or significantly algae-affected pool may require staged Green-to-Clean recovery rather than a standard one-time clean. Filter, pump, or other equipment concerns may also require separate service.",
         },
         {
           question: "Can one-time service turn into recurring care later?",
           answer:
-            "Yes. If ongoing support is needed, we can recommend an appropriate recurring service path.",
+            "Yes. Customers who want ongoing cleaning and chemistry care can request Weekly Pool Service after the one-time work, subject to pool condition and route availability.",
+        },
+        {
+          question: "What should I send with a one-time-clean quote request?",
+          answer:
+            "Share the service address, current water clarity and color, visible debris or algae, the help you want, and current pool and equipment photos when available.",
         },
       ],
-      relatedServices: ["weekly-services", "bi-weekly-services", "algae-removal"],
+      relatedServices: ["weekly-services", "algae-removal"],
       ctaTitle: "Need a one-time reset for your pool?",
       showBenefitsSection: false,
       showProofSection: false,
       proof: {
         heading: "The Proof is in the Pool",
         body:
-          "A focused one-time clean can quickly improve current conditions and provide a clear plan for ongoing care.",
+          "A focused one-time clean addresses the agreed cleaning scope and provides practical next steps based on the condition observed.",
         beforeImagePath: "/images/proof-one-time-cleans-before.jpg",
         afterImagePath: "/images/proof-one-time-cleans-after.jpg",
       },
@@ -1362,7 +1405,6 @@ export const site = {
       routeAvailabilityNote: "South Abilene availability is confirmed by address and current recurring-route openings.",
       servicesOffered: [
         "weekly-services",
-        "bi-weekly-services",
         "filter-cleaning",
         "algae-removal",
         "drain-and-refill",
@@ -1408,7 +1450,6 @@ export const site = {
         "weekly-services",
         "filter-cleaning",
         "pump-repair-and-installation",
-        "bi-weekly-services",
         "algae-removal",
         "drain-and-refill",
         "acid-wash",
@@ -1452,7 +1493,6 @@ export const site = {
         "weekly-services",
         "one-time-cleans",
         "algae-removal",
-        "bi-weekly-services",
         "filter-cleaning",
         "drain-and-refill",
         "acid-wash",
@@ -1651,6 +1691,14 @@ export const site = {
         "Rinse each pleat top-to-bottom with steady pressure and inspect for tears, flattening, or heavy scale. If the cartridge is physically damaged or badly compacted, replacement is usually a better long-term choice than repeated deep cleaning.",
         "After reassembly, check startup pressure and record the clean baseline. That number helps you spot when filtration performance is sliding and when professional service should step in.",
       ],
+      contextualLinks: [
+        {
+          before: "If you would rather have the condition assessed and the filter handled professionally, Shipwrecked offers ",
+          href: "/services/filter-cleaning",
+          label: "pool filter cleaning for cartridge, DE, and sand filters",
+          after: "; this cartridge procedure does not apply to every filter type.",
+        },
+      ],
       relatedServiceSlugs: ["filter-cleaning", "weekly-services"],
     },
     {
@@ -1664,6 +1712,14 @@ export const site = {
         "Calcium hardness is one part of overall water balance, but it has outsized impact on plaster and equipment longevity. When water is too aggressive, it can pull minerals from surfaces over time.",
         "The practical goal is balanced chemistry, not chasing one isolated number. Pair calcium readings with pH, alkalinity, and temperature context so adjustments move the water toward a stable LSI range.",
         "If readings drift repeatedly, recurring professional checks can prevent corrective swings and help protect finishes, heaters, and circulation components.",
+      ],
+      contextualLinks: [
+        {
+          before: "For homeowners who want ongoing testing and practical chemistry adjustments, ",
+          href: "/services/weekly-services",
+          label: "Weekly Pool Service",
+          after: " provides a recurring maintenance path without guaranteeing prevention of every corrosion issue.",
+        },
       ],
       relatedServiceSlugs: ["weekly-services", "drain-and-refill"],
     },
@@ -1680,6 +1736,14 @@ export const site = {
         "Keep circulation and filtration on a predictable cadence, especially during heavy-use periods. Clean filters and stable sanitizer levels do more for clarity than occasional one-off corrections.",
         "A recurring plan with periodic equipment checks helps fiberglass pools stay low-stress while reducing the likelihood of expensive catch-up work.",
       ],
+      contextualLinks: [
+        {
+          before: "If you prefer professional help with applicable routine cleaning, chemistry care, and equipment observations, explore ",
+          href: "/services/weekly-services",
+          label: "Weekly Pool Service",
+          after: ".",
+        },
+      ],
       relatedServiceSlugs: ["weekly-services", "filter-cleaning"],
     },
     {
@@ -1695,6 +1759,14 @@ export const site = {
         "Pool shape, obstacles, and owner routine matter just as much as cleaner specs. The best fit is the one you can run consistently without adding maintenance friction.",
         "If cleaner performance remains uneven after setup changes, system-level checks on flow, filter condition, and overall service cadence are usually the next practical step.",
       ],
+      contextualLinks: [
+        {
+          before: "Choosing a cleaner means owning and managing equipment; homeowners who would rather outsource ongoing cleaning and water care can consider ",
+          href: "/services/weekly-services",
+          label: "professional weekly pool maintenance",
+          after: ".",
+        },
+      ],
       relatedServiceSlugs: ["filter-cleaning", "pump-repair-and-installation"],
     },
     {
@@ -1706,9 +1778,23 @@ export const site = {
       summaryBody:
         "Black algae can anchor deep in surface imperfections, requiring a staged corrective process rather than one-time shock treatment.",
       bodySections: [
-        "Black algae is persistent because it can anchor below the visible surface layer. A one-step shock approach often misses the deeper hold points.",
+        "Black algae is persistent because it can anchor below the visible surface layer. A one-step shock approach often misses the deeper hold points, but not every dark pool spot is black algae and the condition should be assessed before choosing a treatment path.",
         "Professional recovery generally combines targeted brushing, chemistry control, and follow-up checks to confirm progress between treatment stages.",
         "Once water stabilizes, recurring maintenance and filtration discipline are critical to reducing the chance of fast recurrence.",
+      ],
+      contextualLinks: [
+        {
+          before: "For an active or severe algae condition, start with Shipwrecked's separate ",
+          href: "/services/algae-removal",
+          label: "corrective Green-to-Clean pool recovery service",
+          after: ", which is evaluated and handled apart from routine maintenance.",
+        },
+        {
+          before: "After corrective work is complete and the water has stabilized, ",
+          href: "/services/weekly-services",
+          label: "Weekly Pool Service",
+          after: " can support ongoing cleaning, chemistry care, and equipment observations.",
+        },
       ],
       relatedServiceSlugs: ["algae-removal", "weekly-services"],
     },
@@ -1723,6 +1809,14 @@ export const site = {
         "Salt systems still require full water management, including pH, alkalinity, stabilizer, and calcium oversight. Chlorine generation does not replace routine testing.",
         "Inspect cell condition, clean filters on schedule, and verify circulation performance before peak season demand builds up.",
         "When seasonal drift or repeated balancing issues show up, a structured service cadence can restore consistency and protect equipment life.",
+      ],
+      contextualLinks: [
+        {
+          before: "Salt pools are not maintenance-free; homeowners who prefer ongoing professional cleaning, testing, and practical chemistry adjustments can explore ",
+          href: "/services/weekly-services",
+          label: "Weekly Pool Service",
+          after: ".",
+        },
       ],
       relatedServiceSlugs: ["weekly-services", "filter-cleaning"],
     },
