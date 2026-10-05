@@ -98,6 +98,8 @@ export function HomePoolCareServicesSection({
               <Link
                 key={card.title}
                 href={href}
+                data-analytics-service-cta={hasDetailRoute ? card.href?.slice("/services/".length) : undefined}
+                data-analytics-placement={hasDetailRoute ? "home_services_grid" : undefined}
                 aria-label={`View ${card.title} service details`}
                 className="shipwrecked-home-services-card service-card group relative flex h-[12.6rem] min-w-0 flex-col items-center justify-start overflow-hidden rounded-sm border border-navy/18 bg-white px-3 pb-6 pt-5 text-center focus-ring sm:h-[14.9rem] sm:px-5 sm:pb-7 sm:pt-7 md:h-[15.2rem] md:px-5 md:pb-8 md:pt-8 lg:h-[15.6rem]"
               >

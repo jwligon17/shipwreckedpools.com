@@ -12,6 +12,7 @@ export type ContactServiceResponse = {
   body: {
     ok?: true;
     accepted?: boolean;
+    replayed?: true;
     isTest?: true;
     delivery?: "email_only" | "durable" | "memory";
     error?: string;
@@ -214,6 +215,7 @@ export async function handleContactRequestText(
       body: {
         ok: true,
         accepted: env.RESEND_TEST_MODE !== "true",
+        ...(capture.idempotencyStatus === "replayed" ? { replayed: true as const } : {}),
         ...(env.RESEND_TEST_MODE === "true" ? { isTest: true as const } : {}),
         delivery: store instanceof MemoryIntakeStore ? "memory" : "durable",
         sourceEventId: capture.sourceEventId,

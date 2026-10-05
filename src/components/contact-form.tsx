@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { FormEvent, SyntheticEvent, useMemo, useRef, useState } from "react";
 
 import { trackAnalyticsEvent } from "@/lib/analytics";
 
@@ -77,8 +77,31 @@ export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState<string>("");
   const inFlight = useRef(false);
+  const hasStarted = useRef(false);
 
   const hasErrors = useMemo(() => Object.keys(fieldErrors).length > 0, [fieldErrors]);
+
+  function handleFormInteraction(event: SyntheticEvent<HTMLFormElement>) {
+    const target = event.target;
+    if (hasStarted.current || !(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement)) {
+      return;
+    }
+
+    if (target.name === "company") {
+      return;
+    }
+
+    hasStarted.current = true;
+    try {
+      trackAnalyticsEvent("contact_form_start", {
+        form_name: "contact_quote",
+        first_field: target.name,
+        page_path: window.location.pathname,
+      });
+    } catch {
+      // Analytics must not interfere with form input.
+    }
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -113,6 +136,7 @@ export function ContactForm() {
       const payload = (await response.json().catch(() => null)) as {
         ok?: boolean;
         accepted?: boolean;
+        replayed?: boolean;
         isTest?: boolean;
         delivery?: string;
         error?: string;
@@ -139,7 +163,7 @@ export function ContactForm() {
       setValues(createInitialValues());
       setFieldErrors({});
       // Exclude the labelled owner recovery check from lead reporting.
-      if (!values.comment.trimStart().startsWith("[OWNER RECOVERY TEST]")) {
+      if (payload.replayed !== true && !values.comment.trimStart().startsWith("[OWNER RECOVERY TEST]")) {
         try {
           trackAnalyticsEvent("generate_lead", {
             form_name: "contact_quote",
@@ -160,7 +184,12 @@ export function ContactForm() {
   }
 
   return (
-    <form className="relative overflow-hidden rounded-[1.7rem] border border-line/85 bg-white p-7 shadow-[0_18px_38px_rgba(11,30,75,0.09)] md:p-8" onSubmit={handleSubmit} noValidate>
+    <form
+      className="relative overflow-hidden rounded-[1.7rem] border border-line/85 bg-white p-7 shadow-[0_18px_38px_rgba(11,30,75,0.09)] md:p-8"
+      onChangeCapture={handleFormInteraction}
+      onSubmit={handleSubmit}
+      noValidate
+    >
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_92%_10%,rgba(169,221,245,0.18),transparent_34%),radial-gradient(circle_at_8%_88%,rgba(230,180,199,0.08),transparent_34%)]"
         aria-hidden="true"

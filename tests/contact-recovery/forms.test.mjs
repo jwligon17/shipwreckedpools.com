@@ -1,5 +1,5 @@
 // Run against a local production preview: node --test tests/contact-recovery/forms.test.mjs
-// Requires an existing Chrome (CHROME_BIN override); never installs a browser.
+// Requires an existing Chrome (CHROME_BIN override supported); never installs a browser.
 // Every contact POST is fulfilled/failed inside Chrome before reaching the server.
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -15,7 +15,9 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const success = { ok: true, accepted: true, delivery: 'email_only' };
 
 async function browser() {
-  const executable = process.env.CHROME_BIN || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+  const executable = process.env.CHROME_BIN || (process.platform === 'win32'
+    ? String.raw`C:\Program Files\Google\Chrome\Application\chrome.exe`
+    : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome');
   await access(executable);
   const profile = await mkdtemp(join(tmpdir(), 'contact-recovery-chrome-'));
   const chrome = spawn(executable, [
@@ -104,6 +106,15 @@ async function browser() {
     await send('Fetch.enable', { patterns: [{ urlPattern: '*', requestStage: 'Request' }] });
     await send('Page.addScriptToEvaluateOnNewDocument', { source: `
       window.dataLayer = [];
+      const nativePush = window.dataLayer.push;
+      window.dataLayer.push = function (...items) {
+        const captured = JSON.parse(sessionStorage.getItem('__analyticsTestEvents') || '[]');
+        for (const item of items) {
+          if (item && typeof item === 'object' && !Array.isArray(item) && item.event) captured.push(item);
+        }
+        sessionStorage.setItem('__analyticsTestEvents', JSON.stringify(captured));
+        return nativePush.apply(this, items);
+      };
       window.__recoveryEvents = [];
       window.gtag = (...args) => window.__recoveryEvents.push(args);
       Object.defineProperty(navigator, 'sendBeacon', { value: () => false });
@@ -135,6 +146,17 @@ async function browser() {
             key => key.startsWith('__reactProps$') && typeof form[key]?.onSubmit === 'function'
           );
         })()`, 'form hydration');
+        await evaluate("sessionStorage.removeItem('__analyticsTestEvents'); window.dataLayer.length = 0");
+      },
+      async openPage(route, selector) {
+        await send('Page.navigate', { url: new URL(route, origin).href });
+        await until(`(() => {
+          const element = document.querySelector(${JSON.stringify(selector)});
+          return document.readyState === 'complete' && element && Object.keys(element).some(
+            key => key.startsWith('__reactProps$')
+          );
+        })()`, 'page hydration');
+        await evaluate("sessionStorage.removeItem('__analyticsTestEvents'); window.dataLayer.length = 0");
       },
       async fill(fields) {
         for (const [id, value] of Object.entries(fields)) {
@@ -166,9 +188,12 @@ async function browser() {
           status: document.querySelector('form [role=status]')?.textContent || '',
           green: document.querySelector('form [role=status]')?.className.includes('text-green-700'),
           values: Object.fromEntries([...document.querySelectorAll('form input[id], form textarea[id]')].map(el => [el.id, el.value])),
-          events: window.__recoveryEvents.filter(args => args[0] === 'event' && args[1] === 'generate_lead').length,
-          dataLayerEvents: window.dataLayer.filter(event => event.event === 'generate_lead').length,
+          formStarts: window.dataLayer.filter(event => event.event === 'contact_form_start').length,
+          leads: window.dataLayer.filter(event => event.event === 'generate_lead').length,
         })`);
+      },
+      analyticsEvents(name) {
+        return evaluate(`JSON.parse(sessionStorage.getItem('__analyticsTestEvents') || '[]').filter(event => event.event === ${JSON.stringify(name)})`);
       },
     };
   } catch (error) { await close(); throw error; }
@@ -193,7 +218,7 @@ const forms = [
 test('both active forms handle mocked contact recovery responses', { timeout: 120000 }, async t => {
   const page = await browser();
   t.after(() => page.close());
-  const noLead = state => { assert.equal(state.events, 0); assert.equal(state.dataLayerEvents, 0); };
+  const noLead = state => { assert.equal(state.leads, 0); };
   for (const form of forms) {
     const prepare = async () => {
       await page.open(form.route);
@@ -203,10 +228,13 @@ test('both active forms handle mocked contact recovery responses', { timeout: 12
     const retained = state => {
       for (const [id, value] of Object.entries(form.fields)) assert.equal(state.values[id], value, `${id} retained`);
       noLead(state);
+      if (form.name === 'contact') assert.equal(state.formStarts, 1);
     };
     await t.test(`${form.name}: invalid fields do not submit`, async () => {
       await page.open(form.route); await page.submit(); await page.settled();
-      assert.equal(page.requests.length, 0); noLead(await page.state());
+      assert.equal(page.requests.length, 0);
+      const state = await page.state();
+      noLead(state); assert.equal(state.formStarts, 0);
     });
     for (const failure of [
       { name: 'provider 503', response: { status: 503, body: { error: 'Notification temporarily unavailable. Please call or text.' } } },
@@ -224,11 +252,16 @@ test('both active forms handle mocked contact recovery responses', { timeout: 12
         const accepted = await page.state();
         assert.equal(accepted.green, true);
         assert.match(accepted.status, /accepted for email delivery/i);
-        assert.equal(accepted.events, form.events); assert.equal(accepted.dataLayerEvents, form.events);
+        assert.equal(accepted.leads, form.events);
         for (const id of Object.keys(form.fields)) assert.equal(accepted.values[id], '', `${id} resets only after acceptance`);
       });
     }
-    await t.test(`${form.name}: suppressed response is not a genuine success`, async () => {
+    await t.test(`${form.name}: rejected response does not generate a lead`, async () => {
+      await prepare(); page.mock({ body: { ok: true, accepted: false } });
+      await page.submit(); await page.settled();
+      const state = await page.state(); retained(state); assert.equal(state.green, false);
+    });
+    await t.test(`${form.name}: honeypot/suppressed response does not generate a lead`, async () => {
       await prepare(); page.mock({ body: { ok: true, accepted: false } });
       await page.submit(); await page.settled();
       const state = await page.state(); retained(state); assert.equal(state.green, false);
@@ -238,6 +271,15 @@ test('both active forms handle mocked contact recovery responses', { timeout: 12
       await page.submit(); await page.settled();
       const state = await page.state(); assert.match(state.status, /test/i); retained(state);
     });
+    if (form.name === 'contact') {
+      await t.test('contact: accepted replay resets the form without a duplicate success event', async () => {
+        await prepare(); page.mock({ body: { ...success, replayed: true } });
+        await page.submit(); await page.settled();
+        const state = await page.state();
+        assert.equal(state.green, true); noLead(state);
+        for (const id of Object.keys(form.fields)) assert.equal(state.values[id], '', `${id} resets after accepted replay`);
+      });
+    }
     await t.test(`${form.name}: double submit while pending sends one request`, async () => {
       await prepare(); let release;
       page.mock({ wait: new Promise(resolve => { release = resolve; }) });
@@ -247,7 +289,7 @@ test('both active forms handle mocked contact recovery responses', { timeout: 12
         assert.equal(await page.evaluate("document.querySelector('form button[type=submit]').disabled"), true);
       } finally { release(); }
       await page.settled();
-      assert.equal((await page.state()).events, form.events);
+      assert.equal((await page.state()).leads, form.events);
     });
     await t.test(`${form.name}: correcting a failed inquiry submits the corrected fields`, async () => {
       await prepare(); page.mock({ status: 503, body: { error: 'Notification temporarily unavailable.' } });
@@ -273,4 +315,28 @@ test('both active forms handle mocked contact recovery responses', { timeout: 12
       });
     }
   }
+
+  await t.test('service CTA emits analytics and preserves internal navigation', async () => {
+    const selector = '[data-analytics-placement="home_services_grid"][data-analytics-service-cta="weekly-services"]';
+    await page.openPage('/', selector);
+    await page.evaluate(`document.querySelector(${JSON.stringify(selector)}).click()`);
+    await page.until("window.location.pathname === '/services/weekly-services'", 'service CTA navigation');
+    const events = await page.analyticsEvents('service_cta_click');
+    assert.equal(events.length, 1);
+    assert.deepEqual(events[0], {
+      event: 'service_cta_click', service: 'weekly-services', destination: '/services/weekly-services',
+      source_path: '/', cta_placement: 'home_services_grid', cta_text: 'View Weekly Services service details',
+    });
+  });
+
+  await t.test('phone click emits analytics without canceling tel behavior', async () => {
+    const selector = 'a[href^="tel:"]';
+    await page.openPage('/contact', selector);
+    const allowed = await page.evaluate(`document.querySelector(${JSON.stringify(selector)}).dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }))`);
+    assert.equal(allowed, true, 'analytics listener must not prevent the tel link default action');
+    const events = await page.analyticsEvents('phone_click');
+    assert.equal(events.length, 1);
+    assert.equal(events[0].page_path, '/contact');
+    assert.match(events[0].link_url, /^tel:/);
+  });
 });
