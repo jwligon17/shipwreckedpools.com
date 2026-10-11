@@ -28,6 +28,7 @@ const hubs = [
   ["/blog", branded("Pool Care Blog")],
   ["/careers", "Careers at Shipwrecked Pools"],
   ["/contact", branded("Get a Pool Service Quote in Abilene, TX")],
+  ["/pool-service-reports", "Pool Service Reports & Picture Proof | Shipwrecked Pools Abilene"],
 ];
 const services = [
   ["weekly-services", "Weekly Pool Service", "Weekly Services"],
@@ -38,6 +39,8 @@ const services = [
   ["sand-replacement", "Pool Filter Sand Replacement", "Sand Replacement"],
   ["pump-repair-and-installation", "Pool Pump Repair & Installation", "Pump Repair and Installation"],
   ["one-time-cleans", "One-Time Pool Cleaning", "One Time Cleans"],
+  ["ship-shape-pool-review", "Free Ship-Shape Pool Review", "Ship-Shape Pool Review"],
+  ["free-pool-chemical-delivery", "Free Pool Chemical Delivery", "Free Pool Chemical Delivery"],
 ];
 const legacyService = ["bi-weekly-services", "Bi-Weekly Pool Service", "Bi-Weekly Services"];
 const locations = [
@@ -293,6 +296,110 @@ test("Package 07 remaining service pages preserve intent, limitations, quote pat
     assert.ok(links.includes("/contact"), `${route} must retain the quote CTA`);
     assert.ok(!links.includes("/services/bi-weekly-services"), `${route} must not rediscover legacy biweekly service`);
   }
+});
+test("Ship-Shape review page preserves the free offer, scope, limitations and intake path", async () => {
+  const route = "/services/ship-shape-pool-review";
+  const response = await get(route);
+  assert.equal(response.status, 200);
+  const html = stripScripts(response.html);
+  const visibleText = text(html);
+  assert.deepEqual(contents(html, "h1"), ["Free Ship-Shape Pool Review in Abilene, TX"]);
+  assert.deepEqual(contents(html, "title"), [branded("Free Ship-Shape Pool Review in Abilene, TX")]);
+  assert.deepEqual(tags(html, "link").filter((tag) => tag.rel === "canonical").map((tag) => tag.href),
+    [canonical(route)]);
+  assert.ok(sitemapUrls.includes(canonical(route)));
+  assert.deepEqual(tags(html, "meta").filter((tag) => tag.name === "description").map((tag) => tag.content), [
+    "Schedule a free, one-time Ship-Shape Pool Review in Abilene for an onsite pool, water, and visible equipment check with a clear summary.",
+  ]);
+  for (const phrase of [
+    "completely free",
+    "one time per homeowner and property",
+    "You do not need to be a current customer",
+    "What We Look At",
+    "What You Receive",
+    "What It Does Not Include",
+    "Equipment disassembly",
+    "Leak detection",
+    "No recurring-service commitment required",
+  ]) assert.ok(visibleText.includes(phrase), `Ship-Shape page must explain: ${phrase}`);
+  const links = tags(html, "a").map((tag) => tag.href);
+  for (const href of ["/contact", "/services", "/services/weekly-services", "/locations"]) {
+    assert.ok(links.includes(href), `Ship-Shape page must link to ${href}`);
+  }
+  assert.ok(contents(html, "h2").includes("Ship-Shape Pool Review FAQ"));
+  assert.equal(contents(html, "h3").filter((heading) => heading === "Is the Ship-Shape Pool Review really free?").length, 1);
+});
+test("chemical delivery page preserves the free-delivery offer, product sizes, request flow and cross-links", async () => {
+  const route = "/services/free-pool-chemical-delivery";
+  const response = await get(route);
+  assert.equal(response.status, 200);
+  const html = stripScripts(response.html);
+  const visibleText = text(html);
+  assert.deepEqual(contents(html, "h1"), ["Free Pool Chemical Delivery in Abilene, TX"]);
+  assert.deepEqual(contents(html, "title"), [branded("Free Pool Chemical Delivery in Abilene, TX")]);
+  assert.deepEqual(tags(html, "link").filter((tag) => tag.rel === "canonical").map((tag) => tag.href),
+    [canonical(route)]);
+  assert.ok(sitemapUrls.includes(canonical(route)));
+  assert.deepEqual(tags(html, "meta").filter((tag) => tag.name === "description").map((tag) => tag.content), [
+    "Get pool chlorine, tabs, shock, acid, bicarb, and salt delivered in the Abilene area. You pay for the chemicals; Shipwrecked Pools delivers them free.",
+  ]);
+  for (const phrase of [
+    "You pay for the chemicals. We deliver them for free.",
+    "Chlorine Tabs", "25 lb or 50 lb", "Pool Shock", "100 lb", "Liquid Chlorine",
+    "Case — 4 gallons", "Muriatic Acid", "Sodium Bicarbonate", "30 lb bag", "Pool Salt", "40 lb bag",
+    "Same-day or next-day delivery is available in many cases, subject to product availability and route scheduling.",
+    "No checkout or payment due now", "Chemical Delivery Request", "Add Another Product",
+  ]) assert.ok(visibleText.includes(phrase), `Chemical delivery page must explain: ${phrase}`);
+  const links = tags(html, "a").map((tag) => tag.href);
+  for (const href of ["/services/ship-shape-pool-review", "/locations"]) {
+    assert.ok(links.includes(href), `Chemical delivery page must link to ${href}`);
+  }
+  assert.ok(contents(html, "h2").includes("Pool Chemical Delivery FAQ"));
+  assert.equal(contents(html, "h3").filter((heading) => heading === "Is the chemical delivery really free?").length, 1);
+});
+test("service reports trust page preserves qualified claims, weekly conversion paths and WebPage semantics", async () => {
+  const route = "/pool-service-reports";
+  const response = await get(route);
+  assert.equal(response.status, 200);
+  const html = stripScripts(response.html);
+  const visibleText = text(html);
+  assert.deepEqual(contents(html, "h1"), ["Pool Service Reports & Picture Proof"]);
+  assert.deepEqual(contents(html, "title"), ["Pool Service Reports & Picture Proof | Shipwrecked Pools Abilene"]);
+  assert.deepEqual(tags(html, "link").filter((tag) => tag.rel === "canonical").map((tag) => tag.href),
+    [canonical(route)]);
+  assert.ok(sitemapUrls.includes(canonical(route)));
+  assert.deepEqual(tags(html, "meta").filter((tag) => tag.name === "description").map((tag) => tag.content), [
+    "See how Shipwrecked Pools documents weekly pool service with photos, water readings, chemical details, service notes, and equipment observations in Abilene.",
+  ]);
+  for (const phrase of [
+    "You should know what happened at your pool after we leave.",
+    "What Your Service Report Can Show",
+    "Service Photos", "Water Readings", "Chemicals Added", "Work Completed",
+    "Equipment Observations", "Service Notes", "Picture Proof",
+    "details shown depend on what was recorded during that visit",
+    "Weekly-service customers receive an After Service Pool Report after each visit.",
+  ]) assert.ok(visibleText.includes(phrase), `Service reports page must explain: ${phrase}`);
+  for (const forbidden of ["GPS proof", "technician certification", "every field is completed"]) {
+    assert.ok(!visibleText.toLowerCase().includes(forbidden.toLowerCase()), `Service reports page must not claim: ${forbidden}`);
+  }
+  const links = tags(html, "a").map((tag) => tag.href);
+  for (const href of ["/contact", "/services/weekly-services"]) {
+    assert.ok(links.includes(href), `Service reports page must link to ${href}`);
+  }
+  const nodes = jsonLd(response.html);
+  const webPages = entitiesOfType(nodes, "WebPage");
+  assert.equal(webPages.length, 1);
+  assert.equal(webPages[0]["@id"], `${canonical(route)}#webpage`);
+  assert.equal(webPages[0].url, canonical(route));
+  assert.equal(webPages[0].publisher["@id"], organizationId);
+  assert.equal(entitiesOfType(nodes, "Service").length, 0, "Trust page must not be represented as a Service");
+  assert.equal(entitiesOfType(nodes, "BreadcrumbList").length, 1);
+});
+test("weekly service links to the service reports trust page", async () => {
+  const response = await get("/services/weekly-services");
+  assert.equal(response.status, 200);
+  const links = tags(stripScripts(response.html), "a").map((tag) => tag.href);
+  assert.ok(links.includes("/pool-service-reports"));
 });
 test("legacy biweekly service remains direct-access, noindex/follow and undiscoverable", async () => {
   const [slug, subject, serviceType] = legacyService;

@@ -99,6 +99,33 @@ test("main inquiry produces one event, one opportunity, and notification/project
   assert.equal([...store.notificationStates.values()][0], "accepted:msg_123");
 });
 
+test("chemical delivery request reuses service intake and keeps line items readable in email", async () => {
+  const store = new MemoryIntakeStore();
+  const sender = new CapturingSender();
+  const response = await handleContactRequestText(servicePayload({
+    clientSubmissionToken: "token-chemical-delivery-1",
+    source: "free-pool-chemical-delivery",
+    landingPagePath: "/services/free-pool-chemical-delivery",
+    address: "456 Delivery Test Lane, Abilene, TX 79605",
+    comment: [
+      "[CHEMICAL DELIVERY REQUEST]",
+      "Products:",
+      "- Chlorine Tabs — 25 lb — Quantity: 2",
+      "- Pool Salt — 40 lb bag — Quantity: 3",
+      "Delivery address: 456 Delivery Test Lane, Abilene, TX 79605",
+      "Special delivery notes: Leave by the equipment pad.",
+    ].join("\n"),
+  }), { store, notificationSender: sender, env });
+
+  assert.equal(response.status, 200);
+  assert.equal(sender.messages.length, 1);
+  assert.match(sender.messages[0].text, /Source: free-pool-chemical-delivery/);
+  assert.match(sender.messages[0].text, /Address: 456 Delivery Test Lane, Abilene, TX 79605/);
+  assert.match(sender.messages[0].text, /Chlorine Tabs — 25 lb — Quantity: 2/);
+  assert.match(sender.messages[0].text, /Pool Salt — 40 lb bag — Quantity: 3/);
+  assert.match(sender.messages[0].text, /Leave by the equipment pad\./);
+});
+
 test("identical token replay returns the same event without another notification send", async () => {
   const store = new MemoryIntakeStore();
   const firstSender = new CapturingSender();

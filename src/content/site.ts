@@ -1390,6 +1390,166 @@ export const site = {
         afterImagePath: "/images/proof-one-time-cleans-after.jpg",
       },
     },
+    {
+      slug: "ship-shape-pool-review",
+      name: "Ship-Shape Pool Review",
+      seoTitle: "Free Ship-Shape Pool Review in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Free Ship-Shape Pool Review in Abilene, TX",
+      seoDescription:
+        "Schedule a free, one-time Ship-Shape Pool Review in Abilene for an onsite pool, water, and visible equipment check with a clear summary.",
+      summary:
+        "A free, one-time onsite review of your pool, water, and visible equipment condition, followed by a clear customer summary.",
+      supportingParagraph:
+        "The Ship-Shape Pool Review helps homeowners understand what looks good, what deserves attention, and what can wait without requiring a recurring-service commitment.",
+      idealFor: "Homeowners who want a professional second opinion on their pool's visible condition.",
+      problemStatement:
+        "Changes in water, circulation, filtration, or equipment can be difficult to interpret without an experienced set of eyes onsite.",
+      solutionStatement:
+        "We review the pool, water, and visible equipment condition, then provide an overall result, item-by-item observations, and prioritized watch items.",
+      bullets: [
+        "Water chemistry and condition observations",
+        "Circulation, filtration, and visible equipment review",
+        "Clear summary with prioritized observations",
+      ],
+      process: [
+        "Schedule the free one-time review for an address in our service area",
+        "Meet the technician onsite for a walkthrough if you would like to be present",
+        "Review the pool, water, circulation, filtration, and visible equipment condition",
+        "Receive an overall result, item-by-item findings, and prioritized watch items",
+      ],
+      standards: [
+        "Useful observations explained in homeowner-friendly language",
+        "Clear limits between a visible review and specialized diagnostics",
+        "Optional next steps based on what the review finds",
+      ],
+      outcomes: [
+        "A clearer understanding of the pool's visible condition",
+        "Prioritized concerns and watch items",
+        "Practical next steps without a recurring-service requirement",
+      ],
+      faqs: [
+        {
+          question: "Is the Ship-Shape Pool Review really free?",
+          answer:
+            "Yes. It is completely free and available one time per homeowner and property within the Shipwrecked Pools service area.",
+        },
+        {
+          question: "Do I need to be a Shipwrecked Pools customer?",
+          answer:
+            "No. The review is available to homeowners in our service area whether or not they currently use Shipwrecked Pools or plan to start recurring service.",
+        },
+        {
+          question: "Do I need to be home?",
+          answer:
+            "No. You may meet the technician onsite for a walkthrough if you want to, but being home is not required as long as pool access is arranged.",
+        },
+        {
+          question: "How long does the review take?",
+          answer:
+            "Timing varies with the pool and visible equipment setup. We can discuss scheduling details when we confirm the review and property access.",
+        },
+        {
+          question: "Will you inspect my pool equipment?",
+          answer:
+            "We review the visible condition of the equipment pad and accessible plumbing, including obvious wear, deterioration, or leaks. We do not disassemble equipment or perform electrical diagnosis, pressure testing, or destructive testing.",
+        },
+        {
+          question: "Does this include leak detection?",
+          answer:
+            "No. We may note an obvious visible leak, but the review does not include professional leak detection or a guaranteed diagnosis of hidden problems.",
+        },
+        {
+          question: "What happens after the review?",
+          answer:
+            "You receive a customer summary with an overall Ship-Shape result, item-by-item observations, and prioritized recommendations or watch items. Any weekly service or repair follow-up is optional and only suggested when appropriate.",
+        },
+        {
+          question: "What areas do you serve?",
+          answer:
+            "The review is available within Shipwrecked Pools' service area across Abilene and supported nearby communities. Submit your address so we can confirm current service-area eligibility.",
+        },
+      ],
+      relatedServices: ["weekly-services", "filter-cleaning", "pump-repair-and-installation"],
+      ctaTitle: "Schedule My Free Ship-Shape Pool Review",
+      showBenefitsSection: false,
+      showProofSection: false,
+    },
+    {
+      slug: "free-pool-chemical-delivery",
+      name: "Free Pool Chemical Delivery",
+      seoTitle: "Free Pool Chemical Delivery in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Free Pool Chemical Delivery in Abilene, TX",
+      seoDescription:
+        "Get pool chlorine, tabs, shock, acid, bicarb, and salt delivered in the Abilene area. You pay for the chemicals; Shipwrecked Pools delivers them free.",
+      summary:
+        "Request pool chemicals for one-time or repeat delivery in the Shipwrecked Pools service area with no delivery fee.",
+      supportingParagraph:
+        "Choose the products, sizes, and quantities you need. We confirm availability, pricing, and expected delivery timing before fulfillment.",
+      idealFor: "Pool owners who need common pool chemicals delivered without an ecommerce checkout.",
+      problemStatement:
+        "Finding the right package sizes and transporting pool chemicals can add another errand to routine pool care.",
+      solutionStatement:
+        "Submit a structured request, receive confirmed pricing and timing, pay through the invoice link, and have the products delivered free.",
+      bullets: [
+        "Six common pool-chemical options in confirmed package sizes",
+        "One request can include multiple products and quantities",
+        "No delivery fee within the normal service area",
+      ],
+      process: [
+        "Tell us what chemicals, sizes, and quantities you need",
+        "We confirm product availability, price, and expected delivery timing",
+        "We send the invoice or payment link",
+        "We deliver the confirmed products to the requested location",
+      ],
+      standards: [
+        "Pricing and availability confirmed before fulfillment",
+        "Clear delivery timing without a same-day guarantee",
+        "Private access and placement notes included with the request",
+      ],
+      outcomes: [
+        "A simple request flow without cart or checkout complexity",
+        "Clear confirmation before payment",
+        "Free delivery of purchased chemicals",
+      ],
+      faqs: [
+        {
+          question: "Is the chemical delivery really free?",
+          answer: "Yes. You pay for the chemicals, but the delivery fee is $0 within Shipwrecked Pools' normal service area.",
+        },
+        {
+          question: "Do I have to be a Shipwrecked Pools customer?",
+          answer: "No. Chemical delivery is available to anyone within our normal service area, whether or not they use our pool-service plans.",
+        },
+        {
+          question: "What chemicals do you deliver?",
+          answer: "You may request chlorine tabs, pool shock, liquid chlorine, muriatic acid, sodium bicarbonate, and pool salt in the package sizes listed on this page.",
+        },
+        {
+          question: "How quickly can you deliver?",
+          answer: "Same-day or next-day delivery is available in many cases, subject to product availability and route scheduling. We confirm expected timing before fulfillment.",
+        },
+        {
+          question: "Do I pay online?",
+          answer: "After we confirm availability and price, we send an invoice or payment link. The request form itself is not a checkout and does not collect payment.",
+        },
+        {
+          question: "Can you leave the chemicals if I'm not home?",
+          answer: "You can provide placement and access instructions in the private request form. We will confirm the delivery details before fulfillment.",
+        },
+        {
+          question: "What areas do you deliver to?",
+          answer: "Free delivery is available throughout Shipwrecked Pools' normal service area in Abilene and supported nearby communities. Submit your address so we can confirm current route availability.",
+        },
+        {
+          question: "Can you tell me which chemical my pool needs?",
+          answer: "Choosing a treatment requires enough information about the water and pool condition. Contact us for professional guidance, or schedule a free Ship-Shape Pool Review when an onsite look would be more appropriate.",
+        },
+      ],
+      relatedServices: ["ship-shape-pool-review", "weekly-services"],
+      ctaTitle: "Request free delivery of your pool chemicals",
+      showBenefitsSection: false,
+      showProofSection: false,
+    },
   ] as Service[],
   locations: [
     {
