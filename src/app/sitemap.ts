@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/careers",
     "/contact",
+    "/pool-service-reports",
   ];
 
   const serviceRoutes = site.services

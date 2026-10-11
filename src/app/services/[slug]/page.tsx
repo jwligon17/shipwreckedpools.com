@@ -7,6 +7,8 @@ import { notFound } from "next/navigation";
 
 import { HomeReviewsCarouselSection } from "@/components/home-reviews-carousel-section";
 import { InternalHero } from "@/components/internal-hero";
+import { ChemicalDeliveryPage } from "@/components/chemical-delivery-page";
+import { ShipShapeReviewPage } from "@/components/ship-shape-review-page";
 import { site } from "@/content/site";
 import { getServiceBySlug, siteUrl } from "@/lib/site";
 
@@ -121,6 +123,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
   const isOneTimeCleansPage = slug === "one-time-cleans";
   const isSandReplacementPage = slug === "sand-replacement";
   const isPumpRepairAndInstallationPage = slug === "pump-repair-and-installation";
+  const isShipShapeReviewPage = slug === "ship-shape-pool-review";
+  const isChemicalDeliveryPage = slug === "free-pool-chemical-delivery";
   const useUpdatedServiceLayout =
     isWeeklyServicesPage ||
     isBiWeeklyServicesPage ||
@@ -208,6 +212,24 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
     },
     url: `${siteUrl}/services/${service.slug}`,
   };
+
+  if (isShipShapeReviewPage) {
+    return (
+      <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+        <ShipShapeReviewPage service={service} />
+      </>
+    );
+  }
+
+  if (isChemicalDeliveryPage) {
+    return (
+      <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+        <ChemicalDeliveryPage service={service} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -525,6 +547,37 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
               <p className="mt-5 text-sm leading-relaxed text-ink-muted md:text-[0.96rem]">
                 If equipment concerns are identified, Shipwrecked flags them early and communicates practical next steps.
               </p>
+              <Link
+                href="/pool-service-reports"
+                data-analytics-service-cta="weekly-services"
+                data-analytics-placement="weekly_service_reports"
+                className="btn-subtle focus-ring mt-5"
+              >
+                See How Service Reports Work
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {isWeeklyServicesPage ? (
+        <section className="bg-white py-10 md:py-12">
+          <div className="container-page">
+            <div className="mx-auto max-w-4xl rounded-[1.35rem] border border-line/75 bg-light-blue-soft/35 p-6 text-center shadow-[0_12px_28px_rgba(11,30,75,0.08)] md:p-8">
+              <h2 className="text-balance text-2xl font-extrabold text-navy md:text-3xl">
+                Want to understand your pool before choosing ongoing service?
+              </h2>
+              <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted md:text-base">
+                Start with a free, one-time onsite review of your pool, water, and visible equipment condition.
+              </p>
+              <Link
+                href="/services/ship-shape-pool-review"
+                data-analytics-service-cta="ship-shape-pool-review"
+                data-analytics-placement="weekly_service_cross_link"
+                className="btn-primary focus-ring mt-5"
+              >
+                Explore the Ship-Shape Pool Review
+              </Link>
             </div>
           </div>
         </section>
