@@ -41,6 +41,13 @@ const services = [
   ["one-time-cleans", "One-Time Pool Cleaning", "One Time Cleans"],
   ["ship-shape-pool-review", "Free Ship-Shape Pool Review", "Ship-Shape Pool Review"],
   ["free-pool-chemical-delivery", "Free Pool Chemical Delivery", "Free Pool Chemical Delivery"],
+  ["pool-equipment-repair", "Pool Equipment Repair & Replacement", "Pool Equipment Repair & Replacement"],
+  ["filter-repair-replacement", "Pool Filter Repair & Replacement", "Pool Filter Repair & Replacement"],
+  ["pool-plumbing-repair", "Pool Plumbing & Valve Repair", "Pool Plumbing & Valve Repair"],
+  ["pool-remodeling", "Pool Remodeling & Renovation", "Pool Remodeling & Renovation"],
+  ["pool-resurfacing-replastering", "Pool Resurfacing & Replastering", "Pool Resurfacing & Replastering"],
+  ["pool-tile-coping-repair", "Pool Tile & Coping Repair", "Pool Tile & Coping Repair & Replacement"],
+  ["pool-tile-cleaning", "Pool Tile Cleaning & Bead Blasting", "Pool Tile Cleaning & Bead Blasting"],
 ];
 const legacyService = ["bi-weekly-services", "Bi-Weekly Pool Service", "Bi-Weekly Services"];
 const locations = [
@@ -191,6 +198,157 @@ for (const [slug, subject, serviceType] of services) {
     assert.ok(!service.provider["@type"] || service.provider["@type"] === "Organization");
   });
 }
+test("service expansion pages preserve distinct intent, conservative scope, quote paths and hierarchy", async () => {
+  const expectations = {
+    "pool-equipment-repair": {
+      h1: "Pool Equipment Repair & Replacement in Abilene, TX",
+      required: [
+        "repair or replacement path based on what the equipment and requested scope require",
+        "What should I send with an equipment-service quote request?",
+      ],
+      links: [
+        "/services/pump-repair-and-installation",
+        "/services/filter-repair-replacement",
+        "/services/pool-plumbing-repair",
+        "/services/filter-cleaning",
+        "/services/weekly-services",
+      ],
+    },
+    "filter-repair-replacement": {
+      h1: "Pool Filter Repair & Replacement in Abilene, TX",
+      required: [
+        "damaged, worn, leaking, failed, or otherwise unsuitable filter equipment",
+        "Filter Cleaning removes accumulated material as routine or condition-based maintenance.",
+      ],
+      links: [
+        "/services/filter-cleaning",
+        "/services/pool-equipment-repair",
+        "/services/weekly-services",
+      ],
+    },
+    "pool-plumbing-repair": {
+      h1: "Pool Plumbing & Valve Repair in Abilene, TX",
+      required: [
+        "visible, accessible pool-system plumbing, fittings, valves, and equipment-pad connections",
+        "What should I send with a pool-plumbing quote request?",
+      ],
+      links: ["/services/pool-equipment-repair", "/services/pump-repair-and-installation"],
+    },
+    "pool-remodeling": {
+      h1: "Pool Remodeling & Renovation in Abilene, TX",
+      required: [
+        "manage the customer-facing quote and project process",
+        "What should I send with a pool-remodeling quote request?",
+      ],
+      links: [
+        "/services/pool-resurfacing-replastering",
+        "/services/pool-tile-coping-repair",
+      ],
+    },
+    "pool-resurfacing-replastering": {
+      h1: "Pool Resurfacing & Replastering in Abilene, TX",
+      required: [
+        "An acid wash is a condition-based surface treatment and cleaning service; it does not replace the finish.",
+        "What should I send with a resurfacing quote request?",
+      ],
+      links: [
+        "/services/pool-remodeling",
+        "/services/pool-tile-coping-repair",
+        "/services/acid-wash",
+        "/services/weekly-services",
+      ],
+    },
+    "pool-tile-coping-repair": {
+      h1: "Pool Tile & Coping Repair in Abilene, TX",
+      required: [
+        "repair or replacement fits the observed condition and project goals",
+        "Pool Tile Cleaning addresses mineral scale and buildup on suitable tile.",
+      ],
+      links: [
+        "/services/pool-remodeling",
+        "/services/pool-resurfacing-replastering",
+        "/services/pool-tile-cleaning",
+      ],
+    },
+    "pool-tile-cleaning": {
+      h1: "Pool Tile Cleaning & Bead Blasting in Abilene, TX",
+      required: [
+        "Bead blasting is one professional cleaning method",
+        "Damaged or deteriorated tile may need a separate repair or replacement assessment",
+      ],
+      links: [
+        "/services/pool-tile-coping-repair",
+        "/services/acid-wash",
+        "/services/weekly-services",
+      ],
+    },
+  };
+  const descriptions = new Set();
+
+  for (const [slug, checks] of Object.entries(expectations)) {
+    const route = `/services/${slug}`;
+    const response = await get(route);
+    assert.equal(response.status, 200, `${route} must resolve`);
+    const html = stripScripts(response.html);
+    const visibleText = text(html);
+    assert.deepEqual(contents(html, "h1"), [checks.h1], `${route} intended H1`);
+    const description = tags(html, "meta").find((tag) => tag.name === "description")?.content;
+    assert.ok(description, `${route} must have a meta description`);
+    assert.ok(!descriptions.has(description), `${route} must have a distinct meta description`);
+    descriptions.add(description);
+    for (const phrase of checks.required) {
+      assert.ok(visibleText.includes(phrase), `${route} must explain: ${phrase}`);
+    }
+    const links = tags(html, "a").map((tag) => tag.href);
+    assert.ok(links.includes("/contact"), `${route} must retain the quote path`);
+    assert.ok(!links.includes("/services/bi-weekly-services"), `${route} must not rediscover biweekly service`);
+    for (const href of checks.links) assert.ok(links.includes(href), `${route} must link to ${href}`);
+    for (const forbidden of [
+      "fixed price", "price range", "markup", "warranty", "guaranteed completion",
+      "licensed plumber", "licensed electrician", "leak detection", "heater repair",
+      "automation repair", "control repair", "lighting repair", "water-feature repair",
+    ]) {
+      assert.ok(!visibleText.toLowerCase().includes(forbidden), `${route} must not claim: ${forbidden}`);
+    }
+  }
+});
+test("services hub discovers the expansion without changing homepage service priority", async () => {
+  const expansionRoutes = [
+    "/services/pool-equipment-repair",
+    "/services/filter-repair-replacement",
+    "/services/pool-plumbing-repair",
+    "/services/pool-remodeling",
+    "/services/pool-resurfacing-replastering",
+    "/services/pool-tile-coping-repair",
+    "/services/pool-tile-cleaning",
+  ];
+  const hub = stripScripts((await get("/services")).html);
+  const hubLinks = tags(hub, "a");
+  for (const href of expansionRoutes) {
+    const link = hubLinks.find((tag) => tag.href === href);
+    assert.ok(link, `/services must discover ${href}`);
+    assert.equal(link["data-analytics-placement"], "services_hub_expansion");
+  }
+  for (const href of [
+    "/services/ship-shape-pool-review",
+    "/services/free-pool-chemical-delivery",
+  ]) {
+    assert.ok(hubLinks.some((tag) => tag.href === href),
+      `/services must preserve PR #7 discovery for ${href}`);
+  }
+  assert.ok(!hubLinks.some((tag) => tag.href === "/services/bi-weekly-services"));
+
+  const homeLinks = tags(stripScripts((await get("/")).html), "a").map((tag) => tag.href);
+  for (const href of expansionRoutes) {
+    assert.ok(!homeLinks.includes(href), `homepage must not elevate expansion route ${href}`);
+  }
+  for (const href of [
+    "/services/weekly-services", "/services/algae-removal", "/services/acid-wash",
+    "/services/drain-and-refill", "/services/filter-cleaning",
+    "/services/pump-repair-and-installation", "/services/one-time-cleans",
+    "/services/sand-replacement",
+  ]) assert.ok(homeLinks.includes(href), `homepage must preserve core service ${href}`);
+});
 test("Package 06 specialty pages preserve intent, scope, limitations, quote paths and weekly links", async () => {
   const expectations = {
     "algae-removal": {

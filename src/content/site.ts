@@ -349,7 +349,7 @@ export const site = {
       eyebrow: "Pool Services",
       titleLines: ["Pool Services in Abilene, TX", ""],
       description:
-        "Weekly service, algae cleanup, filter cleaning, drain and refill, acid wash, pump repair, and more for Abilene pool owners.",
+        "Weekly pool care, cleaning, equipment repair, and renovation services for Abilene pool owners.",
       primaryCta: { label: "Get a Quote", href: "/contact" },
       secondaryCta: { label: "Text Us", href: "sms:+13256658877", external: true },
     },
@@ -367,6 +367,30 @@ export const site = {
       supportingLine:
         "Professional cleaning, recovery, repair, and maintenance services for Abilene homeowners.",
     },
+    expansionGroups: [
+      {
+        title: "Equipment & Repairs",
+        description:
+          "Assessment-led help for pool equipment, filter, pump, and accessible plumbing concerns.",
+        serviceSlugs: [
+          "pool-equipment-repair",
+          "pump-repair-and-installation",
+          "filter-repair-replacement",
+          "pool-plumbing-repair",
+        ],
+      },
+      {
+        title: "Remodeling & Surface Work",
+        description:
+          "Individually scoped renovation, finish, tile, coping, and professional tile-cleaning services.",
+        serviceSlugs: [
+          "pool-remodeling",
+          "pool-resurfacing-replastering",
+          "pool-tile-coping-repair",
+          "pool-tile-cleaning",
+        ],
+      },
+    ],
     proof: {
       title: "The Proof is in the Pool",
       supportingLine:
@@ -1033,7 +1057,12 @@ export const site = {
             "No. Acid washing is separate corrective work. After the refill and chemistry startup, ongoing pool care is still important for maintaining the resulting condition.",
         },
       ],
-      relatedServices: ["drain-and-refill", "weekly-services", "filter-cleaning"],
+      relatedServices: [
+        "drain-and-refill",
+        "pool-resurfacing-replastering",
+        "pool-tile-cleaning",
+        "weekly-services",
+      ],
       ctaTitle: "Is your pool finish ready for a reset?",
       proof: {
         heading: "The Proof is in the Pool",
@@ -1166,7 +1195,11 @@ export const site = {
             "Share the service address, filter type if known, any change in flow, clarity, or pressure, and when it was last cleaned if you know. Photos of the filter label and equipment area can also help.",
         },
       ],
-      relatedServices: ["weekly-services", "pump-repair-and-installation"],
+      relatedServices: [
+        "filter-repair-replacement",
+        "pool-equipment-repair",
+        "weekly-services",
+      ],
       ctaTitle: "Need your filtration performance back?",
     },
     {
@@ -1304,7 +1337,12 @@ export const site = {
             "Share the service address, the pump symptoms and when they started, whether the pump runs at all, and any known make or model information. Photos of the pump label and equipment area are helpful when available.",
         },
       ],
-      relatedServices: ["filter-cleaning", "weekly-services"],
+      relatedServices: [
+        "pool-equipment-repair",
+        "pool-plumbing-repair",
+        "filter-cleaning",
+        "weekly-services",
+      ],
       showBenefitsSection: false,
       ctaTitle: "Need help with pump performance issues?",
       proof: {
@@ -1313,6 +1351,481 @@ export const site = {
           "Restoring reliable pump performance supports stronger circulation, clearer water, and fewer recurring disruptions.",
         singleImagePath: "/images/services/pump-proof-photo.png",
       },
+    },
+    {
+      slug: "pool-equipment-repair",
+      name: "Pool Equipment Repair & Replacement",
+      seoTitle: "Pool Equipment Repair & Replacement in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Equipment Repair & Replacement in Abilene, TX",
+      seoDescription:
+        "Pool equipment assessment, repair, and replacement support in Abilene for circulation, filtration, and performance concerns.",
+      summary:
+        "Assessment-led help for pool equipment that is not operating correctly or may need repair or replacement.",
+      supportingParagraph:
+        "We review accessible equipment condition and system-performance concerns, then recommend a repair or replacement path based on what the equipment and requested scope require.",
+      idealFor:
+        "Homeowners seeing circulation, filtration, or other pool-equipment performance concerns.",
+      problemStatement:
+        "A pool-system problem can involve more than one component, and symptoms alone do not establish whether a repair or replacement is appropriate.",
+      solutionStatement:
+        "We assess the accessible equipment and reported symptoms, identify the supported next step, and prepare a quote around the actual equipment and agreed scope.",
+      bullets: [
+        "Accessible equipment condition and performance assessment",
+        "Repair-versus-replacement recommendation based on observed condition",
+        "Pump, filter, and equipment-pad plumbing paths when specialized service is needed",
+      ],
+      process: [
+        "Review the reported symptoms, equipment details, and available photos",
+        "Assess accessible equipment condition and system performance",
+        "Explain the supported repair, replacement, or specialist-service path",
+        "Quote the agreed equipment scope before work moves forward",
+      ],
+      standards: [
+        "Diagnosis before a repair-or-replacement recommendation",
+        "Scope matched to the equipment and observed condition",
+        "Clear separation between included work and separate service needs",
+      ],
+      outcomes: [
+        "A clearer understanding of the equipment concern",
+        "A practical repair or replacement recommendation",
+        "An individual quote based on the supported scope",
+      ],
+      faqs: [
+        {
+          question: "What pool equipment can you assess?",
+          answer:
+            "We can assess accessible pool-equipment concerns involving circulation, filtration, pumps, filters, valves, fittings, and equipment-pad plumbing. The supported service path depends on what the assessment shows.",
+        },
+        {
+          question: "How do you decide between repair and replacement?",
+          answer:
+            "The recommendation depends on the equipment, its condition, the observed problem, and the work that can be supported. An assessment does not assume that every component can or should be repaired.",
+        },
+        {
+          question: "Is this the same as routine filter cleaning?",
+          answer:
+            "No. Filter Cleaning is maintenance for an otherwise serviceable filter. Damaged, worn, leaking, or failed filter equipment is assessed through Filter Repair & Replacement.",
+        },
+        {
+          question: "What should I send with an equipment-service quote request?",
+          answer:
+            "Share the service address, the symptoms and when they started, any recent equipment work, and the make or model if known. Photos of labels, the equipment pad, and the affected component are helpful when available.",
+        },
+      ],
+      relatedServices: [
+        "pump-repair-and-installation",
+        "filter-repair-replacement",
+        "pool-plumbing-repair",
+        "filter-cleaning",
+        "weekly-services",
+      ],
+      ctaTitle: "Need a clear next step for a pool-equipment problem?",
+      showBenefitsSection: false,
+      showProofSection: false,
+    },
+    {
+      slug: "filter-repair-replacement",
+      name: "Pool Filter Repair & Replacement",
+      seoTitle: "Pool Filter Repair & Replacement in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Filter Repair & Replacement in Abilene, TX",
+      seoDescription:
+        "Pool filter repair and replacement assessment in Abilene for damaged, worn, leaking, or failed filter equipment.",
+      summary:
+        "Condition-based assessment for filter equipment that may require repair or replacement rather than routine cleaning.",
+      supportingParagraph:
+        "We distinguish maintenance needs from damaged, worn, leaking, failed, or otherwise unsuitable filter equipment, then quote the supported repair or replacement scope.",
+      idealFor:
+        "Cartridge, DE, or sand filter systems with a condition or mechanical concern beyond routine cleaning.",
+      problemStatement:
+        "Cleaning can restore maintenance-related performance, but it does not correct every damaged, worn, leaking, or failed filter component.",
+      solutionStatement:
+        "We assess the filter and reported symptoms, determine whether cleaning, repair, or replacement is the appropriate path, and quote the agreed scope individually.",
+      bullets: [
+        "Assessment of accessible filter condition and reported symptoms",
+        "Clear distinction between cleaning, repair, and replacement needs",
+        "Condition-based recommendation for cartridge, DE, or sand systems",
+      ],
+      process: [
+        "Review the filter type, symptoms, service history, and available photos",
+        "Assess accessible filter equipment and system behavior",
+        "Explain whether cleaning, repair, or replacement is supported",
+        "Provide a quote for the agreed filter-equipment scope",
+      ],
+      standards: [
+        "Maintenance and mechanical concerns evaluated separately",
+        "No automatic replacement recommendation",
+        "Scope based on observed equipment condition",
+      ],
+      outcomes: [
+        "A clear filter-service recommendation",
+        "Defined repair or replacement scope when needed",
+        "A quote based on the actual filter and condition",
+      ],
+      faqs: [
+        {
+          question: "How is filter repair different from filter cleaning?",
+          answer:
+            "Filter Cleaning removes accumulated material as routine or condition-based maintenance. Filter Repair & Replacement addresses damaged, worn, leaking, failed, or unsuitable equipment after assessment.",
+        },
+        {
+          question: "Do you work with cartridge, DE, and sand filters?",
+          answer:
+            "Those are the filter types currently supported for assessment. The recommended work still depends on the specific equipment and its condition.",
+        },
+        {
+          question: "Will every filter problem require replacement?",
+          answer:
+            "No. The assessment may point to cleaning, a supported repair, replacement, or a separate system concern. We recommend the path that fits the observed condition.",
+        },
+        {
+          question: "What should I send with a filter repair quote request?",
+          answer:
+            "Share the service address, filter type and model if known, the symptoms you are seeing, recent service history, and photos of the label, filter, and surrounding equipment.",
+        },
+      ],
+      relatedServices: ["filter-cleaning", "pool-equipment-repair", "weekly-services"],
+      ctaTitle: "Does your pool filter need more than cleaning?",
+      showBenefitsSection: false,
+      showProofSection: false,
+    },
+    {
+      slug: "pool-plumbing-repair",
+      name: "Pool Plumbing & Valve Repair",
+      seoTitle: "Pool Plumbing & Valve Repair in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Plumbing & Valve Repair in Abilene, TX",
+      seoDescription:
+        "Assessment and repair support for visible, accessible pool plumbing, fittings, valves, and equipment-pad connections in Abilene.",
+      summary:
+        "Condition-based service for visible, accessible pool-system plumbing, fittings, valves, and equipment-pad connections.",
+      supportingParagraph:
+        "We assess accessible pool-equipment plumbing concerns and define what can be repaired or coordinated. The final scope depends on the location, condition, and work required.",
+      idealFor:
+        "Homeowners with a visible or accessible valve, fitting, connection, or equipment-pad plumbing concern.",
+      problemStatement:
+        "Worn valves, fittings, or accessible connections can affect operation, but the source and supported repair scope must be confirmed before work begins.",
+      solutionStatement:
+        "We review the visible concern, assess accessible pool-system plumbing, and provide an individual quote for supported repair or coordinated next steps.",
+      bullets: [
+        "Visible valve and fitting assessment",
+        "Accessible equipment-pad plumbing review",
+        "Repair or coordination scope based on actual condition",
+      ],
+      process: [
+        "Review the location, symptoms, and photos of the visible concern",
+        "Assess accessible valves, fittings, and equipment-pad connections",
+        "Define the supported repair or coordination path",
+        "Quote the agreed scope based on condition",
+      ],
+      standards: [
+        "Conservative assessment of visible, accessible components",
+        "Clear limits around the supported work",
+        "Condition-based scope before repair begins",
+      ],
+      outcomes: [
+        "A clearer understanding of the accessible plumbing concern",
+        "A defined repair or coordination path",
+        "A custom quote tied to the observed scope",
+      ],
+      faqs: [
+        {
+          question: "What pool plumbing concerns can you assess?",
+          answer:
+            "We assess visible and accessible pool-system valves, fittings, connections, and equipment-pad plumbing. The location and condition determine what work can be supported.",
+        },
+        {
+          question: "Does every valve or fitting concern have the same repair scope?",
+          answer:
+            "No. Access, component condition, and the surrounding equipment setup can change the recommended work, so the scope is confirmed after assessment.",
+        },
+        {
+          question: "What happens if the request extends beyond the accessible equipment area?",
+          answer:
+            "We explain what the initial assessment supports and, when appropriate, coordinate the next step instead of representing broader work as part of the visible repair scope.",
+        },
+        {
+          question: "What should I send with a pool-plumbing quote request?",
+          answer:
+            "Share the service address, where the concern is visible, what you have observed, when it started, and photos or a short video of the affected valve, fitting, or equipment area.",
+        },
+      ],
+      relatedServices: ["pool-equipment-repair", "pump-repair-and-installation"],
+      ctaTitle: "Have a visible pool valve or plumbing concern?",
+      showBenefitsSection: false,
+      showProofSection: false,
+    },
+    {
+      slug: "pool-remodeling",
+      name: "Pool Remodeling & Renovation",
+      seoTitle: "Pool Remodeling & Renovation in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Remodeling & Renovation in Abilene, TX",
+      seoDescription:
+        "Plan an existing-pool remodel in Abilene with individually scoped resurfacing, tile, coping, and relevant equipment improvements.",
+      summary:
+        "A coordinated starting point for materially improving or renovating an existing pool.",
+      supportingParagraph:
+        "We evaluate the pool, desired improvements, and related conditions, then manage the customer-facing quote and project process for the approved specialty scope.",
+      idealFor:
+        "Homeowners considering finish renewal, tile or coping work, or relevant equipment improvements as part of an existing-pool renovation.",
+      problemStatement:
+        "A pool renovation can involve several connected decisions, and the right scope depends on existing condition and the homeowner's project goals.",
+      solutionStatement:
+        "We organize the assessment and customer-facing process, define the appropriate specialty work, and prepare an individual project quote.",
+      bullets: [
+        "Existing-pool condition and project-goal review",
+        "Resurfacing, tile, coping, and relevant equipment scope coordination",
+        "Individual quote and customer-facing project management",
+      ],
+      process: [
+        "Discuss the pool condition, priorities, and requested improvements",
+        "Review the existing pool and identify the relevant specialty scopes",
+        "Coordinate the proposed renovation plan and individual quote",
+        "Manage communication for the agreed customer-facing project process",
+      ],
+      standards: [
+        "Project scope based on the existing pool and requested work",
+        "Specialty services defined instead of bundled vaguely",
+        "Clear customer-facing communication through the quote process",
+      ],
+      outcomes: [
+        "A renovation plan tied to the pool's condition",
+        "Clearly defined specialty-service scopes",
+        "One customer-facing path for the agreed project",
+      ],
+      faqs: [
+        {
+          question: "What can be included in a pool remodeling project?",
+          answer:
+            "Current approved project categories include resurfacing or replastering, tile and coping work, and relevant pool-equipment improvements when appropriate. The final combination depends on the pool and requested work.",
+        },
+        {
+          question: "Can I request only one specialty service?",
+          answer:
+            "Yes. Resurfacing and tile or coping work can be evaluated as focused projects when a broader renovation is not needed.",
+        },
+        {
+          question: "How is the project scope determined?",
+          answer:
+            "We evaluate the existing pool condition and your goals, then define and quote the appropriate work individually. Scope is not assumed before that review.",
+        },
+        {
+          question: "What should I send with a pool-remodeling quote request?",
+          answer:
+            "Share the service address, what you want to change, known condition concerns, and current wide-angle and close-up photos of the pool, finish, tile, coping, and relevant equipment.",
+        },
+      ],
+      relatedServices: ["pool-resurfacing-replastering", "pool-tile-coping-repair"],
+      ctaTitle: "Ready to discuss an existing-pool renovation?",
+      showBenefitsSection: false,
+      showProofSection: false,
+    },
+    {
+      slug: "pool-resurfacing-replastering",
+      name: "Pool Resurfacing & Replastering",
+      seoTitle: "Pool Resurfacing & Replastering in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Resurfacing & Replastering in Abilene, TX",
+      seoDescription:
+        "Pool resurfacing and replastering assessment in Abilene for homeowners considering an existing finish renewal.",
+      summary:
+        "Condition-based assessment and project coordination for renewing an existing pool finish.",
+      supportingParagraph:
+        "Resurfacing or replastering renews the pool finish and is different from an acid wash, which is a surface treatment and cleaning service rather than finish replacement.",
+      idealFor:
+        "Homeowners evaluating finish renewal as a standalone project or part of a larger pool renovation.",
+      problemStatement:
+        "Surface appearance alone does not establish whether cleaning, treatment, or finish renewal is the appropriate next step.",
+      solutionStatement:
+        "We evaluate the pool condition and desired scope, distinguish finish work from surface cleaning, and quote the supported resurfacing or replastering project individually.",
+      bullets: [
+        "Existing finish and overall pool-condition assessment",
+        "Clear distinction between surface treatment and finish renewal",
+        "Individual resurfacing or replastering project quote",
+      ],
+      process: [
+        "Review the finish concerns, project goals, and current photos",
+        "Evaluate the pool condition and whether finish renewal fits the request",
+        "Define related tile, coping, or renovation considerations when relevant",
+        "Prepare an individual quote for the agreed finish-renewal scope",
+      ],
+      standards: [
+        "Condition review before recommending finish renewal",
+        "Clear separation from cleaning and treatment services",
+        "Project scope defined around the existing pool",
+      ],
+      outcomes: [
+        "A clear finish-renewal recommendation",
+        "A defined resurfacing or replastering scope",
+        "Practical next steps for post-project pool care",
+      ],
+      faqs: [
+        {
+          question: "How is resurfacing different from an acid wash?",
+          answer:
+            "Resurfacing or replastering renews the pool finish. An acid wash is a condition-based surface treatment and cleaning service; it does not replace the finish.",
+        },
+        {
+          question: "Can resurfacing be part of a larger remodel?",
+          answer:
+            "Yes. Finish renewal can be evaluated with tile and coping work as part of a coordinated existing-pool renovation, or it can be scoped on its own.",
+        },
+        {
+          question: "How is the final finish scope chosen?",
+          answer:
+            "The recommendation depends on the current pool condition and the desired project scope. Those details are reviewed before an individual quote is prepared.",
+        },
+        {
+          question: "What should I send with a resurfacing quote request?",
+          answer:
+            "Share the service address, the finish concerns and project goals, and current wide-angle and close-up photos of the pool surface, waterline, steps, and any areas of concern.",
+        },
+      ],
+      relatedServices: [
+        "pool-remodeling",
+        "pool-tile-coping-repair",
+        "acid-wash",
+        "weekly-services",
+      ],
+      ctaTitle: "Considering a new finish for your existing pool?",
+      showBenefitsSection: false,
+      showProofSection: false,
+    },
+    {
+      slug: "pool-tile-coping-repair",
+      name: "Pool Tile & Coping Repair & Replacement",
+      seoTitle: "Pool Tile & Coping Repair in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Tile & Coping Repair in Abilene, TX",
+      seoDescription:
+        "Pool tile and coping repair or replacement assessment in Abilene for damaged, deteriorated, or outdated materials.",
+      summary:
+        "Assessment and project coordination for damaged, deteriorated, or outdated pool tile and coping.",
+      supportingParagraph:
+        "We evaluate whether repair or replacement fits the observed condition and project goals, then quote the work as a standalone scope or part of a larger pool renovation.",
+      idealFor:
+        "Homeowners with visible tile or coping deterioration, damage, or an update planned for an existing pool.",
+      problemStatement:
+        "Tile and coping concerns vary in extent, so visible condition and project goals must be reviewed before choosing repair or replacement.",
+      solutionStatement:
+        "We assess the affected areas, define a repair or replacement path, coordinate related renovation considerations, and prepare an individual quote.",
+      bullets: [
+        "Visible tile and coping condition assessment",
+        "Repair-versus-replacement scope based on condition and goals",
+        "Standalone or coordinated renovation project path",
+      ],
+      process: [
+        "Review the affected areas, goals, and current photos",
+        "Assess visible tile and coping condition",
+        "Define repair, replacement, or related renovation considerations",
+        "Quote the agreed project scope individually",
+      ],
+      standards: [
+        "Condition-led repair or replacement recommendation",
+        "Clear separation from tile cleaning",
+        "Scope coordinated with finish work only when relevant",
+      ],
+      outcomes: [
+        "A defined tile and coping service path",
+        "Clear standalone or renovation-project scope",
+        "An individual quote based on the observed work",
+      ],
+      faqs: [
+        {
+          question: "How do you decide between tile or coping repair and replacement?",
+          answer:
+            "The recommendation depends on the visible condition, extent of the affected area, surrounding materials, and project goals. We review those factors before defining the scope.",
+        },
+        {
+          question: "Can tile and coping work be part of a pool remodel?",
+          answer:
+            "Yes. It can be coordinated with resurfacing or replastering when those scopes belong in the same renovation, or quoted as a standalone project.",
+        },
+        {
+          question: "Is tile repair the same as tile cleaning?",
+          answer:
+            "No. Pool Tile Cleaning addresses mineral scale and buildup on suitable tile. Damaged or deteriorated tile may require repair or replacement instead.",
+        },
+        {
+          question: "What should I send with a tile and coping quote request?",
+          answer:
+            "Share the service address, what you have noticed, the desired project outcome, and wide-angle and close-up photos of the affected tile, coping, and surrounding pool area.",
+        },
+      ],
+      relatedServices: [
+        "pool-remodeling",
+        "pool-resurfacing-replastering",
+        "pool-tile-cleaning",
+      ],
+      ctaTitle: "Need an assessment for pool tile or coping work?",
+      showBenefitsSection: false,
+      showProofSection: false,
+    },
+    {
+      slug: "pool-tile-cleaning",
+      name: "Pool Tile Cleaning & Bead Blasting",
+      seoTitle: "Pool Tile Cleaning & Bead Blasting in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Tile Cleaning & Bead Blasting in Abilene, TX",
+      seoDescription:
+        "Professional pool tile cleaning and bead-blasting assessment in Abilene for calcium, mineral scale, and waterline buildup.",
+      summary:
+        "Professional tile-cleaning assessment for calcium, mineral scale, and buildup along the pool waterline.",
+      supportingParagraph:
+        "Bead blasting is one professional cleaning method, but the appropriate approach depends on tile and surface condition. Suitability is evaluated before a cleaning scope is recommended.",
+      idealFor:
+        "Homeowners with mineral scale or buildup on pool tile that may be suitable for professional cleaning.",
+      problemStatement:
+        "Waterline buildup can be difficult to remove, and not every tile or surrounding surface is suitable for the same cleaning method.",
+      solutionStatement:
+        "We evaluate the tile, buildup, and surface suitability, recommend the appropriate cleaning method, and quote the supported scope individually.",
+      bullets: [
+        "Tile, buildup, and surface-suitability assessment",
+        "Bead blasting considered as one professional cleaning method",
+        "Clear distinction between cleaning and damaged-tile repair",
+      ],
+      process: [
+        "Review the buildup, tile condition, and current photos",
+        "Evaluate surface suitability and affected areas",
+        "Recommend the appropriate supported cleaning method",
+        "Quote the agreed tile-cleaning scope individually",
+      ],
+      standards: [
+        "Suitability review before selecting a method",
+        "Conservative expectations based on tile and buildup condition",
+        "Repair concerns separated from cleaning work",
+      ],
+      outcomes: [
+        "A tile-cleaning recommendation based on surface condition",
+        "A defined professional cleaning scope",
+        "Clear next steps when damaged tile needs separate work",
+      ],
+      faqs: [
+        {
+          question: "What is bead blasting for pool tile?",
+          answer:
+            "Bead blasting is one professional method used to clean suitable pool tile with mineral scale or buildup. The tile and surrounding surface must be evaluated before that method is selected.",
+        },
+        {
+          question: "Can every pool tile surface be cleaned the same way?",
+          answer:
+            "No. The appropriate method depends on the tile, surface condition, buildup, and affected area. We assess suitability before recommending the work.",
+        },
+        {
+          question: "How is tile cleaning different from an acid wash or resurfacing?",
+          answer:
+            "Tile cleaning focuses on suitable waterline tile. An acid wash is a condition-based treatment for a pool finish, while resurfacing or replastering renews the finish itself.",
+        },
+        {
+          question: "What if the tile is damaged rather than dirty?",
+          answer:
+            "Damaged or deteriorated tile may need a separate repair or replacement assessment instead of, or before, cleaning.",
+        },
+        {
+          question: "What should I send with a tile-cleaning quote request?",
+          answer:
+            "Share the service address, what the buildup looks like, how much of the waterline is affected, and clear wide-angle and close-up photos of the tile and surrounding surface.",
+        },
+      ],
+      relatedServices: ["pool-tile-coping-repair", "acid-wash", "weekly-services"],
+      ctaTitle: "Want a professional assessment for waterline tile buildup?",
+      showBenefitsSection: false,
+      showProofSection: false,
     },
     {
       slug: "one-time-cleans",

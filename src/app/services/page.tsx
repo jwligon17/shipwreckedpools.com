@@ -14,7 +14,7 @@ export const metadata = {
   title: "Pool Services in Abilene, TX",
   alternates: { canonical: "/services" },
   description:
-    "Weekly service, algae cleanup, filter cleaning, drain and refill, acid wash, pump repair, and more for Abilene pool owners.",
+    "Explore pool cleaning, equipment repair, filter service, remodeling, resurfacing, tile, and coping services in Abilene, TX.",
 };
 
 function getExistingPublicImage(imagePath?: string) {
@@ -52,6 +52,58 @@ export default function ServicesPage() {
         supportingLine={servicesPage.servicesGrid.supportingLine}
         detailLinksOnly
       />
+
+      <section className="border-b border-line/60 bg-light-blue-soft/25 py-12 md:py-16">
+        <div className="container-page">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="section-label">Repair & Project Services</p>
+            <h2 className="mt-2 text-balance font-sans text-[2rem] font-extrabold leading-[0.95] tracking-[-0.03em] text-navy md:text-[3rem]">
+              More ways to care for your pool system and finish
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-ink-muted md:text-lg">
+              Start with the service that best matches the concern. We assess the current condition and quote the supported scope individually.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-9 grid max-w-6xl gap-6 lg:grid-cols-2">
+            {servicesPage.expansionGroups.map((group) => {
+              const groupServices = group.serviceSlugs
+                .map((slug) => site.services.find((service) => service.slug === slug))
+                .filter((service): service is (typeof site.services)[number] => Boolean(service));
+
+              return (
+                <article
+                  key={group.title}
+                  className="rounded-[1.4rem] border border-line/75 bg-white p-6 shadow-[0_14px_30px_rgba(11,30,75,0.08)] md:p-8"
+                >
+                  <h3 className="text-2xl font-extrabold text-navy">{group.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted md:text-base">
+                    {group.description}
+                  </p>
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                    {groupServices.map((service) => (
+                      <Link
+                        key={service.slug}
+                        href={`/services/${service.slug}`}
+                        data-analytics-service-cta={service.slug}
+                        data-analytics-placement="services_hub_expansion"
+                        className="focus-ring flex min-h-28 flex-col rounded-[1rem] border border-line/80 bg-light-blue-soft/25 p-4 transition hover:border-navy/25 hover:bg-light-blue-soft/50"
+                      >
+                        <span className="font-semibold leading-snug text-navy">
+                          {service.name}
+                        </span>
+                        <span className="mt-2 text-sm leading-relaxed text-ink-muted">
+                          {service.summary}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       <section className="border-b border-line/60 bg-white pb-12 md:pb-16">
         <div className="container-page">
