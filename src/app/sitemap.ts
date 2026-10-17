@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { diyGuides } from "@/content/diy-guides";
 import { site } from "@/content/site";
 import { siteUrl } from "@/lib/site";
 
@@ -21,8 +22,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map((service) => `/services/${service.slug}`);
   const locationRoutes = site.locations.map((location) => `/locations/${location.slug}`);
   const blogRoutes = site.blogSummaries.map((post) => `/blog/${post.slug}`);
+  const diyGuideRoutes = diyGuides.map((guide) => `/diy-pool-care/${guide.slug}`);
 
-  return [...staticRoutes, ...serviceRoutes, ...locationRoutes, ...blogRoutes].map((route) => ({
+  return [...staticRoutes, ...serviceRoutes, ...locationRoutes, ...blogRoutes, ...diyGuideRoutes].map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: "weekly",

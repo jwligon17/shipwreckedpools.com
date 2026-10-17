@@ -6,11 +6,11 @@ import { trackAnalyticsEvent } from "@/lib/analytics";
 
 const productOptions = [
   { name: "Chlorine Tabs", sizes: ["25 lb", "50 lb"] },
-  { name: "Pool Shock", sizes: ["25 lb", "50 lb", "100 lb"] },
-  { name: "Liquid Chlorine", sizes: ["Case — 4 gallons"] },
-  { name: "Muriatic Acid", sizes: ["Case — 4 gallons"] },
-  { name: "Sodium Bicarbonate", sizes: ["30 lb bag"] },
-  { name: "Pool Salt", sizes: ["40 lb bag"] },
+  { name: "Shock", sizes: ["25 lb", "50 lb", "100 lb"] },
+  { name: "Liquid Chlorine", sizes: ["4-gallon case"] },
+  { name: "Muriatic Acid", sizes: ["4-gallon case"] },
+  { name: "Sodium Bicarbonate", sizes: ["30 lb"] },
+  { name: "Pool Salt", sizes: ["40 lb"] },
 ] as const;
 
 type LineItem = {
@@ -211,7 +211,7 @@ export function ChemicalDeliveryForm() {
         <p className="section-label">No checkout or payment due now</p>
         <h2 className="mt-2 font-sans text-[1.9rem] font-bold leading-[0.95] tracking-[-0.02em] text-navy md:text-[2.4rem]">Chemical Delivery Request</h2>
         <p className="mt-3 text-sm leading-relaxed text-ink-soft md:text-base">
-          Tell us what you need. We will confirm availability, pricing, and expected timing before sending an invoice or payment link.
+          Tell us what you need. We will confirm availability, pricing, and expected timing before invoicing you separately.
         </p>
 
         <fieldset className="mt-6">

@@ -75,10 +75,22 @@ export default async function BlogDetailPage({ params }: { params: Promise<BlogR
     mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
     articleSection: "Pool Care",
   };
+  const pageUrl = `${siteUrl}/blog/${post.slug}`;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${pageUrl}#breadcrumb`,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: pageUrl },
+    ],
+  };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <InternalHero
         eyebrow="Pool Care Blog"

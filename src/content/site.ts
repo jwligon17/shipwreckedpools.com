@@ -24,6 +24,10 @@ export type Service = {
     answer: string;
   }[];
   relatedServices: string[];
+  resourceLinks?: {
+    href: string;
+    label: string;
+  }[];
   ctaTitle: string;
   showBenefitsSection?: boolean;
   showProofSection?: boolean;
@@ -347,7 +351,7 @@ export const site = {
   servicesPage: {
     hero: {
       eyebrow: "Pool Services",
-      titleLines: ["Pool Services in Abilene, TX", ""],
+      titleLines: ["Pool Cleaning, Repair & Remodeling in Abilene, TX", ""],
       description:
         "Weekly pool care, cleaning, equipment repair, and renovation services for Abilene pool owners.",
       primaryCta: { label: "Get a Quote", href: "/contact" },
@@ -369,6 +373,21 @@ export const site = {
     },
     expansionGroups: [
       {
+        title: "Recurring Pool & Spa Care",
+        description:
+          "Ongoing care for residential pools, hot tubs, and spas with service scope matched to the property.",
+        serviceSlugs: ["weekly-services", "hot-tub-cleaning"],
+      },
+      {
+        title: "Specialty Property & Commercial Service",
+        description:
+          "Property-specific cleaning and communication for short-term rentals, hotels, and apartment communities.",
+        serviceSlugs: [
+          "short-term-rental-pool-hot-tub-cleaning",
+          "hotel-apartment-pool-cleaning",
+        ],
+      },
+      {
         title: "Equipment & Repairs",
         description:
           "Assessment-led help for pool equipment, filter, pump, and accessible plumbing concerns.",
@@ -382,9 +401,11 @@ export const site = {
       {
         title: "Remodeling & Surface Work",
         description:
-          "Individually scoped renovation, finish, tile, coping, and professional tile-cleaning services.",
+          "Individually scoped renovation, liner, deck, finish, tile, coping, and professional tile-cleaning services.",
         serviceSlugs: [
           "pool-remodeling",
+          "pool-liner-repair",
+          "pool-deck-resurfacing-repair",
           "pool-resurfacing-replastering",
           "pool-tile-coping-repair",
           "pool-tile-cleaning",
@@ -805,8 +826,8 @@ export const site = {
       summary:
         "Consistent recurring pool care designed to keep water clear and your system performing week after week.",
       supportingParagraph:
-        "Weekly service helps homeowners stay ahead of chemistry drift, debris buildup, and avoidable equipment strain.",
-      idealFor: "Homeowners who want dependable weekly maintenance and stable water quality.",
+        "Weekly residential pool cleaning and maintenance helps homeowners stay ahead of chemistry drift, debris buildup, circulation concerns, and avoidable equipment strain. Weekly is the standard recurring cadence; heavier use, weather, or the pool's starting condition may call for separately discussed corrective work or a different short-term service plan.",
+      idealFor: "Homeowners who want dependable professional pool cleaning, ongoing water testing and chemical adjustment, and clear service communication.",
       problemStatement:
         "Without a consistent route rhythm, small water and equipment issues can stack up and turn into larger, more expensive pool problems.",
       solutionStatement:
@@ -834,19 +855,29 @@ export const site = {
       ],
       faqs: [
         {
-          question: "Who is weekly service best for?",
+          question: "What is included in weekly pool service?",
           answer:
-            "Weekly service is usually the best fit for homeowners who want dependable hands-off care and consistent water quality through the season.",
+            "The current weekly-service scope includes skimming, brushing, debris removal, water testing and chemical adjustment, visual circulation and equipment checks, and an After Service Pool Report. Routine chemicals are billed separately for new weekly-service customers, and filter cleaning, repairs, initial cleanup, and other non-routine work are quoted separately.",
         },
         {
-          question: "Do you check chemistry every visit?",
+          question: "How often should a pool be professionally cleaned?",
           answer:
-            "Yes. Chemistry is tested and adjusted each service visit as part of our recurring care process.",
+            "Shipwrecked's recurring residential service follows a weekly cadence because regular cleaning, water testing, and circulation observation help limit week-to-week drift. The appropriate plan still depends on the pool's use, weather exposure, condition, and current service needs.",
         },
         {
-          question: "Will you notify me if you spot equipment concerns?",
+          question: "When might more frequent attention be appropriate?",
           answer:
-            "Yes. We flag concerns early and communicate practical next steps before issues turn into bigger disruptions.",
+            "Heavy use, severe weather, unusual debris, algae, changing water condition, or an equipment interruption can create needs beyond a routine weekly visit. We assess the condition and discuss supported corrective work or follow-up rather than promising automatic twice-weekly availability.",
+        },
+        {
+          question: "How is weekly service different from one-time cleaning?",
+          answer:
+            "Weekly service is an ongoing maintenance relationship for routine cleaning, water care, observation, and reporting. A one-time clean addresses an agreed catch-up need, while a green or algae-affected pool may require a separately quoted Green-to-Clean recovery before routine care is appropriate.",
+        },
+        {
+          question: "Are corrective repairs included in weekly service?",
+          answer:
+            "No. We report visible equipment concerns and explain practical next steps, but equipment repairs, filter cleaning, initial cleanup, and other non-routine or corrective work are separately approved and quoted.",
         },
         {
           question: "What happens when I start or switch to weekly pool service?",
@@ -854,7 +885,7 @@ export const site = {
             "We visit your pool on site and confirm technician availability before setting your first service date. If initial cleanup is needed, it is charged as a one-time or green-to-clean service. For new weekly-service customers, routine chemicals are billed separately. After each visit, you receive an After Service Pool Report through Skimmer.",
         },
       ],
-      relatedServices: ["filter-cleaning", "pump-repair-and-installation", "algae-removal"],
+      relatedServices: ["filter-cleaning", "pump-repair-and-installation", "one-time-cleans", "algae-removal"],
       ctaTitle: "Ready to hand off weekly pool care?",
       proof: {
         heading: "The Proof is in the Pool",
@@ -863,6 +894,227 @@ export const site = {
         beforeImagePath: "/images/proof-weekly-services-before.jpg",
         afterImagePath: "/images/proof-weekly-services-after.jpg",
       },
+    },
+    {
+      slug: "hot-tub-cleaning",
+      name: "Hot Tub & Spa Cleaning",
+      seoTitle: "Hot Tub & Spa Cleaning in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Hot Tub & Spa Cleaning in Abilene, TX",
+      seoDescription:
+        "Residential hot tub and spa cleaning in Abilene with debris removal, surface cleaning, water testing, balancing, and visible equipment observations.",
+      summary:
+        "Recurring or one-time residential hot tub and spa cleaning with water care matched to the condition we find.",
+      supportingParagraph:
+        "Service can include debris removal, brushing or vacuuming accessible surfaces, accessible filter cleaning, water testing, chemical adjustment, circulation observation, and a visual look at accessible equipment. The appropriate scope, reporting needs, and recurring schedule are confirmed after we understand the spa, its use, and its current condition.",
+      idealFor:
+        "Homeowners who want professional hot tub cleaning, spa cleaning, or recurring spa maintenance in Abilene.",
+      problemStatement:
+        "A hot tub can collect debris and develop water-balance or circulation concerns quickly, while its smaller water volume makes guesswork especially unhelpful.",
+      solutionStatement:
+        "We assess the current condition, clean the accessible surfaces and waterline, test and adjust the water, observe circulation and visible equipment, and explain any separately quoted corrective work that may be appropriate.",
+      bullets: [
+        "Debris removal, brushing, vacuuming, and accessible filter cleaning as agreed",
+        "Water testing, balancing, and chemical adjustment",
+        "Circulation observations, visible equipment notes, and service communication",
+      ],
+      process: [
+        "Share the service address, spa details, current water condition, and photos when available",
+        "Confirm whether one-time care or a recurring service relationship fits the request",
+        "Complete the agreed cleaning, water-care, and visible-condition observations",
+        "Communicate what was handled and any additional quoted service the condition may require",
+      ],
+      standards: [
+        "A service scope based on the spa's current condition",
+        "Clear communication about observed water or equipment concerns",
+        "No assumed repair work or unapproved corrective service",
+      ],
+      outcomes: [
+        "A cleaner hot tub or spa with professionally tested water",
+        "A practical recurring-care option when ongoing service is a fit",
+        "Clear next steps when the condition calls for additional quoted work",
+      ],
+      faqs: [
+        {
+          question: "Do you offer both hot tub cleaning and spa cleaning?",
+          answer:
+            "Yes. We use both terms for professional care of a residential hot tub or spa. The agreed scope depends on the vessel, water condition, access, and service needs.",
+        },
+        {
+          question: "Can hot tub or spa cleaning be recurring?",
+          answer:
+            "Recurring care may be available after we review the property, current condition, requested scope, and route fit. We agree on the service schedule rather than assuming one interval fits every spa.",
+        },
+        {
+          question: "Is equipment repair included?",
+          answer:
+            "No. We can note visible equipment or circulation concerns, but jet, heater, electrical, plumbing, and other repair work are not included in this cleaning service.",
+        },
+        {
+          question: "Could the water need additional corrective service?",
+          answer:
+            "Yes. Some conditions may call for water replacement or other corrective work. If so, we explain the concern and quote any supported additional service separately before proceeding.",
+        },
+        {
+          question: "What should I send with a hot tub or spa cleaning quote request?",
+          answer:
+            "Send the service address, whether you want one-time or recurring care, the approximate spa size, current water condition, access details, known concerns, and recent photos when available.",
+        },
+      ],
+      relatedServices: ["short-term-rental-pool-hot-tub-cleaning"],
+      ctaTitle: "Request a hot tub or spa cleaning quote",
+      showProofSection: false,
+    },
+    {
+      slug: "short-term-rental-pool-hot-tub-cleaning",
+      name: "Short-Term Rental Pool & Hot Tub Cleaning",
+      seoTitle: "Airbnb & Short-Term Rental Pool and Hot Tub Cleaning in Abilene, TX",
+      seoH1: "Pool & Hot Tub Cleaning for Airbnb and Short-Term Rentals",
+      seoDescription:
+        "Pool and hot tub cleaning for Airbnb and short-term rental properties in Abilene, with agreed scheduling, water care, service documentation, and owner communication.",
+      summary:
+        "Property-specific pool and hot tub care for short-term-rental owners, remote hosts, and property managers.",
+      supportingParagraph:
+        "We work with short-term-rental owners, Airbnb hosts, remote owners, and property managers. We agree on service frequency and scope based on the property, water features, access, expected use, and communication needs. Service may cover a pool, a hot tub, or both, with documentation and escalation practices defined for the account.",
+      idealFor:
+        "Short-term-rental owners, Airbnb hosts, remote owners, and property managers who need an agreed pool or hot tub service plan.",
+      problemStatement:
+        "A vacation-rental pool or spa can see changing use, weather, debris, and water conditions while the owner or manager is away from the property.",
+      solutionStatement:
+        "We build a recurring cleaning and water-care scope for the property, document applicable service details, communicate with the designated contact, and escalate visible water or equipment concerns for a decision.",
+      bullets: [
+        "Recurring pool cleaning, hot tub cleaning, or both",
+        "Water testing, balancing, debris removal, and surface cleaning",
+        "Agreed documentation and communication with the owner or manager",
+      ],
+      process: [
+        "Review the property, water features, access plan, expected use, and designated contact",
+        "Agree on service scope, frequency, documentation, and issue-escalation expectations",
+        "Perform scheduled cleaning, water care, and visible equipment observations",
+        "Send applicable service details and flag issues that need owner or manager direction",
+      ],
+      standards: [
+        "A property-specific schedule instead of a one-size-fits-all promise",
+        "Clear communication with the designated owner or manager contact",
+        "Separate approval and quoting for supported corrective or repair work",
+      ],
+      outcomes: [
+        "More consistent professional oversight of rental-property water care",
+        "Better visibility for owners and managers who may be off site",
+        "A clear escalation path when changing conditions or visible issues are found",
+      ],
+      faqs: [
+        {
+          question: "Is Shipwrecked Pools affiliated with Airbnb or VRBO?",
+          answer:
+            "No. Airbnb and VRBO are referenced only to describe the type of short-term-rental property being serviced. Shipwrecked Pools is not affiliated with or endorsed by either platform.",
+        },
+        {
+          question: "Do you provide property management or guest services?",
+          answer:
+            "No. We provide the agreed pool and hot tub cleaning and water-care scope. Reservations, guest communication, turnovers, and general property management remain with the owner or manager.",
+        },
+        {
+          question: "Will the pool or hot tub always be guest-ready?",
+          answer:
+            "No service can guarantee readiness regardless of weather, guest use, contamination, equipment failure, or other events. We perform the agreed service, document applicable observations, and communicate issues that need attention.",
+        },
+        {
+          question: "How often do you service a short-term rental?",
+          answer:
+            "Frequency and scope are agreed for the individual property based on its pool or spa, use pattern, access, condition, and service requirements. We do not apply a fixed schedule to every rental.",
+        },
+        {
+          question: "What should I send with a short-term-rental service quote request?",
+          answer:
+            "Send the Abilene-area service address, details about each pool or hot tub, current condition, access plan, preferred schedule, designated contact, reporting needs, known issues, and recent photos when available.",
+        },
+      ],
+      relatedServices: [
+        "hot-tub-cleaning",
+        "weekly-services",
+        "pool-equipment-repair",
+      ],
+      resourceLinks: [
+        { href: "/pool-service-reports", label: "How Pool Service Reports Work" },
+      ],
+      ctaTitle: "Request a short-term-rental pool or hot tub service quote",
+      showProofSection: false,
+    },
+    {
+      slug: "hotel-apartment-pool-cleaning",
+      name: "Hotel & Apartment Pool Cleaning",
+      seoTitle: "Hotel & Apartment Pool Cleaning in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Hotel & Apartment Pool Cleaning in Abilene, TX",
+      seoDescription:
+        "Recurring commercial pool cleaning for hotels, apartment communities, and multifamily properties in Abilene, with reporting and manager communication.",
+      summary:
+        "Recurring commercial pool cleaning for hotels, apartment communities, and multifamily properties in Abilene.",
+      supportingParagraph:
+        "We work with hotel operators, apartment managers, property managers, ownership groups, and facilities or maintenance contacts. Each property receives a custom scope and quote based on its pool, access, operating needs, agreed frequency, communication contacts, and documentation requirements. The owner or operator retains regulatory, inspection, staffing, and facility-management responsibilities.",
+      idealFor:
+        "Hotel operators, apartment managers, property managers, ownership groups, and facilities or maintenance contacts.",
+      problemStatement:
+        "Commercial and multifamily pools need consistent water care, cleaning, access coordination, and useful communication across multiple responsible contacts.",
+      solutionStatement:
+        "We define a recurring commercial pool-cleaning plan, perform the agreed cleaning and water-care tasks, observe accessible equipment conditions, document applicable service details, and escalate concerns to the designated contact.",
+      bullets: [
+        "Recurring debris removal, brushing, cleaning, and water adjustment",
+        "Visible equipment observations and issue escalation",
+        "Access coordination, documentation, and manager communication",
+      ],
+      process: [
+        "Review the property, pool condition, access requirements, contacts, and requested service scope",
+        "Agree on service frequency, chemical-service coordination, documentation, and escalation practices",
+        "Perform scheduled commercial pool cleaning, water testing, adjustment, and visible observations",
+        "Communicate applicable service details and separately quote supported follow-up work",
+      ],
+      standards: [
+        "A custom scope and quote based on the property and service requirements",
+        "Clear coordination with the property's designated contacts",
+        "Documented observations without assuming the operator's regulatory responsibilities",
+      ],
+      outcomes: [
+        "Consistent professional cleaning and water-care support",
+        "Useful visibility for property and facilities teams",
+        "A defined path for reviewing water or equipment concerns",
+      ],
+      faqs: [
+        {
+          question: "What types of commercial properties do you serve?",
+          answer:
+            "This service is intended for hotels, apartment communities, and multifamily properties in the Abilene service area. Property fit and route availability are confirmed before service begins.",
+        },
+        {
+          question: "How is commercial pool service scheduled?",
+          answer:
+            "Service frequency is agreed after we review the property, pool, access, operating needs, and requested scope. We do not publish a fixed staffing frequency or one schedule for every property.",
+        },
+        {
+          question: "Do you handle health-department inspections or guarantee compliance?",
+          answer:
+            "No. Shipwrecked does not assume the owner's or operator's responsibility for health-department inspections, code compliance, required staffing, recordkeeping, or facility management, and does not guarantee regulatory compliance.",
+        },
+        {
+          question: "Are chemicals and repair work included?",
+          answer:
+            "Chemical-service coordination and any supported repair work are defined for the individual account. No fixed chemical inclusion or repair scope is assumed; additional work is separately approved and quoted when appropriate.",
+        },
+        {
+          question: "What should I send with a hotel or apartment pool-cleaning quote request?",
+          answer:
+            "Send the property address, property type, pool details, current condition, requested frequency, access requirements, designated contacts, documentation needs, known concerns, and current photos when available.",
+        },
+      ],
+      relatedServices: [
+        "pool-equipment-repair",
+        "filter-cleaning",
+        "free-pool-chemical-delivery",
+      ],
+      resourceLinks: [
+        { href: "/pool-service-reports", label: "Pool Service Reporting & Picture Proof" },
+      ],
+      ctaTitle: "Request a hotel or apartment pool-cleaning quote",
+      showProofSection: false,
     },
     {
       slug: "bi-weekly-services",
@@ -938,7 +1190,7 @@ export const site = {
       summary:
         "Corrective Green-to-Clean service for algae-affected pools that need more than routine weekly maintenance.",
       supportingParagraph:
-        "Recovery is handled as separate corrective work before routine weekly care when the pool's current condition requires it. The treatment sequence and follow-up depend on what we find in the water and circulation system.",
+        "Recovery is handled as separate corrective work before routine weekly care when the pool's current condition requires it. Green or cloudy water can follow weather, heavy debris, chemistry drift, or an equipment interruption; the treatment sequence and follow-up depend on what we find in the water and circulation system.",
       idealFor: "Pools with visible algae growth, cloudy water, or failed sanitizer balance.",
       problemStatement:
         "Visible algae and green or severely cloudy water can overwhelm normal maintenance. The starting condition, chemistry, debris load, and circulation all affect the recovery path.",
@@ -1288,7 +1540,7 @@ export const site = {
       summary:
         "Pool pump assessment, repair, and replacement or installation support based on the equipment and its condition.",
       supportingParagraph:
-        "Reliable pump operation keeps water moving through the filtration system for routine pool care. The appropriate repair or replacement path depends on the actual equipment, symptoms, and condition found during assessment.",
+        "Reliable pump operation keeps water moving through the filtration system for routine pool care. We assess concerns such as a pump that will not prime or loses prime, low or weak flow, loud operation, visible pump leaks, or a pump that runs without moving water. The appropriate repair or replacement path depends on the actual equipment, symptoms, and condition found during assessment.",
       idealFor: "Pools with weak circulation, pump noise, prime loss, or aging pump equipment.",
       problemStatement:
         "Weak circulation, unusual pump noise, loss of prime, or aging equipment can interrupt filtration and make water care harder to manage.",
@@ -1433,7 +1685,7 @@ export const site = {
       summary:
         "Condition-based assessment for filter equipment that may require repair or replacement rather than routine cleaning.",
       supportingParagraph:
-        "We distinguish maintenance needs from damaged, worn, leaking, failed, or otherwise unsuitable filter equipment, then quote the supported repair or replacement scope.",
+        "We distinguish maintenance needs from damaged, worn, leaking, failed, or otherwise unsuitable filter equipment. Reported high- or low-pressure behavior is reviewed in context because pressure symptoms do not by themselves establish whether a cartridge, DE, or sand filter needs cleaning, repair, or replacement.",
       idealFor:
         "Cartridge, DE, or sand filter systems with a condition or mechanical concern beyond routine cleaning.",
       problemStatement:
@@ -1498,7 +1750,7 @@ export const site = {
       summary:
         "Condition-based service for visible, accessible pool-system plumbing, fittings, valves, and equipment-pad connections.",
       supportingParagraph:
-        "We assess accessible pool-equipment plumbing concerns and define what can be repaired or coordinated. The final scope depends on the location, condition, and work required.",
+        "We assess accessible pool-equipment plumbing concerns, including visible valve, fitting, connection, flow, or suction issues, and define what can be repaired or coordinated. The final scope depends on the location, condition, and work required.",
       idealFor:
         "Homeowners with a visible or accessible valve, fitting, connection, or equipment-pad plumbing concern.",
       problemStatement:
@@ -1540,7 +1792,7 @@ export const site = {
         {
           question: "What happens if the request extends beyond the accessible equipment area?",
           answer:
-            "We explain what the initial assessment supports and, when appropriate, coordinate the next step instead of representing broader work as part of the visible repair scope.",
+            "We explain what the initial assessment supports and, when appropriate, coordinate the next step instead of representing broader work as part of the visible repair scope. This service does not promise to locate hidden underground leaks or reconstruct buried lines, and it does not include electrical work, structural repair, or plumbing outside the supported pool-equipment scope.",
         },
         {
           question: "What should I send with a pool-plumbing quote request?",
@@ -1550,6 +1802,71 @@ export const site = {
       ],
       relatedServices: ["pool-equipment-repair", "pump-repair-and-installation"],
       ctaTitle: "Have a visible pool valve or plumbing concern?",
+      showBenefitsSection: false,
+      showProofSection: false,
+    },
+    {
+      slug: "pool-liner-repair",
+      name: "Pool Liner Repair",
+      seoTitle: "Pool Liner Repair in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Liner Repair in Abilene, TX",
+      seoDescription:
+        "Pool liner condition assessment in Abilene for visible damage, deterioration, displacement, and repair-or-replacement concerns.",
+      summary:
+        "Condition-based assessment for a damaged, deteriorated, displaced, or otherwise problematic pool liner.",
+      supportingParagraph:
+        "We review the visible liner condition and project details, then determine whether a supported repair, replacement path, or specialty coordination is appropriate. A liner concern can have more than one cause, and professional leak detection is not included.",
+      idealFor:
+        "Pool owners with visible liner damage, deterioration, displacement, or a reported concern that needs a repair-versus-replacement assessment.",
+      problemStatement:
+        "Visible liner damage or movement does not by itself establish the cause, repairability, or whether replacement will be required.",
+      solutionStatement:
+        "We assess the visible liner condition, review available dimensions and photos, and prepare an individual quote for the supported repair, replacement path, or coordinated specialty work.",
+      bullets: [
+        "Visible liner condition and deterioration assessment",
+        "Repair-versus-replacement path based on the observed condition",
+        "Individual quote or specialty-work coordination when appropriate",
+      ],
+      process: [
+        "Review the reported concern, pool details, dimensions when known, and current photos",
+        "Assess visible liner damage, deterioration, displacement, and surrounding condition",
+        "Explain the supported repair, replacement, or specialty-coordination path",
+        "Quote the agreed project scope individually",
+      ],
+      standards: [
+        "Condition review before recommending repair or replacement",
+        "Recommendations limited to visible condition and the supported scope",
+        "Clear scope when specialty trade work must be coordinated",
+      ],
+      outcomes: [
+        "A clearer understanding of the visible liner concern",
+        "A condition-based repair or replacement path",
+        "An individual quote tied to the supported scope",
+      ],
+      faqs: [
+        {
+          question: "Can every damaged pool liner be repaired?",
+          answer:
+            "No. Whether a repair is appropriate depends on the visible condition, extent and location of the concern, fit, and overall project requirements. Some conditions may point to replacement or specialty work instead.",
+        },
+        {
+          question: "Does pool liner repair include leak detection?",
+          answer:
+            "No. We can review visible liner concerns and the information you provide, but this service does not include professional leak detection or a promise to diagnose the source of water loss.",
+        },
+        {
+          question: "How do you decide between liner repair and replacement?",
+          answer:
+            "The recommendation depends on the liner's visible condition, the affected area, pool details, and the work that can be supported. The path is not assumed before assessment.",
+        },
+        {
+          question: "What should I send with a pool liner quote request?",
+          answer:
+            "Share the service address, what you have observed, when it started, pool dimensions when known, and wide-angle and close-up photos of the liner and affected areas.",
+        },
+      ],
+      relatedServices: ["pool-remodeling"],
+      ctaTitle: "Need a condition-based assessment for a pool liner concern?",
       showBenefitsSection: false,
       showProofSection: false,
     },
@@ -1613,7 +1930,13 @@ export const site = {
             "Share the service address, what you want to change, known condition concerns, and current wide-angle and close-up photos of the pool, finish, tile, coping, and relevant equipment.",
         },
       ],
-      relatedServices: ["pool-resurfacing-replastering", "pool-tile-coping-repair"],
+      relatedServices: [
+        "pool-resurfacing-replastering",
+        "pool-tile-coping-repair",
+        "pool-liner-repair",
+        "pool-deck-resurfacing-repair",
+        "pool-tile-cleaning",
+      ],
       ctaTitle: "Ready to discuss an existing-pool renovation?",
       showBenefitsSection: false,
       showProofSection: false,
@@ -1628,7 +1951,7 @@ export const site = {
       summary:
         "Condition-based assessment and project coordination for renewing an existing pool finish.",
       supportingParagraph:
-        "Resurfacing or replastering renews the pool finish and is different from an acid wash, which is a surface treatment and cleaning service rather than finish replacement.",
+        "Resurfacing or replastering renews a worn, rough, or deteriorated interior pool finish. It is different from pool deck resurfacing, which addresses the surrounding walking surface, and from an acid wash, which is a surface treatment and cleaning service rather than finish replacement.",
       idealFor:
         "Homeowners evaluating finish renewal as a standalone project or part of a larger pool renovation.",
       problemStatement:
@@ -1681,10 +2004,80 @@ export const site = {
       relatedServices: [
         "pool-remodeling",
         "pool-tile-coping-repair",
+        "pool-deck-resurfacing-repair",
         "acid-wash",
         "weekly-services",
       ],
       ctaTitle: "Considering a new finish for your existing pool?",
+      showBenefitsSection: false,
+      showProofSection: false,
+    },
+    {
+      slug: "pool-deck-resurfacing-repair",
+      name: "Pool Deck Resurfacing & Repair",
+      seoTitle: "Pool Deck Resurfacing & Repair in Abilene, TX | Shipwrecked Pools",
+      seoH1: "Pool Deck Resurfacing & Repair in Abilene, TX",
+      seoDescription:
+        "Pool deck resurfacing and repair assessment in Abilene for worn or deteriorated walking surfaces surrounding an existing pool.",
+      summary:
+        "Condition-based assessment for resurfacing or repairing the walking surface surrounding an existing pool.",
+      supportingParagraph:
+        "Pool deck resurfacing addresses the surrounding walking surface outside the pool, not the interior pool finish. We assess the existing deck condition and quote a standalone project or coordinated renovation scope individually.",
+      idealFor:
+        "Pool owners evaluating worn or deteriorated deck surfaces as a focused project or part of a larger pool-area renovation.",
+      problemStatement:
+        "Pool deck wear and deterioration vary by area and condition, so the supported repair or resurfacing scope must be assessed before work is proposed.",
+      solutionStatement:
+        "We review the existing deck surface and project goals, define a condition-based repair or resurfacing scope, and coordinate appropriate specialty trade work when required.",
+      bullets: [
+        "Existing pool-deck surface condition assessment",
+        "Standalone repair or resurfacing and broader renovation paths",
+        "Individual quote with specialty-trade coordination when appropriate",
+      ],
+      process: [
+        "Review the deck concerns, affected areas, project goals, and current photos",
+        "Assess the visible condition of the walking surface surrounding the pool",
+        "Define the supported repair, resurfacing, or coordinated renovation scope",
+        "Prepare an individual quote for the agreed project",
+      ],
+      standards: [
+        "Condition-led scope focused on the visible deck surface",
+        "Material choices and performance expectations confirmed only for the supported scope",
+        "Clear separation between the pool deck and the interior pool finish",
+      ],
+      outcomes: [
+        "A clearer pool-deck repair or resurfacing path",
+        "A defined standalone or renovation-project scope",
+        "An individual quote based on the existing surface condition",
+      ],
+      faqs: [
+        {
+          question: "Is pool deck resurfacing the same as pool resurfacing?",
+          answer:
+            "No. Pool deck resurfacing concerns the walking surface surrounding the pool. Pool Resurfacing & Replastering concerns the interior pool finish.",
+        },
+        {
+          question: "Can pool deck work be part of a larger renovation?",
+          answer:
+            "Yes. Deck repair or resurfacing can be evaluated as a standalone project or coordinated with related pool remodeling, interior finish, tile, or coping work when appropriate.",
+        },
+        {
+          question: "Do you use a specific pool deck coating or material system?",
+          answer:
+            "The supported scope depends on the existing surface, condition, project goals, and appropriate specialty work. We do not assume a particular coating or material system before assessment.",
+        },
+        {
+          question: "What should I send with a pool deck quote request?",
+          answer:
+            "Share the service address, the affected areas and project goals, and wide-angle and close-up photos showing the deck surface, pool edge, and nearby tile or coping where relevant.",
+        },
+      ],
+      relatedServices: [
+        "pool-remodeling",
+        "pool-resurfacing-replastering",
+        "pool-tile-coping-repair",
+      ],
+      ctaTitle: "Considering repair or resurfacing for your pool deck?",
       showBenefitsSection: false,
       showProofSection: false,
     },
@@ -1698,7 +2091,7 @@ export const site = {
       summary:
         "Assessment and project coordination for damaged, deteriorated, or outdated pool tile and coping.",
       supportingParagraph:
-        "We evaluate whether repair or replacement fits the observed condition and project goals, then quote the work as a standalone scope or part of a larger pool renovation.",
+        "We evaluate loose, missing, or damaged tile and cracked or deteriorated coping to determine whether repair or replacement fits the observed condition and project goals, then quote the work as a standalone scope or part of a larger pool renovation.",
       idealFor:
         "Homeowners with visible tile or coping deterioration, damage, or an update planned for an existing pool.",
       problemStatement:
@@ -1837,7 +2230,7 @@ export const site = {
       summary:
         "Standalone pool-cleaning help for catch-up needs without requiring immediate enrollment in weekly service.",
       supportingParagraph:
-        "A one-time clean focuses on the agreed debris removal, visible cleaning, water testing, and practical chemistry corrections. A green or heavily algae-affected pool may need separate Green-to-Clean recovery instead.",
+        "A one-time clean focuses on agreed debris removal, visible cleaning, water testing, and practical chemistry corrections after situations such as travel, heavy use, storm debris, or preparation for an event or sale. A green or heavily algae-affected pool may need separate Green-to-Clean recovery instead.",
       idealFor: "Homeowners needing a one-off cleanup without starting recurring service immediately.",
       problemStatement:
         "Pools can fall behind after weather, travel, or heavy use, but the current water, algae, debris, and equipment condition determine whether a standard one-time clean is suitable.",
@@ -2002,7 +2395,7 @@ export const site = {
       problemStatement:
         "Finding the right package sizes and transporting pool chemicals can add another errand to routine pool care.",
       solutionStatement:
-        "Submit a structured request, receive confirmed pricing and timing, pay through the invoice link, and have the products delivered free.",
+        "Submit a structured request, receive confirmed pricing and timing, get invoiced separately, and have the products delivered free.",
       bullets: [
         "Six common pool-chemical options in confirmed package sizes",
         "One request can include multiple products and quantities",
@@ -2011,7 +2404,7 @@ export const site = {
       process: [
         "Tell us what chemicals, sizes, and quantities you need",
         "We confirm product availability, price, and expected delivery timing",
-        "We send the invoice or payment link",
+        "We invoice you separately",
         "We deliver the confirmed products to the requested location",
       ],
       standards: [
@@ -2043,7 +2436,7 @@ export const site = {
         },
         {
           question: "Do I pay online?",
-          answer: "After we confirm availability and price, we send an invoice or payment link. The request form itself is not a checkout and does not collect payment.",
+          answer: "After we confirm availability and price, we invoice you separately. The request form itself is not a checkout and does not collect payment.",
         },
         {
           question: "Can you leave the chemicals if I'm not home?",
@@ -2352,6 +2745,155 @@ export const site = {
   },
   blogSummaries: [
     {
+      slug: "pool-care-after-freeze-power-outage",
+      title: "Pool Care After a Freeze or Power Outage",
+      publishedOn: "2026-10-16",
+      excerpt:
+        "Safe pool and equipment observations after freezing weather, interrupted circulation, or a power outage in West Texas.",
+      summaryBody:
+        "After a freeze or power outage, the first decision is whether the equipment area appears safe—not how quickly the system can be restarted. Visible damage, leakage, ice, electrical concerns, interrupted circulation, debris, and changing water condition should be documented before normal operation resumes.",
+      bodySections: [
+        "Safety first: keep people away from visibly damaged equipment. Do not touch damaged electrical components, repeatedly reset a tripping breaker, energize equipment that is frozen, cracked, leaking, or otherwise unsafe, or disassemble a pressurized or unfamiliar component. Suspected electrical or equipment damage requires qualified help.",
+        "After freezing weather: from a safe location, look for visible cracks, displaced fittings, leaks, equipment-pad water, ice around accessible components, unusual pump or filter appearance, water-level changes, and debris. A lack of visible damage does not prove that concealed components are safe or unaffected.",
+        "After a power outage: record the approximate interruption duration when known and observe debris, clarity, water level, display messages, schedules, and whether equipment appears safe before normal operation resumes. Interrupted circulation can allow debris and water conditions to change even when the pool looked stable beforehand.",
+        "Water and chemistry after interruption: test before adding products. Weather, debris, use, temperature, and lost circulation may all influence demand, so avoid guessed additions. Make one controlled, label-directed adjustment at a time, circulate only when the equipment is safe, and retest according to the product and equipment directions.",
+        "Filter and circulation observations: compare visible return flow, skimming, bubbles, prime behavior, and filter pressure with the system's own normal baseline. There is no universal pressure threshold. Heavy debris may support filter cleaning, while weak flow, leakage, prime loss, or equipment damage may need a separate assessment.",
+        "Professional help is appropriate for visible cracks, severe leakage, repeated breaker trips, burning odor, smoke, failed circulation, frozen or damaged equipment, unfamiliar restart conditions, persistent green or cloudy water, suspected plumbing or equipment damage, or any uncertainty about safe operation.",
+      ],
+      contextualLinks: [
+        {
+          before: "Use the homeowner-safe ",
+          href: "/diy-pool-care/pool-equipment-troubleshooting",
+          label: "Pool Equipment Troubleshooting Guide",
+          after: " to document pump, filter, valve, flow, and leakage symptoms without opening equipment.",
+        },
+        {
+          before: "For water decisions after an interruption, review ",
+          href: "/diy-pool-care/pool-chemistry-troubleshooting",
+          label: "Pool Chemistry Troubleshooting",
+          after: " and the separate Pool Chemical Dosing & Safety guide before making controlled adjustments.",
+        },
+        {
+          before: "If weather also brought debris or poor water conditions, compare the ",
+          href: "/diy-pool-care/west-texas-storm-pool-care",
+          label: "West Texas Storm Pool Care Guide",
+          after: " and the Green & Cloudy Pool Recovery Guide to choose the appropriate next step.",
+        },
+        {
+          before: "Visible equipment damage or failed circulation can be submitted through ",
+          href: "/services/pool-equipment-repair",
+          label: "Pool Equipment Repair",
+          after: "; scope, parts, safe restart, and availability require condition-specific review.",
+        },
+      ],
+      relatedServiceSlugs: [
+        "pool-equipment-repair",
+        "pump-repair-and-installation",
+        "pool-plumbing-repair",
+        "one-time-cleans",
+        "weekly-services",
+      ],
+    },
+    {
+      slug: "west-texas-heat-dust-pollen-pool-care",
+      title: "Pool Care During West Texas Heat, Dust & Pollen",
+      publishedOn: "2026-10-16",
+      excerpt:
+        "A seasonal pool-care framework for West Texas heat, evaporation, windblown dust, pollen, yard work, filter load, and changing water demand.",
+      summaryBody:
+        "West Texas heat, wind, dust, and pollen can increase water loss, debris, filter load, use, and chemistry demand without the dramatic signs of a storm. A practical seasonal routine follows actual conditions instead of assuming one fixed calendar works throughout the year.",
+      bodySections: [
+        "West Texas heat: warmer water, evaporation, and increased swimming can change water level, sanitizer demand, and filtration load. Observe the water level, clarity, use, and circulation, and test more closely during demanding conditions without relying on unsupported evaporation rates or universal chemical targets.",
+        "Dust and wind: airborne dirt can form a surface film, settle on steps and floors, load skimmers and baskets, and reach the filter. Skim, brush, vacuum, and inspect accessible debris points as conditions require; a major wind event or repeated heavy dust may support a one-time cleanup rather than ordinary maintenance alone.",
+        "Pollen and organic debris: visible pollen can collect at the surface and waterline, load skimmers and filters, and affect clarity. Record recurring seasonal patterns and check whether circulation remains normal before assuming every clarity change is equipment failure.",
+        "Mowing, landscaping, and nearby work: grass clippings, leaves, soil, mulch, construction dust, roof debris, and tree trimming can create a concentrated cleanup need. When possible, coordinate pool observation and cleaning around nearby work; pool service does not include unrelated landscaping or construction cleanup.",
+        "Water testing and controlled adjustment: test before changing chemistry, consider debris and actual use, follow the exact product label, and record recurring demand. Automatic or guessed additions can hide the pattern without addressing filter loading, circulation, or the source of contamination.",
+        "Filter and circulation: compare baskets, visible flow, bubbles, and filter pressure with the system's normal condition. A loaded filter may need cleaning, while leakage, damaged components, prime loss, or persistent weak circulation can justify equipment assessment.",
+        "A practical seasonal observation includes water level, surface debris, baskets, visible circulation, filter condition, clarity, testing, brushing or vacuuming needs, equipment symptoms, and service records. Conditions—not a universal schedule—determine when attention should increase.",
+        "Request professional service when heavy debris keeps returning, cloudy or green water persists, filter load exceeds routine care, circulation weakens, high-use conditions repeatedly destabilize water, or cleanup after weather or yard work becomes difficult to manage safely.",
+      ],
+      contextualLinks: [
+        {
+          before: "Build the core observation rhythm with the ",
+          href: "/diy-pool-care/weekly-pool-care-guide",
+          label: "Weekly Pool Care & Maintenance Guide",
+          after: ", then increase attention when heat, dust, use, and debris require it.",
+        },
+        {
+          before: "For a defined storm or heavy-rain event, use the separate ",
+          href: "/diy-pool-care/west-texas-storm-pool-care",
+          label: "West Texas Storm Pool Care Guide",
+          after: " rather than treating gradual seasonal load as storm recovery.",
+        },
+        {
+          before: "Persistent flow or filter symptoms can be organized with the ",
+          href: "/diy-pool-care/pool-equipment-troubleshooting",
+          label: "Pool Equipment Troubleshooting Guide",
+          after: " before requesting professional assessment.",
+        },
+        {
+          before: "For recurring route-based cleaning, testing, and condition reporting, explore ",
+          href: "/services/weekly-services",
+          label: "Weekly Pool Service",
+          after: "; heavier catch-up conditions may fit a separate one-time cleaning review.",
+        },
+      ],
+      relatedServiceSlugs: ["weekly-services", "one-time-cleans", "filter-cleaning"],
+    },
+    {
+      slug: "pool-care-after-parties-vacations-heavy-use",
+      title: "Pool Care After Parties, Vacations & Heavy Use",
+      publishedOn: "2026-10-16",
+      excerpt:
+        "Pool and spa care before and after parties, vacations, guest stays, high occupancy, and other periods that change debris, chemistry, and filter demand.",
+      summaryBody:
+        "Parties, guest stays, heavy use, and long absences can change debris, water level, chemistry demand, clarity, filter loading, and equipment observations. The right response depends on whether the pool is preparing for use, recovering afterward, or being checked after time without direct owner observation.",
+      bodySections: [
+        "Before a party or high-use period: observe clarity, debris, water level, circulation, accessible baskets, recent test results, known equipment concerns, and service timing. Address known problems early, but do not treat a checklist or scheduled visit as a guarantee of event readiness.",
+        "After heavy use: look for debris, sunscreen or body-oil residue, clarity changes, loaded baskets or filters, and increased chemistry demand. Clean suitable surfaces, test before adjusting, make controlled label-directed changes, and record patterns that repeat after similar events.",
+        "After a vacation or long absence: begin with water level, debris, visible circulation, display messages, clarity, testing, visible leakage, and storm or weather effects. Confirm whether service occurred while the owner was away and whether the current condition fits routine care, one-time cleanup, recovery, or equipment assessment.",
+        "Renters, guests, and changing occupancy: unpredictable use can increase debris and contaminant load. Property-specific service frequency, clear contacts, useful reporting, and escalation for abnormal conditions are more reliable than assuming every stay creates the same need; this is not property-management or housekeeping guidance.",
+        "Hot tub or spa heavy use: compact water volume can show sanitizer demand, cloudiness, foam, and filter loading quickly. Increase observation when use is high, record water and filter conditions, and use the dedicated spa guide instead of duplicating or guessing at chemistry instructions.",
+        "Filter and circulation observations: note accessible baskets, filter condition, visible flow, bubbles, weak circulation, leakage, unusual noise, or errors. Heavy debris may need cleaning; failed circulation or damaged equipment belongs on a separate assessment path.",
+        "Routine care is not enough when green or cloudy water persists, circulation fails, debris is severe, equipment is visibly damaged, chemistry repeatedly destabilizes, the pool has been neglected, storm conditions overlap, or product handling is uncertain.",
+        "Plan the service path by condition: recurring Weekly Pool Service supports an ongoing rhythm; One-Time Pool Cleaning addresses suitable catch-up conditions; Algae Removal handles evaluated recovery; rental and spa services address those specific settings; equipment concerns require separate review.",
+      ],
+      contextualLinks: [
+        {
+          before: "Use the ",
+          href: "/diy-pool-care/weekly-pool-care-guide",
+          label: "Weekly Pool Care & Maintenance Guide",
+          after: " to organize routine observations before and after a change in use.",
+        },
+        {
+          before: "For spa-specific high-use behavior, see the ",
+          href: "/diy-pool-care/hot-tub-spa-water-care",
+          label: "Hot Tub & Spa Water Care Guide",
+          after: "; rental operators can also use the Short-Term Rental Pool & Hot Tub Care Checklist.",
+        },
+        {
+          before: "Persistent green or cloudy water should follow the ",
+          href: "/diy-pool-care/green-cloudy-pool-recovery",
+          label: "Green & Cloudy Pool Recovery Guide",
+          after: " rather than repeated unverified chemical additions.",
+        },
+        {
+          before: "When the need is an appropriate catch-up cleaning rather than recurring service, request a review through ",
+          href: "/services/one-time-cleans",
+          label: "One-Time Pool Cleaning",
+          after: "; starting condition determines final scope.",
+        },
+      ],
+      relatedServiceSlugs: [
+        "weekly-services",
+        "one-time-cleans",
+        "algae-removal",
+        "short-term-rental-pool-hot-tub-cleaning",
+        "hot-tub-cleaning",
+        "pool-equipment-repair",
+      ],
+    },
+    {
       slug: "how-to-clean-cartridge-filters",
       title: "How to Clean Cartridge Filters",
       publishedOn: "2025-11-26",
@@ -2365,6 +2907,12 @@ export const site = {
         "After reassembly, check startup pressure and record the clean baseline. That number helps you spot when filtration performance is sliding and when professional service should step in.",
       ],
       contextualLinks: [
+        {
+          before: "If pressure, flow, leakage, or returning debris suggests more than routine cartridge cleaning, use the ",
+          href: "/diy-pool-care/pool-equipment-troubleshooting",
+          label: "Pool Equipment Troubleshooting Guide",
+          after: " to document the symptom before choosing cleaning, repair, or replacement.",
+        },
         {
           before: "If you would rather have the condition assessed and the filter handled professionally, Shipwrecked offers ",
           href: "/services/filter-cleaning",
@@ -2387,6 +2935,12 @@ export const site = {
         "If readings drift repeatedly, recurring professional checks can prevent corrective swings and help protect finishes, heaters, and circulation components.",
       ],
       contextualLinks: [
+        {
+          before: "Review calcium together with pH, alkalinity, temperature, and the wider ",
+          href: "/diy-pool-care/pool-chemistry-troubleshooting",
+          label: "Pool Chemistry Troubleshooting Guide",
+          after: " rather than correcting one reading in isolation.",
+        },
         {
           before: "For homeowners who want ongoing testing and practical chemistry adjustments, ",
           href: "/services/weekly-services",
@@ -2411,6 +2965,12 @@ export const site = {
       ],
       contextualLinks: [
         {
+          before: "The ",
+          href: "/diy-pool-care/weekly-pool-care-guide",
+          label: "Weekly Pool Care & Maintenance Guide",
+          after: " provides a broader homeowner routine for cleaning, testing, circulation observations, and escalation.",
+        },
+        {
           before: "If you prefer professional help with applicable routine cleaning, chemistry care, and equipment observations, explore ",
           href: "/services/weekly-services",
           label: "Weekly Pool Service",
@@ -2434,6 +2994,18 @@ export const site = {
       ],
       contextualLinks: [
         {
+          before: "If an existing cleaner stops, tangles, misses debris, or changes climbing behavior, use the ",
+          href: "/diy-pool-care/pool-cleaner-robot-troubleshooting",
+          label: "Pool Cleaner & Robot Troubleshooting Guide",
+          after: " for robotic, suction-side, and pressure-side observations.",
+        },
+        {
+          before: "Cleaner performance that changes with weak flow or filter symptoms may belong on the broader ",
+          href: "/diy-pool-care/pool-equipment-troubleshooting",
+          label: "Pool Equipment Troubleshooting Guide",
+          after: ".",
+        },
+        {
           before: "Choosing a cleaner means owning and managing equipment; homeowners who would rather outsource ongoing cleaning and water care can consider ",
           href: "/services/weekly-services",
           label: "professional weekly pool maintenance",
@@ -2456,6 +3028,12 @@ export const site = {
         "Once water stabilizes, recurring maintenance and filtration discipline are critical to reducing the chance of fast recurrence.",
       ],
       contextualLinks: [
+        {
+          before: "Use the ",
+          href: "/diy-pool-care/green-cloudy-pool-recovery",
+          label: "Green & Cloudy Pool Recovery Guide",
+          after: " to compare algae concerns, clarity, circulation, filter load, and staged recovery decisions.",
+        },
         {
           before: "For an active or severe algae condition, start with Shipwrecked's separate ",
           href: "/services/algae-removal",
@@ -2484,6 +3062,18 @@ export const site = {
         "When seasonal drift or repeated balancing issues show up, a structured service cadence can restore consistency and protect equipment life.",
       ],
       contextualLinks: [
+        {
+          before: "For relationships among chlorine production, pH, alkalinity, calcium, and stabilizer, review ",
+          href: "/diy-pool-care/pool-chemistry-troubleshooting",
+          label: "Pool Chemistry Troubleshooting",
+          after: ".",
+        },
+        {
+          before: "Before adding any product, follow the controlled process in the ",
+          href: "/diy-pool-care/pool-chemical-dosing-safety",
+          label: "Pool Chemical Dosing & Safety Guide",
+          after: ".",
+        },
         {
           before: "Salt pools are not maintenance-free; homeowners who prefer ongoing professional cleaning, testing, and practical chemistry adjustments can explore ",
           href: "/services/weekly-services",

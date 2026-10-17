@@ -11,7 +11,7 @@ import { InternalHero } from "@/components/internal-hero";
 import { site } from "@/content/site";
 
 export const metadata = {
-  title: "Pool Services in Abilene, TX",
+  title: "Pool Cleaning, Repair & Remodeling in Abilene, TX",
   alternates: { canonical: "/services" },
   description:
     "Explore pool cleaning, equipment repair, filter service, remodeling, resurfacing, tile, and coping services in Abilene, TX.",
@@ -56,9 +56,9 @@ export default function ServicesPage() {
       <section className="border-b border-line/60 bg-light-blue-soft/25 py-12 md:py-16">
         <div className="container-page">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="section-label">Repair & Project Services</p>
+            <p className="section-label">More Pool & Spa Services</p>
             <h2 className="mt-2 text-balance font-sans text-[2rem] font-extrabold leading-[0.95] tracking-[-0.03em] text-navy md:text-[3rem]">
-              More ways to care for your pool system and finish
+              Service options for homes, properties, and pool systems
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-ink-muted md:text-lg">
               Start with the service that best matches the concern. We assess the current condition and quote the supported scope individually.
@@ -107,7 +107,7 @@ export default function ServicesPage() {
 
       <section className="border-b border-line/60 bg-white pb-12 md:pb-16">
         <div className="container-page">
-          <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-2">
+          <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
           <div className="flex flex-col gap-5 rounded-[1.4rem] border border-line/75 bg-light-blue-soft/35 p-6 shadow-[0_14px_30px_rgba(11,30,75,0.08)] md:p-8">
             <div className="max-w-3xl">
               <p className="section-label">Not sure what your pool needs?</p>
@@ -135,6 +135,16 @@ export default function ServicesPage() {
             </div>
             <Link href="/services/free-pool-chemical-delivery" data-analytics-service-cta="free-pool-chemical-delivery" data-analytics-placement="services_hub_feature" className="btn-primary focus-ring mt-auto self-start">
               Request Chemical Delivery
+            </Link>
+          </div>
+          <div className="flex flex-col gap-5 rounded-[1.4rem] border border-line/75 bg-light-blue-soft/35 p-6 shadow-[0_14px_30px_rgba(11,30,75,0.08)] md:p-8">
+            <div className="max-w-3xl">
+              <p className="section-label">Want clear service follow-through?</p>
+              <h2 className="mt-2 text-balance text-2xl font-extrabold leading-tight text-navy md:text-3xl">See how pool service reports work</h2>
+              <p className="mt-3 text-sm leading-relaxed text-ink-muted md:text-base">Review the photos, water readings, chemical details, completed work, and observations weekly-service customers can receive after a visit.</p>
+            </div>
+            <Link href="/pool-service-reports" data-analytics-service-cta="weekly-services" data-analytics-placement="services_hub_feature" className="btn-primary focus-ring mt-auto self-start">
+              Explore Pool Service Reports
             </Link>
           </div>
           </div>

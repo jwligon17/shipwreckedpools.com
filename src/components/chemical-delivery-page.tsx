@@ -8,17 +8,17 @@ import { site } from "@/content/site";
 
 const products = [
   ["Chlorine Tabs", "25 lb or 50 lb"],
-  ["Pool Shock", "25 lb, 50 lb, or 100 lb"],
-  ["Liquid Chlorine", "Case — 4 gallons"],
-  ["Muriatic Acid", "Case — 4 gallons"],
-  ["Sodium Bicarbonate", "30 lb bag"],
-  ["Pool Salt", "40 lb bag"],
+  ["Shock", "25 lb, 50 lb, or 100 lb"],
+  ["Liquid Chlorine", "4-gallon case"],
+  ["Muriatic Acid", "4-gallon case"],
+  ["Sodium Bicarbonate", "30 lb"],
+  ["Pool Salt", "40 lb"],
 ] as const;
 
 const steps = [
   ["Tell us what you need", "Choose each chemical, package size, and quantity in one request."],
   ["We confirm the details", "We check product availability, price, and expected delivery timing."],
-  ["Pay after confirmation", "We send an invoice or payment link after confirming your request."],
+  ["Pay after confirmation", "We invoice you separately after confirming your request."],
   ["We deliver for free", "We bring the confirmed products to the requested location with no delivery fee."],
 ] as const;
 
@@ -129,8 +129,10 @@ export function ChemicalDeliveryPage({ service }: { service: Service }) {
         <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.6rem] border border-[#9bc8df]/35 bg-[#06153a] px-7 py-10 text-center text-white shadow-[0_30px_62px_rgba(5,18,46,0.3)] md:px-12 md:py-14">
           <h2 className="text-balance font-sans text-[2rem] font-extrabold leading-[0.94] tracking-[-0.025em] md:text-[3rem]">Not sure what your pool needs?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">Schedule a free Ship-Shape Pool Review for an onsite look at your pool, water, and visible equipment. A review is helpful when professional guidance is needed, but it is not required to request chemicals.</p>
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-white/75 md:text-base">If you want ongoing testing, chemical adjustment, cleaning, and service reporting instead of managing products yourself, weekly pool service may be the better fit.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link href="/services/ship-shape-pool-review" className="btn-hero-primary focus-ring">Schedule a Free Pool Review</Link>
+            <Link href="/services/weekly-services" className="btn-hero-secondary focus-ring">Explore Weekly Pool Service</Link>
             <Link href="/locations" className="btn-hero-secondary focus-ring">Check Our Service Areas</Link>
           </div>
         </div>

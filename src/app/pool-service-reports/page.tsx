@@ -38,6 +38,14 @@ const reportDetails = [
     title: "Service Notes",
     body: "Useful technician notes can add context about pool condition and practical next steps.",
   },
+  {
+    title: "Arrival Time",
+    body: "The recorded arrival time helps establish when the documented service visit began.",
+  },
+  {
+    title: "Departure Time",
+    body: "The recorded departure time helps show when the documented service visit was completed.",
+  },
 ] as const;
 
 const questionsWithoutDocumentation = [
@@ -163,6 +171,9 @@ export default function PoolServiceReportsPage() {
               <p className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
                 Shipwrecked uses after-service reporting to give weekly-service customers a clearer view of the visit, the pool&apos;s condition, and observations worth knowing about.
               </p>
+              <p className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
+                That record is useful for homeowners, remote owners, and property managers who need practical service communication without being onsite for every visit.
+              </p>
             </div>
             <article className="rounded-[1.5rem] border border-line/80 bg-light-blue-soft/35 p-6 shadow-[0_16px_34px_rgba(11,30,75,0.08)] md:p-8">
               <h3 className="text-xl font-semibold text-navy">Questions a service report helps answer</h3>
@@ -228,6 +239,9 @@ export default function PoolServiceReportsPage() {
                   </div>
                 ))}
               </div>
+              <p className="mt-5 border-t border-line/75 pt-5 text-sm leading-relaxed text-ink-muted md:text-base">
+                These reports document routine service and visible observations. They are not regulatory or code-compliance inspections, engineering reports, repair diagnoses, or a guarantee that every developing issue will be detected.
+              </p>
             </article>
           </div>
         </div>
@@ -244,6 +258,8 @@ export default function PoolServiceReportsPage() {
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               <Link href="/contact" data-analytics-service-cta="weekly-services" data-analytics-placement="service_reports_weekly_cta" className="btn-primary focus-ring">Get a Weekly Service Quote</Link>
               <Link href="/services/weekly-services" data-analytics-service-cta="weekly-services" data-analytics-placement="service_reports_weekly_cta" className="btn-subtle focus-ring">Explore Weekly Pool Service</Link>
+              <Link href="/services/short-term-rental-pool-hot-tub-cleaning" className="btn-subtle focus-ring">Short-Term Rental Service</Link>
+              <Link href="/services/hotel-apartment-pool-cleaning" className="btn-subtle focus-ring">Hotel & Apartment Service</Link>
             </div>
           </div>
         </div>

@@ -862,6 +862,15 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Se
                     {relatedService.seoH1 ?? relatedService.name}
                   </Link>
                 ))}
+                {service.resourceLinks?.map((resourceLink) => (
+                  <Link
+                    key={resourceLink.href}
+                    href={resourceLink.href}
+                    className="focus-ring inline-flex rounded-full border border-line bg-light-blue-soft/55 px-3 py-1.5 text-sm font-medium text-navy transition hover:border-navy/25 hover:bg-light-blue-soft"
+                  >
+                    {resourceLink.label}
+                  </Link>
+                ))}
               </div>
             </div>
 
